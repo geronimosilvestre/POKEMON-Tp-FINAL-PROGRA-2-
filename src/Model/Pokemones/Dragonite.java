@@ -10,10 +10,10 @@ public class Dragonite extends Pokemon {
     String nombre;
     ETipo tipo;
 
-    public Dragonite(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre, ETipo tipo) {
+    public Dragonite(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre) {
         super(ataque, defense, defensaEspecial, ataqueEspecial);
         this.nombre = nombre;
-        this.tipo = ETipo.Fuego;
+        this.tipo = ETipo.Dragón;
     }
 
     public void setNombre(String nombre) {

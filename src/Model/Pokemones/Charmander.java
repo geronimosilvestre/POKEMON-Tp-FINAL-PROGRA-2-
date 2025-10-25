@@ -10,7 +10,7 @@ public class Charmander extends Pokemon {
     String nombre;
     ETipo tipo;
 
-    public Charmander(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre, ETipo tipo) {
+    public Charmander(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre) {
         super(ataque, defense, defensaEspecial, ataqueEspecial);
         this.nombre = nombre;
         this.tipo = ETipo.Fuego; //esto tendria que venir definido
