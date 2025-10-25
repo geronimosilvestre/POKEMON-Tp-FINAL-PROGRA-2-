@@ -11,7 +11,7 @@ public class Pikachu extends Pokemon {
     ETipo tipo;
 
     public Pikachu(String nombre) {
-        super(55, 40, 50, 50);
+        super(55, 40, 50, 50,35);
         this.nombre = nombre;
         this.tipo = ETipo.Eléctrico;
     }

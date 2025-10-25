@@ -9,10 +9,12 @@ public abstract class Pokemon {
     private int defense;
     private int defensaEspecial;
     private int ataqueEspecial;
+    private int hitPoints;
 
-    public Pokemon(int ataque, int defense, int defensaEspecial, int ataqueEspecial) {
+    public Pokemon(int ataque, int defense, int defensaEspecial, int ataqueEspecial, int hitPoints) {
         contadorID++;
         this.id = contadorID;
+        this.hitPoints = hitPoints;
         this.ataque = ataque;
         this.defense = defense;
         this.defensaEspecial = defensaEspecial;
@@ -37,6 +39,10 @@ public abstract class Pokemon {
 
     public int getAtaqueEspecial() {
         return ataqueEspecial;
+    }
+
+    public int getHitPoints() {
+        return hitPoints;
     }
 
     @Override

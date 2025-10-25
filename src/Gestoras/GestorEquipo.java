@@ -1,5 +1,6 @@
 package Gestoras;
 
+import Exceptions.falloAgregarEntrenadorException;
 import Model.Entrenador;
 import Model.Pokemon;
 import java.util.HashMap;
@@ -12,13 +13,14 @@ public class GestorEquipo {
         this.equipos = new HashMap<>();
     }
 
-    public void agregarEntrenador(Entrenador entrenador) {
+    public void agregarEntrenador(Entrenador entrenador) throws falloAgregarEntrenadorException {
         equipos.putIfAbsent(entrenador, new LinkedHashSet<>());
     }
 
-    public void agregarPokemon(Entrenador entrenador, Pokemon pokemon) {
+    public boolean agregarPokemon(Entrenador entrenador, Pokemon pokemon) {
         equipos.computeIfAbsent(entrenador, e -> new LinkedHashSet<>()).add(pokemon);
-    }
+        return true;
+    }// aca va lo de captura de pokemon
 
     public LinkedHashSet<Pokemon> obtenerEquipo(Entrenador entrenador) {
         return  equipos.get(entrenador);

@@ -11,7 +11,7 @@ public class Geodude extends Pokemon {
     ETipo tipo;
 
     public Geodude(String nombre) {
-        super(80, 100, 30, 30);
+        super(80, 100, 30, 30,40);
         this.nombre = nombre;
         this.tipo = ETipo.Roca;
     }

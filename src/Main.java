@@ -9,9 +9,9 @@ public class Main {
 
         Entrenador entrenador = new Entrenador("Carlos","Gardel");
 
-        Caterpie caterpie = new Caterpie(10,10,10,10,"Marcelo");
-        Caterpie caterpie2 = new Caterpie(10,10,10,10,"Emanuel");
-        Caterpie caterpie3 = new Caterpie(10,10,10,10,"Nico");
+        Caterpie caterpie = new Caterpie("Marcelo");
+        Caterpie caterpie2 = new Caterpie("Emanuel");
+        Caterpie caterpie3 = new Caterpie("Nico");
 
 
 

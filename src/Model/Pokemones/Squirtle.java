@@ -11,7 +11,7 @@ public class Squirtle extends Pokemon {
     ETipo tipo;
 
     public Squirtle(String nombre) {
-        super(48, 65, 50, 64);
+        super(48, 65, 50, 64,44);
         this.nombre = nombre;
         this.tipo = ETipo.Agua;
     }

@@ -1,17 +1,18 @@
 package Model.Pokemones;
 
 import Enums.ETipo;
+import Interfaces.IBatalla;
 import Model.Pokemon;
 
 import java.util.Objects;
 
-public class Bulbasaur extends Pokemon {
+public class Bulbasaur extends Pokemon{
 
     String nombre;
     ETipo tipo;
 
     public Bulbasaur(String nombre) {
-        super(49, 49, 65, 65);
+        super(49, 49, 65, 65,45);
         this.nombre = nombre;
         this.tipo = ETipo.Planta;
     }

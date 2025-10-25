@@ -11,9 +11,9 @@ public class Arbok extends Pokemon {
     ETipo tipo;
 
     public Arbok(String nombre) {
-        super(95, 69, 79, 65);
+        super(95, 69, 79, 65,60);
         this.nombre = nombre;
-        this.tipo = ETipo.Veneno; //esto tendria que venir definido
+        this.tipo = ETipo.Veneno;
     }
 
     public void setNombre(String nombre) {

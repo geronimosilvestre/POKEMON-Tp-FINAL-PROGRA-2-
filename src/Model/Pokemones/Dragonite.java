@@ -11,7 +11,7 @@ public class Dragonite extends Pokemon {
     ETipo tipo;
 
     public Dragonite(String nombre) {
-        super(134, 95, 100, 100);
+        super(134, 95, 100, 100, 91);
         this.nombre = nombre;
         this.tipo = ETipo.Dragón;
     }
