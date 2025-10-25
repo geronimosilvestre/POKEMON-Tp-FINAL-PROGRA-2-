@@ -10,8 +10,8 @@ public class Pikachu extends Pokemon {
     String nombre;
     ETipo tipo;
 
-    public Pikachu(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre) {
-        super(ataque, defense, defensaEspecial, ataqueEspecial);
+    public Pikachu(String nombre) {
+        super(55, 40, 50, 50);
         this.nombre = nombre;
         this.tipo = ETipo.Eléctrico;
     }

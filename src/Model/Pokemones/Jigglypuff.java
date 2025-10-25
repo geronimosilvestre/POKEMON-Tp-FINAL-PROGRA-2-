@@ -10,8 +10,8 @@ public class Jigglypuff extends Pokemon {
     String nombre;
     ETipo tipo;
 
-    public Jigglypuff(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre) {
-        super(ataque, defense, defensaEspecial, ataqueEspecial);
+    public Jigglypuff(String nombre) {
+        super(45, 20, 25, 25);
         this.nombre = nombre;
         this.tipo = ETipo.Normal; //esto tendria que venir definido
     }

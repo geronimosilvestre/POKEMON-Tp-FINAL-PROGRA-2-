@@ -10,10 +10,10 @@ public class Caterpie extends Pokemon {
     String nombre;
     ETipo tipo;
 
-    public Caterpie(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre) {
-        super(ataque, defense, defensaEspecial, ataqueEspecial);
+    public Caterpie(String nombre) {
+        super(30, 35, 20, 20);
         this.nombre = nombre;
-        this.tipo = ETipo.Bicho; //esto tendria que venir definido
+        this.tipo = ETipo.Bicho;
     }
 
     public void setNombre(String nombre) {

@@ -10,8 +10,8 @@ public class Arbok extends Pokemon {
     String nombre;
     ETipo tipo;
 
-    public Arbok(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre) {
-        super(ataque, defense, defensaEspecial, ataqueEspecial);
+    public Arbok(String nombre) {
+        super(95, 69, 79, 65);
         this.nombre = nombre;
         this.tipo = ETipo.Veneno; //esto tendria que venir definido
     }

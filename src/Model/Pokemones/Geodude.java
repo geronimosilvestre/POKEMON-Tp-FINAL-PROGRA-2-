@@ -10,10 +10,10 @@ public class Geodude extends Pokemon {
     String nombre;
     ETipo tipo;
 
-    public Geodude(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre) {
-        super(ataque, defense, defensaEspecial, ataqueEspecial);
+    public Geodude(String nombre) {
+        super(80, 100, 30, 30);
         this.nombre = nombre;
-        this.tipo = ETipo.Roca; //esto tendria que venir definido
+        this.tipo = ETipo.Roca;
     }
 
     public void setNombre(String nombre) {

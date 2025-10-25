@@ -10,8 +10,8 @@ public class Dragonite extends Pokemon {
     String nombre;
     ETipo tipo;
 
-    public Dragonite(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre) {
-        super(ataque, defense, defensaEspecial, ataqueEspecial);
+    public Dragonite(String nombre) {
+        super(134, 95, 100, 100);
         this.nombre = nombre;
         this.tipo = ETipo.Dragón;
     }

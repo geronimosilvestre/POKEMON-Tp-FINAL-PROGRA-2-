@@ -10,10 +10,10 @@ public class Bulbasaur extends Pokemon {
     String nombre;
     ETipo tipo;
 
-    public Bulbasaur(int ataque, int defense, int defensaEspecial, int ataqueEspecial, String nombre) {
-        super(ataque, defense, defensaEspecial, ataqueEspecial);
+    public Bulbasaur(String nombre) {
+        super(49, 49, 65, 65);
         this.nombre = nombre;
-        this.tipo = ETipo.Planta; //esto tendria que venir definido
+        this.tipo = ETipo.Planta;
     }
 
     public void setNombre(String nombre) {
