@@ -1,7 +1,7 @@
 import Gestoras.GestorEquipo;
 import Model.Entrenador;
 import Model.Pokemones.Caterpie;
-import Model.Pokemones.Pikachu;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -24,6 +24,6 @@ public class Main {
         equipoRoket.agregarPokemon(entrenador,caterpie3);
 
         equipoRoket.mostrarEquipos();
-        
+
     }
 }
