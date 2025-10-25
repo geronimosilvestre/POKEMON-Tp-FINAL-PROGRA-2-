@@ -13,7 +13,7 @@ public class GestorEquipo {
         this.equipos = new HashMap<>();
     }
 
-    public void agregarEntrenador(Entrenador entrenador) throws falloAgregarEntrenadorException {
+    public void crearEquipo(Entrenador entrenador) throws falloAgregarEntrenadorException {
         equipos.putIfAbsent(entrenador, new LinkedHashSet<>());
     }
 

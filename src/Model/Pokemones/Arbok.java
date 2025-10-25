@@ -28,6 +28,8 @@ public class Arbok extends Pokemon {
         return tipo;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Arbok arbok)) return false;

@@ -6,4 +6,6 @@ public class GestorBatalla {
     public GestorBatalla(GestorEquipo equipo) {
         this.equipo = equipo;
     }
+
+
 }

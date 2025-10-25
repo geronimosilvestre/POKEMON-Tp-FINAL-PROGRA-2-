@@ -1,5 +1,6 @@
 import Gestoras.GestorEquipo;
 import Model.Entrenador;
+import Model.Pokemon;
 import Model.Pokemones.Caterpie;
 
 
@@ -7,23 +8,24 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Entrenador entrenador = new Entrenador("Carlos","Gardel");
 
-        Caterpie caterpie = new Caterpie("Marcelo");
-        Caterpie caterpie2 = new Caterpie("Emanuel");
-        Caterpie caterpie3 = new Caterpie("Nico");
+        Entrenador entrenador = new Entrenador("Joel","Gardel");
+
+        Pokemon caterpie = new Caterpie("Marcelo");
+        Pokemon caterpie2 = new Caterpie("Emanuel");
+        Pokemon caterpie3 = new Caterpie("Nico");
 
 
 
-        GestorEquipo equipoRoket = new GestorEquipo();
+        GestorEquipo gestorEquipo = new GestorEquipo();
 
-        equipoRoket.agregarEntrenador(entrenador);
+        gestorEquipo.crearEquipo(entrenador);
 
-        equipoRoket.agregarPokemon(entrenador,caterpie);
-        equipoRoket.agregarPokemon(entrenador,caterpie2);
-        equipoRoket.agregarPokemon(entrenador,caterpie3);
+        gestorEquipo.agregarPokemon(entrenador,caterpie);
+        gestorEquipo.agregarPokemon(entrenador,caterpie2);
+        gestorEquipo.agregarPokemon(entrenador,caterpie3);
 
-        equipoRoket.mostrarEquipos();
+        gestorEquipo.mostrarEquipos();
 
     }
 }
