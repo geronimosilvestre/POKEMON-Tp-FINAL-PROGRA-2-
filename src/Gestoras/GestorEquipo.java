@@ -31,6 +31,9 @@ public class GestorEquipo {
             entry.getValue().forEach(p -> System.out.println(" - " + p));
             System.out.println();
         }
+
+
+        //hola
     }
 }
 
