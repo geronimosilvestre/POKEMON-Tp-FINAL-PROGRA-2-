@@ -1,38 +1,82 @@
 package Gestoras;
-
-import Exceptions.falloAgregarEntrenadorException;
 import Model.Entrenador;
 import Model.Pokemon;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
+
+import java.util.*;
 
 public class GestorEquipo {
-    private HashMap<Entrenador, LinkedHashSet<Pokemon>> equipos;
+    private Map<Entrenador, Set<Pokemon>> equipos;
 
     public GestorEquipo() {
         this.equipos = new HashMap<>();
     }
 
-    public void crearEquipo(Entrenador entrenador) throws falloAgregarEntrenadorException {
-        equipos.putIfAbsent(entrenador, new LinkedHashSet<>());
+    public boolean crearEquipo(Entrenador entrenador)   {  //Crear equipo es para recibir el nombre, los pokemones entran gracias al metodo agregar pokemon
+        equipos.put(entrenador,crearMochilaEntrenador());
     }
 
-    public boolean agregarPokemon(Entrenador entrenador, Pokemon pokemon) {
-        equipos.computeIfAbsent(entrenador, e -> new LinkedHashSet<>()).add(pokemon);
-        return true;
+
+    public LinkedHashSet<Pokemon> crearMochilaEntrenador() {
+        LinkedHashSet<Pokemon> mochilaDelEntrenador = new LinkedHashSet<>();
+
+        while (mochilaDelEntrenador.size() < 4) {  // size menor a 4 porque es hasta 3 pokemones en la mochila, de ultima se puede cambiar por exception???
+            Pokemon pokemonAleatorio = agregarPokemon(); //Obtengo un pokemon aleatorio nuevo
+            boolean descartar = descartarPokemon(pokemonAleatorio); // Se le pregunta al usuario si quiere utilizar el nuevo pokemon encontrado, hay que hacerlo en el main??
+            if (!descartar) { // si no se descarta lo  intento capturar
+                boolean intentarCapturar = pokemonAleatorio.capturarPokemon();
+
+                if (intentarCapturar) { // si logro capturar entra en la mochila
+                    mochilaDelEntrenador.add(pokemonAleatorio);
+                }
+            }
+
+
+        }
+
+        return mochilaDelEntrenador;
+
+    }
+
+
+
+    public Pokemon agregarPokemon() { //este metodo se usa internamente dentro de crearEquipo solamente
+
+        GestorPokedex GP = new GestorPokedex();
+        int numRandom = (int) (Math.random() * GP.pokedexSize());  // creo un numero random desde el 0 hasta la cantidad de pokemones que hay en la pokedex
+        return GP.getPokemonEspecifico(numRandom);  //retorno un pokemon que encontro gracias al numero random
+
+
     }// aca va lo de captura de pokemon
 
-    public LinkedHashSet<Pokemon> obtenerEquipo(Entrenador entrenador) {
-        return  equipos.get(entrenador);
+    public boolean descartarPokemon(Pokemon pokemon) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Desea capturar este pokemon  y meterlo en la mochila ?" + pokemon.toString());
+        int numero = sc.nextInt();
+        sc.nextLine();
+        if (numero == 1) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
-    public void mostrarEquipos() {
-        for (var entry : equipos.entrySet()) {
-            System.out.println("Entrenador: " + entry.getKey().getNombre());
-            System.out.println("Equipo:");
-            entry.getValue().forEach(p -> System.out.println(" - " + p));
-            System.out.println();
+    public Set<Pokemon> getEquipo(int numeroDelEquipo)  //Por parametro recibo el numero del equipo que quiero para despues usarlo en la batalla, hay 2 equipos en el hashmap
+    {
+
+        Set<Pokemon> mochila =  new HashSet<>();
+       Iterator<Set<Pokemon>> iterator = equipos.values().iterator();
+        if (iterator.hasNext() && numeroDelEquipo == 1) {
+            return iterator.next();
         }
+
+        if (iterator.hasNext() && numeroDelEquipo == 2) {
+          return iterator.next();
+
+        }
+
+        return null;
+
     }
 }
 

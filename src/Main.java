@@ -3,13 +3,14 @@ import Model.Entrenador;
 import Model.Pokemon;
 import Model.Pokemones.Caterpie;
 
+import java.util.LinkedHashSet;
+
 
 public class Main {
     public static void main(String[] args) {
 
 
 
-        Entrenador entrenador = new Entrenador("Joel","Gardel");
 
         Pokemon caterpie = new Caterpie("Marcelo");
         Pokemon caterpie2 = new Caterpie("Emanuel");
@@ -17,15 +18,17 @@ public class Main {
 
 
 
+        Entrenador entrenador = new Entrenador("Joel","Gardel");
         GestorEquipo gestorEquipo = new GestorEquipo();
+        LinkedHashSet<Pokemon> mochilaDelEntrenador = gestorEquipo.crearMochilaEntrenador();
 
-        gestorEquipo.crearEquipo(entrenador);
 
-        gestorEquipo.agregarPokemon(entrenador,caterpie);
-        gestorEquipo.agregarPokemon(entrenador,caterpie2);
-        gestorEquipo.agregarPokemon(entrenador,caterpie3);
 
-        gestorEquipo.mostrarEquipos();
+
+
+
+       gestorEquipo.crearEquipo(entrenador)
+
 
     }
 }

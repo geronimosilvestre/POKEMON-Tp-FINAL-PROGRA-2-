@@ -1,8 +1,10 @@
 package Model;
 
+import Interfaces.ICapturar;
+
 import java.util.Objects;
 
-public abstract class Pokemon {
+public abstract class Pokemon implements ICapturar {
     private static int contadorID = 0;
     private int id;
     private int ataque;
@@ -10,6 +12,7 @@ public abstract class Pokemon {
     private int defensaEspecial;
     private int ataqueEspecial;
     private int hitPoints;
+    private boolean capturado ; // por defecto no estan capturados
 
     public Pokemon(int ataque, int defense, int defensaEspecial, int ataqueEspecial, int hitPoints) {
         contadorID++;
@@ -19,6 +22,7 @@ public abstract class Pokemon {
         this.defense = defense;
         this.defensaEspecial = defensaEspecial;
         this.ataqueEspecial = ataqueEspecial;
+        this.capturado = false;
     }
 
     public int getId() {
@@ -65,5 +69,18 @@ public abstract class Pokemon {
                 ", defensaEspecial=" + defensaEspecial +
                 ", ataqueEspecial=" + ataqueEspecial +
                 '}';
+    }
+
+    private void setCapturado() {
+        this.capturado = true;
+    }
+
+    public boolean capturarPokemon() {  // si el numero es menor a 500 se captura
+        int numRandom = (int) (Math.random() * 1000);
+        if (numRandom < 500) {
+            setCapturado();
+            return true;
+        }
+        return false;
     }
 }

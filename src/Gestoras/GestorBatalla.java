@@ -8,4 +8,11 @@ public class GestorBatalla {
     }
 
 
+    public iniciarBatalla()
+    {
+        GestorEquipo equipo = new GestorEquipo();
+
+        equipo.
+    }
+
 }
