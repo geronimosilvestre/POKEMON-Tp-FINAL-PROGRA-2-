@@ -13,7 +13,7 @@ public class Jigglypuff extends Pokemon {
     public Jigglypuff(String nombre) {
         super( 20, 25, 25,115,55);
         this.nombre = nombre;
-        this.tipo = ETipo.Normal; //esto tendria que venir definido
+        this.tipo = ETipo.ELECTRICO; //esto tendria que venir definido
     }
 
     public void setNombre(String nombre) {

@@ -1,5 +1,6 @@
 package Model;
 
+import Interfaces.IBatalla;
 import Interfaces.ICapturar;
 
 import java.util.Objects;
@@ -7,46 +8,57 @@ import java.util.Objects;
 public abstract class Pokemon implements ICapturar {
     private static int contadorID = 0;
     private int id;
+    private int vida;
     private int ataque;
-    private int defense;
-    private int defensaEspecial;
     private int ataqueEspecial;
-    private int hitPoints;
+    private int defensa;
     private boolean capturado ; // por defecto no estan capturados
-
-    public Pokemon(int ataque, int defense, int defensaEspecial, int ataqueEspecial, int hitPoints) {
+    private boolean elegidoParaPelear;
+    public Pokemon(int vida,int ataque, int ataqueEspecial, int defensa) {
         contadorID++;
         this.id = contadorID;
-        this.hitPoints = hitPoints;
+        this.vida = vida;
         this.ataque = ataque;
-        this.defense = defense;
-        this.defensaEspecial = defensaEspecial;
+        this.defensa = defensa;
         this.ataqueEspecial = ataqueEspecial;
         this.capturado = false;
+        this.elegidoParaPelear = false;
     }
 
     public int getId() {
         return id;
     }
 
+    public boolean isElegidoParaPelear() {
+        return elegidoParaPelear;
+    }
+
+    public void setElegidoParaPelear(boolean elegidoParaPelear) {
+        this.elegidoParaPelear = elegidoParaPelear;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
     public int getAtaque() {
         return ataque;
     }
-
-    public int getDefense() {
-        return defense;
+    public void setAtaque(int ataque) {
+        this.ataque = ataque;
     }
 
-    public int getDefensaEspecial() {
-        return defensaEspecial;
+
+    public int getDefensa() {
+        return defensa;
     }
 
-    public int getAtaqueEspecial() {
-        return ataqueEspecial;
-    }
-
-    public int getHitPoints() {
-        return hitPoints;
+    public void setDefensa(int defensa) {
+        this.defensa = defensa;
     }
 
     @Override
@@ -60,19 +72,13 @@ public abstract class Pokemon implements ICapturar {
         return Objects.hashCode(id);
     }
 
-    @Override
-    public String toString() {
-        return "Pokemon{" +
-                "id=" + id +
-                ", ataque=" + ataque +
-                ", defense=" + defense +
-                ", defensaEspecial=" + defensaEspecial +
-                ", ataqueEspecial=" + ataqueEspecial +
-                '}';
-    }
+
 
     private void setCapturado() {
         this.capturado = true;
+    }
+    public boolean isCapturado() {
+        return capturado;
     }
 
     public boolean capturarPokemon() {  // si el numero es menor a 500 se captura
@@ -82,5 +88,21 @@ public abstract class Pokemon implements ICapturar {
             return true;
         }
         return false;
+    }
+
+
+
+
+
+    @Override
+    public String toString() {
+        return "Pokemon{" +
+                "id=" + id +
+                ", vida=" + vida +
+                ", ataque=" + ataque +
+                ", ataqueEspecial=" + ataqueEspecial +
+                ", defensa=" + defensa +
+                ", capturado=" + capturado +
+                '}';
     }
 }
