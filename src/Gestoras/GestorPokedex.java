@@ -6,7 +6,7 @@ import Model.Pokemones.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorPokedex {
+public class GestorPokedex{
 
     private ArrayList<Pokemon> pokemones;
     public GestorPokedex() {pokemones = new ArrayList<>();}
