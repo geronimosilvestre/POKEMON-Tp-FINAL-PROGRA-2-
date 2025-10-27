@@ -13,8 +13,9 @@ public abstract class Pokemon implements ICapturar {
     private int ataqueEspecial;
     private int defensa;
     private int defensaEspecial;
-    private boolean capturado ; // por defecto no estan capturados
     private boolean elegidoParaPelear;
+
+
     public Pokemon(int vida,int ataque, int ataqueEspecial, int defensa, int  defensaEspecial) {
         contadorID++;
         this.id = contadorID;
@@ -23,7 +24,6 @@ public abstract class Pokemon implements ICapturar {
         this.defensa = defensa;
         this.ataqueEspecial = ataqueEspecial;
         this.defensaEspecial = defensaEspecial;
-        this.capturado = false;
         this.elegidoParaPelear = false;
     }
 
@@ -82,27 +82,14 @@ public abstract class Pokemon implements ICapturar {
         return Objects.hashCode(id);
     }
 
-
-
-    private void setCapturado() {
-        this.capturado = true;
-    }
-    public boolean isCapturado() {
-        return capturado;
-    }
-
-    public boolean capturarPokemon() {  // si el numero es menor a 500 se captura
+    //funcion para capturar pokemon, si el numero es menor a 500 se captura
+    public boolean capturarPokemon() {
         int numRandom = (int) (Math.random() * 1000);
         if (numRandom < 500) {
-            setCapturado();
             return true;
         }
         return false;
     }
-
-
-
-
 
     @Override
     public String toString() {
@@ -112,7 +99,6 @@ public abstract class Pokemon implements ICapturar {
                 ", ataque=" + ataque +
                 ", ataqueEspecial=" + ataqueEspecial +
                 ", defensa=" + defensa +
-                ", capturado=" + capturado +
                 '}';
     }
 }

@@ -27,7 +27,7 @@ public class Main {
 
 
 
-       gestorEquipo.crearEquipo(entrenador)
+       gestorEquipo.crearEquipo(entrenador);
 
 
     }

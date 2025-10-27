@@ -9,35 +9,16 @@ import java.util.Set;
 
 public class GestorBatalla {
     GestorEquipo equipo;
-    int vidaEquipoUno;
-    int vidaEquipoDos;
-    int ronda;
+    int ronda = 0;
 
 
     public GestorBatalla(GestorEquipo equipo) {
         this.equipo = equipo;
-        this.vidaEquipoUno = 0;
-        this.vidaEquipoDos = 0;
         this.ronda = 1;
+
     }
 
-    public int getVidaEquipoUno() {
-        return vidaEquipoUno;
-    }
-
-    public void setVidaEquipoUno(int vidaEquipoUno) {
-        this.vidaEquipoUno = vidaEquipoUno;
-    }
-
-    public int getVidaEquipoDos() {
-        return vidaEquipoDos;
-    }
-
-    public void setVidaEquipoDos(int vidaEquipoDos) {
-        this.vidaEquipoDos = vidaEquipoDos;
-    }
-
-    public void iniciarBatalla(GestorEquipo equipo) //Prototipo de batalla, falta mejorarlo y separarlo en mas metodos quizas?, probablemente deba de eir en el main
+    public void iniciarBatalla(GestorEquipo equipo)
     {
 
         Set<Pokemon> equipoUno = equipo.getEquipo(1);
@@ -46,28 +27,14 @@ public class GestorBatalla {
         Pokemon pokemonEquipoUno = null;
         Pokemon pokemonEquipoDos = null;
 
-        setVidaEquipoUno(getVidaTotalDelEquipo(equipoUno));
-        setVidaEquipoDos(getVidaTotalDelEquipo(equipoDos));
-
-        for (Pokemon p : equipoUno) {
-            if (p.isCapturado()) {
-                pokemonEquipoUno = p;
-                break;
-            }
-        }
-
-        for (Pokemon p : equipoDos) {
-            if (p.isCapturado()) {
-                pokemonEquipoDos = p;
-                break;
-            }
-        }
-
-        if (pokemonEquipoUno != null && pokemonEquipoDos != null) {
-            atacarOtroPokemon(pokemonEquipoUno, pokemonEquipoDos);
+        pokemonEquipoUno = equipoUno.iterator().next();
+        pokemonEquipoDos = equipoDos.iterator().next();
 
 
-        }
+
+
+
+
 
         while(ronda<3)
         {
@@ -114,7 +81,7 @@ public class GestorBatalla {
 
 
         }
-
+        return true;
     }
 
     public int getVidaTotalDelEquipo(Set<Pokemon> equipo)
@@ -124,20 +91,12 @@ public class GestorBatalla {
 
             vidaTotal += p.getVida();
         }
+        return vidaTotal;
     }
 
     public boolean restarVidaTotalDelEquipo(int vida, String equipo )
     {
         if(vida >=1) {
-
-            {
-                if(equipo.equals("uno")) {
-                    this.vidaEquipoUno -= vida;
-                }
-                else if(equipo.equals("dos")) {
-                    this.vidaEquipoDos -= vida;
-                }
-            }
 
         }
         return true;
@@ -149,7 +108,7 @@ public class GestorBatalla {
         int defensa = defensor.getDefensa();
         if(ataque > defensa)
         {
-            restarVidaTotalDelEquipo(ataque,'dos');
+            //restarVidaTotalDelEquipo(ataque,);
             return true;
         }
         return false;

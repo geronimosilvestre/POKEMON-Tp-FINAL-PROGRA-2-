@@ -11,8 +11,10 @@ public class GestorEquipo {
         this.equipos = new HashMap<>();
     }
 
-    public boolean crearEquipo(Entrenador entrenador)   {  //Crear equipo es para recibir el nombre, los pokemones entran gracias al metodo agregar pokemon
+    //Crear equipo es para recibir el nombre, los pokemones entran gracias al metodo agregar pokemon
+    public boolean crearEquipo(Entrenador entrenador)   {
         equipos.put(entrenador,crearMochilaEntrenador());
+        return true;
     }
 
 
