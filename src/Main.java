@@ -52,8 +52,9 @@ public class Main {
         GestorEquipo gestorEquipo = new GestorEquipo();
 
         gestorEquipo.crearEquipo(entrenador);
-        
-        gestorEquipo.agregarPokemon(entrenador);
+        Pokemon random = gestorEquipo.crearPokemonRandom();
+        //Aca se le pregunta al usuario si le interesa ese pokemon en particular
+        gestorEquipo.agregarPokemon(entrenador,random);
 
 
         gestorEquipo.crearEquipo(entrenador);
