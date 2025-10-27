@@ -9,8 +9,14 @@ import java.util.List;
 public class GestorPokedex{
 
     private ArrayList<Pokemon> pokemones;
-    public GestorPokedex() {pokemones = new ArrayList<>();}
+    public GestorPokedex() {
+        pokemones = new ArrayList<>();
+    }
 
+    public boolean agregarPokemon(Pokemon pokemon) {
+        pokemones.add(pokemon);
+        return true;
+    }
 
     public ArrayList<Pokemon> getPokemones() {
         return pokemones;

@@ -1,4 +1,5 @@
 import Gestoras.GestorEquipo;
+import Gestoras.GestorPokedex;
 import Model.Entrenador;
 import Model.Pokemon;
 import Model.Pokemones.*;
@@ -12,6 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
 
+        GestorPokedex gp = new GestorPokedex();
         //creacion de pokemons
         Pokemon arbok =new Arbok();
         Pokemon bulbasaur =new Bulbasaur();
@@ -23,6 +25,19 @@ public class Main {
         Pokemon jigglypuff =new Jigglypuff ();
         Pokemon pikachu =new Pikachu ();
         Pokemon squirtle = new Squirtle ();
+
+        gp.agregarPokemon(arbok);
+        gp.agregarPokemon(bulbasaur);
+        gp.agregarPokemon(caterpie);
+        gp.agregarPokemon(charmander);
+        gp.agregarPokemon(dragonite);
+        gp.agregarPokemon(geodude);
+        gp.agregarPokemon(growlithe);
+        gp.agregarPokemon(jigglypuff);
+        gp.agregarPokemon(pikachu);
+        gp.agregarPokemon(squirtle);
+
+
 
         // Variables
         Scanner sc = new Scanner(System.in);
