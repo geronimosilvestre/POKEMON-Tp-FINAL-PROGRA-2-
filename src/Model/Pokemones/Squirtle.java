@@ -16,6 +16,12 @@ public class Squirtle extends Pokemon {
         this.tipo = ETipo.AGUA;
     }
 
+    public Squirtle() {
+        super(48, 65, 50, 64,44);
+        this.nombre = "squirtle";
+        this.tipo = ETipo.AGUA;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

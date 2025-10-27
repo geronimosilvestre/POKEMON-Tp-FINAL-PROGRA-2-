@@ -16,6 +16,12 @@ public class Jigglypuff extends Pokemon {
         this.tipo = ETipo.ELECTRICO; //esto tendria que venir definido
     }
 
+    public Jigglypuff() {
+        super( 20, 25, 25,115,55);
+        this.nombre = "jigglypuff";
+        this.tipo = ETipo.ELECTRICO; //esto tendria que venir definido
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

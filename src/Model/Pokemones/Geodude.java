@@ -16,6 +16,12 @@ public class Geodude extends Pokemon {
         this.tipo = ETipo.ROCA;
     }
 
+    public Geodude() {
+        super(80, 100, 30, 30,40);
+        this.nombre = "geodude";
+        this.tipo = ETipo.ROCA;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

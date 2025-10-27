@@ -16,6 +16,12 @@ public class Caterpie extends Pokemon {
         this.tipo = ETipo.PLANTA;
     }
 
+    public Caterpie() {
+        super(30, 35, 20, 20, 69);
+        this.nombre = "caterpie";
+        this.tipo = ETipo.PLANTA;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

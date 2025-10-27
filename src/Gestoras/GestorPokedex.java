@@ -1,6 +1,7 @@
 package Gestoras;
 
 import Model.Pokemon;
+import Model.Pokemones.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +9,7 @@ import java.util.List;
 public class GestorPokedex {
 
     private ArrayList<Pokemon> pokemones;
-    public GestorPokedex() {
-        pokemones = new ArrayList<>();
-    }
+    public GestorPokedex() {pokemones = new ArrayList<>();}
 
 
     public ArrayList<Pokemon> getPokemones() {

@@ -17,6 +17,12 @@ public class Bulbasaur extends Pokemon{
         this.tipo = ETipo.PLANTA;
     }
 
+    public Bulbasaur() {
+        super(49, 49, 65, 65,45);
+        this.nombre = "bulbasaur";
+        this.tipo = ETipo.PLANTA;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

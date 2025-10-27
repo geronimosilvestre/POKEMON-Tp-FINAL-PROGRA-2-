@@ -1,7 +1,7 @@
 import Gestoras.GestorEquipo;
 import Model.Entrenador;
 import Model.Pokemon;
-import Model.Pokemones.Caterpie;
+import Model.Pokemones.*;
 
 import java.util.LinkedHashSet;
 import java.util.Scanner;
@@ -11,11 +11,24 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+
+        //creacion de pokemons
+        Pokemon arbok =new Arbok();
+        Pokemon bulbasaur =new Bulbasaur();
+        Pokemon caterpie = new Caterpie();
+        Pokemon charmander =new Charmander();
+        Pokemon dragonite = new Dragonite();
+        Pokemon geodude =new Geodude();
+        Pokemon growlithe =new Growlithe ();
+        Pokemon jigglypuff =new Jigglypuff ();
+        Pokemon pikachu =new Pikachu ();
+        Pokemon squirtle = new Squirtle ();
+
         // Variables
         Scanner sc = new Scanner(System.in);
         int opcion, opcion1;
 
-        Pokemon caterpie = new Caterpie("Marcelo");
+        Pokemon caterpie1 = new Caterpie("Marcelo");
         Pokemon caterpie2 = new Caterpie("Emanuel");
         Pokemon caterpie3 = new Caterpie("Nico");
 

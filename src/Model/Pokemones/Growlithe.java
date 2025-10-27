@@ -16,6 +16,12 @@ public class Growlithe extends Pokemon {
         this.tipo = ETipo.FUEGO;
     }
 
+    public Growlithe() {
+        super(70, 45, 70, 50,55);
+        this.nombre = "growlithe";
+        this.tipo = ETipo.FUEGO;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

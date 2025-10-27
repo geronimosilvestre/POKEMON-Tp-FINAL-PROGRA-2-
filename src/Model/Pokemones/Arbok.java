@@ -16,6 +16,12 @@ public class Arbok extends Pokemon {
         this.tipo = ETipo.PLANTA;
     }
 
+    public Arbok() {
+        super(95, 69, 79, 65,60);
+        this.nombre = "arbok";
+        this.tipo = ETipo.PLANTA;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

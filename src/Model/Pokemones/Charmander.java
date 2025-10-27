@@ -16,6 +16,12 @@ public class Charmander extends Pokemon {
         this.tipo = ETipo.FUEGO;
     }
 
+    public Charmander() {
+        super(52, 43, 60, 50,39);
+        this.nombre = "caterpie";
+        this.tipo = ETipo.FUEGO;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
