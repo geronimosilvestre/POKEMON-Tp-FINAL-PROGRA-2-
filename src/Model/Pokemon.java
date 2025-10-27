@@ -12,15 +12,17 @@ public abstract class Pokemon implements ICapturar {
     private int ataque;
     private int ataqueEspecial;
     private int defensa;
+    private int defensaEspecial;
     private boolean capturado ; // por defecto no estan capturados
     private boolean elegidoParaPelear;
-    public Pokemon(int vida,int ataque, int ataqueEspecial, int defensa) {
+    public Pokemon(int vida,int ataque, int ataqueEspecial, int defensa, int  defensaEspecial) {
         contadorID++;
         this.id = contadorID;
         this.vida = vida;
         this.ataque = ataque;
         this.defensa = defensa;
         this.ataqueEspecial = ataqueEspecial;
+        this.defensaEspecial = defensaEspecial;
         this.capturado = false;
         this.elegidoParaPelear = false;
     }
@@ -59,6 +61,14 @@ public abstract class Pokemon implements ICapturar {
 
     public void setDefensa(int defensa) {
         this.defensa = defensa;
+    }
+
+    public int getDefensaEspecial() {
+        return defensaEspecial;
+    }
+
+    public void setDefensaEspecial(int defensaEspecial) {
+        this.defensaEspecial = defensaEspecial;
     }
 
     @Override
