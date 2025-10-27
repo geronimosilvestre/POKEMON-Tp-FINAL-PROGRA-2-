@@ -23,11 +23,11 @@ public class Main {
         LinkedHashSet<Pokemon> mochilaDelEntrenador = gestorEquipo.crearMochilaEntrenador();
 
 
+        // hola
 
 
 
-
-       gestorEquipo.crearEquipo(entrenador)
+       gestorEquipo.crearEquipo(entrenador);
 
 
     }
