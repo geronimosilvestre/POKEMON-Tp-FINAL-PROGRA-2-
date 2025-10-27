@@ -77,6 +77,36 @@ public class GestorEquipo {
         return false;
     }
 
+
+    public boolean setPokemonPrincipal(Entrenador entrenador, Pokemon pokemon)
+    {
+
+        if (equipos.containsKey(entrenador)) {
+            LinkedHashSet<Pokemon> mochilaDelEntrenador = equipos.get(entrenador);
+            if(mochilaDelEntrenador.contains(pokemon))
+            {
+                LinkedHashSet<Pokemon> nuevaMochila = new LinkedHashSet<>();
+
+                // Primero agregamos el elegido como principal
+                nuevaMochila.add(pokemon);
+
+                for (Pokemon p : mochilaDelEntrenador) {
+                    if (!p.equals(pokemon)) {
+                        nuevaMochila.add(p);
+
+
+                    }
+                }
+
+                equipos.put(entrenador, nuevaMochila);
+                return true;
+
+            }
+
+        }
+        return false;
+
+    }
     public boolean descartarPokemon(Pokemon pokemon) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Desea capturar este pokemon  y meterlo en la mochila ?" + pokemon.toString());
