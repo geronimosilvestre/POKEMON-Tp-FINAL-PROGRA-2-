@@ -62,7 +62,7 @@ public class Main {
         sc.nextLine();
         return opcion;
     }
-    
+
     // Auxiliares
     public static void separador(int num) {
         for(int i=0; i<num; i++) {
