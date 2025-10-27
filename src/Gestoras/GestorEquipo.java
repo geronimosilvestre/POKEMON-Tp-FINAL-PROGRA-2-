@@ -51,7 +51,7 @@ public class GestorEquipo {
 
     //Por parametro recibo el numero del equipo que quiero para despues usarlo en la batalla,
     // hay 2 equipos en el hashmap
-    public HashSet<Pokemon> getEquipo(Entrenador entrenador)
+    public LinkedHashSet<Pokemon> getEquipo(Entrenador entrenador)
     {
 
         if (equipos.containsKey(entrenador)) {

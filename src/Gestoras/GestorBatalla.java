@@ -4,6 +4,7 @@ import Model.Entrenador;
 import Model.Pokemon;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -42,10 +43,10 @@ public class GestorBatalla {
 
 
 
-
+        //listar pokemones en el equipo, el elegido va a ser el indice 1 en el linked hashset.
     public boolean elegirPokemonParaPelear(GestorEquipo equipo,Entrenador entrenador)
     {
-        HashSet<Pokemon> equipoElegido = equipo.getEquipo(entrenador);
+        LinkedHashSet<Pokemon> equipoElegido = equipo.getEquipo(entrenador);
 
         if(! equipoElegido.isEmpty())
         {
