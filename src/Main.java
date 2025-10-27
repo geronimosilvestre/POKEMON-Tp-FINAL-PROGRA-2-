@@ -20,7 +20,14 @@ public class Main {
         Pokemon caterpie3 = new Caterpie("Nico");
 
         Entrenador entrenador = new Entrenador("Joel","Gardel");
+        Entrenador entrenador2 = new Entrenador("Agus","Flores");
         GestorEquipo gestorEquipo = new GestorEquipo();
+
+        gestorEquipo.crearEquipo(entrenador);
+        
+        gestorEquipo.agregarPokemon(entrenador);
+
+
         gestorEquipo.crearEquipo(entrenador);
         // LinkedHashSet<Pokemon> mochilaDelEntrenador = gestorEquipo.crearMochilaEntrenador();
 
@@ -125,4 +132,7 @@ public class Main {
         sc.nextLine();
         saltarLinea(20);
     }
+
+
+
 }

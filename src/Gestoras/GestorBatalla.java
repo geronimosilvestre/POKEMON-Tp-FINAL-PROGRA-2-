@@ -43,6 +43,8 @@ public class GestorBatalla {
 
 
 
+
+
         //listar pokemones en el equipo, el elegido va a ser el indice 1 en el linked hashset.
     public boolean elegirPokemonParaPelear(GestorEquipo equipo,Entrenador entrenador)
     {
