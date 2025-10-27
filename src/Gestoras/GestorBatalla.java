@@ -8,11 +8,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class GestorBatalla {
-<<<<<<< HEAD
     //comentario
     //comenatrio2
-=======
-    GestorEquipo equipo;
+    //hola
     int vidaEquipoUno;
     int vidaEquipoDos;
     int ronda;
@@ -165,5 +163,4 @@ public class GestorBatalla {
 
 
 
->>>>>>> 7662752c2d4595bd6f9ba5dcb76479d4e2660b84
 }
