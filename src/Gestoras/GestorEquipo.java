@@ -61,11 +61,13 @@ public class GestorEquipo {
         return null;
     }
 
-    public boolean agregarPokemon(Entrenador entrenador) {
-
+    public Pokemon crearPokemonRandom(){
         GestorPokedex GP = new GestorPokedex();
         int numRandom = (int) (Math.random() * GP.pokedexSize());  // creo un numero random desde el 0 hasta la cantidad de pokemones que hay en la pokedex
-        Pokemon pokemon = GP.getPokemonEspecifico(numRandom);  //retorno un pokemon que encontro gracias al numero random
+        return GP.getPokemonEspecifico(numRandom);  //retorno un pokemon que encontro gracias al numero random
+    }
+
+    public boolean agregarPokemon(Entrenador entrenador, Pokemon pokemon) {
 
         if (equipos.containsKey(entrenador)) {
             LinkedHashSet<Pokemon> mochilaDelEntrenador = equipos.get(entrenador);
