@@ -50,6 +50,8 @@ public abstract class Pokemon implements ICapturar {
     public int getAtaque() {
         return ataque;
     }
+
+
     public void setAtaque(int ataque) {
         this.ataque = ataque;
     }

@@ -5,29 +5,39 @@ import Model.Pokemon;
 import java.util.*;
 
 public class GestorEquipo {
-    private Map<Entrenador, Set<Pokemon>> equipos;
+    private HashMap<Entrenador, LinkedHashSet<Pokemon>> equipos;
 
     public GestorEquipo() {
+
+
         this.equipos = new HashMap<>();
+
     }
 
     //Crear equipo es para recibir el nombre, los pokemones entran gracias al metodo agregar pokemon
     public boolean crearEquipo(Entrenador entrenador)   {
-        equipos.put(entrenador,crearMochilaEntrenador());
+        LinkedHashSet<Pokemon> mochilaDelEntrenador = new LinkedHashSet<>();
+        equipos.put(entrenador,mochilaDelEntrenador);
         return true;
     }
 
+            //mochila se refiere al equipo del entrenador
+    //este bloque de codigo va a ir al main
+/*    public LinkedHashSet<Pokemon> crearMochilaEntrenador() {
 
-    public LinkedHashSet<Pokemon> crearMochilaEntrenador() {
-        LinkedHashSet<Pokemon> mochilaDelEntrenador = new LinkedHashSet<>();
 
-        while (mochilaDelEntrenador.size() < 4) {  // size menor a 4 porque es hasta 3 pokemones en la mochila, de ultima se puede cambiar por exception???
-            Pokemon pokemonAleatorio = agregarPokemon(); //Obtengo un pokemon aleatorio nuevo
-            boolean descartar = descartarPokemon(pokemonAleatorio); // Se le pregunta al usuario si quiere utilizar el nuevo pokemon encontrado, hay que hacerlo en el main??
-            if (!descartar) { // si no se descarta lo  intento capturar
+        //size menor a 4 porque es hasta 3 pokemones el equipo
+        while (mochilaDelEntrenador.size() < 4) {
+
+            Pokemon pokemonAleatorio = agregarPokemon();
+
+
+            if (!descartar) {
+                // si no se descarta lo  intento capturar
                 boolean intentarCapturar = pokemonAleatorio.capturarPokemon();
 
-                if (intentarCapturar) { // si logro capturar entra en la mochila
+                if (intentarCapturar) {
+                    // si logro capturar entra en la mochila
                     mochilaDelEntrenador.add(pokemonAleatorio);
                 }
             }
@@ -37,18 +47,33 @@ public class GestorEquipo {
 
         return mochilaDelEntrenador;
 
+    }*/
+
+    //Por parametro recibo el numero del equipo que quiero para despues usarlo en la batalla,
+    // hay 2 equipos en el hashmap
+    public HashSet<Pokemon> getEquipo(Entrenador entrenador)
+    {
+
+        if (equipos.containsKey(entrenador)) {
+            LinkedHashSet<Pokemon> mochilaDelEntrenador = equipos.get(entrenador);
+            return mochilaDelEntrenador;
+        }
+        return null;
     }
 
-
-
-    public Pokemon agregarPokemon() { //este metodo se usa internamente dentro de crearEquipo solamente
+    public boolean agregarPokemon(Entrenador entrenador) {
 
         GestorPokedex GP = new GestorPokedex();
         int numRandom = (int) (Math.random() * GP.pokedexSize());  // creo un numero random desde el 0 hasta la cantidad de pokemones que hay en la pokedex
-        return GP.getPokemonEspecifico(numRandom);  //retorno un pokemon que encontro gracias al numero random
+        Pokemon pokemon = GP.getPokemonEspecifico(numRandom);  //retorno un pokemon que encontro gracias al numero random
 
-
-    }// aca va lo de captura de pokemon
+        if (equipos.containsKey(entrenador)) {
+            LinkedHashSet<Pokemon> mochilaDelEntrenador = equipos.get(entrenador);
+            mochilaDelEntrenador.add(pokemon);
+            return true;
+        }
+        return false;
+    }
 
     public boolean descartarPokemon(Pokemon pokemon) {
         Scanner sc = new Scanner(System.in);
@@ -60,24 +85,6 @@ public class GestorEquipo {
         } else {
             return false;
         }
-
-    }
-
-    public Set<Pokemon> getEquipo(int numeroDelEquipo)  //Por parametro recibo el numero del equipo que quiero para despues usarlo en la batalla, hay 2 equipos en el hashmap
-    {
-
-        Set<Pokemon> mochila =  new HashSet<>();
-       Iterator<Set<Pokemon>> iterator = equipos.values().iterator();
-        if (iterator.hasNext() && numeroDelEquipo == 1) {
-            return iterator.next();
-        }
-
-        if (iterator.hasNext() && numeroDelEquipo == 2) {
-          return iterator.next();
-
-        }
-
-        return null;
 
     }
 }

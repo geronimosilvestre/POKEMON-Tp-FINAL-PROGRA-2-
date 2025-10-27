@@ -18,11 +18,11 @@ public class GestorBatalla {
 
     }
 
-    public void iniciarBatalla(GestorEquipo equipo)
+    public void iniciarBatalla(GestorEquipo equipo, Entrenador entrenador1, Entrenador entrenador2)
     {
 
-        Set<Pokemon> equipoUno = equipo.getEquipo(1);
-        Set<Pokemon> equipoDos = equipo.getEquipo(2);
+        Set<Pokemon> equipoUno = equipo.getEquipo(entrenador1);
+        Set<Pokemon> equipoDos = equipo.getEquipo(entrenador2);
 
         Pokemon pokemonEquipoUno = null;
         Pokemon pokemonEquipoDos = null;
@@ -31,23 +31,21 @@ public class GestorBatalla {
         pokemonEquipoDos = equipoDos.iterator().next();
 
 
-
-
-
+        atacarPokemon(pokemonEquipoUno, pokemonEquipoDos);
 
 
         while(ronda<3)
         {
-
-
             ronda++;
         }
     }
 
 
-    public boolean elegirPokemonParaPelear( int numeroEquipo)
+
+
+    public boolean elegirPokemonParaPelear(GestorEquipo equipo,Entrenador entrenador)
     {
-        Set<Pokemon> equipoElegido = equipo.getEquipo(numeroEquipo);
+        HashSet<Pokemon> equipoElegido = equipo.getEquipo(entrenador);
 
         if(! equipoElegido.isEmpty())
         {
@@ -84,40 +82,24 @@ public class GestorBatalla {
         return true;
     }
 
-    public int getVidaTotalDelEquipo(Set<Pokemon> equipo)
+    public void atacarPokemon(Pokemon atacante, Pokemon defensor)
     {
-        int vidaTotal = 0;
-        for (Pokemon p: equipo) {
 
-            vidaTotal += p.getVida();
-        }
-        return vidaTotal;
-    }
-
-    public boolean restarVidaTotalDelEquipo(int vida, String equipo )
-    {
-        if(vida >=1) {
-
-        }
-        return true;
-    }
-
-    public boolean atacarOtroPokemon(Pokemon atacante, Pokemon defensor)
-    {
         int ataque = atacante.getAtaque();
+        int numRandom = (int) (Math.random() * 1000);
+
+        if(numRandom > 700){
+            ataque = ataque*2;
+        }
+
         int defensa = defensor.getDefensa();
+
         if(ataque > defensa)
         {
-            //restarVidaTotalDelEquipo(ataque,);
-            return true;
+            int dañoRecibido = ataque -  defensa;
+
+            defensor.setVida(defensor.getVida()-dañoRecibido);
         }
-        return false;
-
-
     }
-
-
-
-
 
 }
