@@ -62,14 +62,7 @@ public class Main {
         sc.nextLine();
         return opcion;
     }
-
-<<<<<<< HEAD
-
-
-       gestorEquipo.crearEquipo(entrenador);
-
-
-=======
+    
     // Auxiliares
     public static void separador(int num) {
         for(int i=0; i<num; i++) {
@@ -87,6 +80,5 @@ public class Main {
         System.out.print("- Presione Enter para continuar...");
         sc.nextLine();
         saltarLinea(20);
->>>>>>> 731da18052239c27a5f95b35edcfe49f58c1e79e
     }
 }
