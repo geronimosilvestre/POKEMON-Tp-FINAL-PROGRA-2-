@@ -62,6 +62,22 @@ public class Main {
 
 
 
+        // En el switch va a existir una opcion para setear el principal
+
+
+        // opcion para iniciar batalla
+        Boolean batallaActiva= true;
+        int rondas = 20;
+        while(batallaActiva && rondas>0){
+            
+
+            rondas--;
+
+
+        }
+
+
+
 
         //Switch para agregar pokemones
 
