@@ -55,8 +55,7 @@ public class GestorEquipo {
     {
 
         if (equipos.containsKey(entrenador)) {
-            LinkedHashSet<Pokemon> mochilaDelEntrenador = equipos.get(entrenador);
-            return mochilaDelEntrenador;
+            return equipos.get(entrenador);
         }
         return null;
     }
@@ -112,11 +111,7 @@ public class GestorEquipo {
         System.out.println("Desea capturar este pokemon  y meterlo en la mochila ?" + pokemon.toString());
         int numero = sc.nextInt();
         sc.nextLine();
-        if (numero == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return numero == 1;
 
     }
 }

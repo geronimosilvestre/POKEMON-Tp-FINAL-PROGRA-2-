@@ -4,7 +4,6 @@ import Model.Entrenador;
 import Model.Pokemon;
 import Model.Pokemones.*;
 
-import java.util.LinkedHashSet;
 import java.util.Scanner;
 
 // TP GRUPAL POKEDEX (Flores, Jimenez, Pascuan, Silvestre).
@@ -66,7 +65,7 @@ public class Main {
 
 
         // opcion para iniciar batalla
-        Boolean batallaActiva= true;
+        /*Boolean batallaActiva= true;
         int rondas = 20;
         while(batallaActiva && rondas>0){
             
@@ -74,7 +73,7 @@ public class Main {
             rondas--;
 
 
-        }
+        } */
 
 
 
@@ -111,8 +110,8 @@ public class Main {
                     break;
                 } // Ver Pokédex
                 case 2: {
-                    opcion1 = menuEntrenador(sc);
                     do {
+                        opcion1 = menuEntrenador(sc);
                         switch(opcion1) {
                             case 0: {
                                 break;

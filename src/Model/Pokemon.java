@@ -87,10 +87,7 @@ public abstract class Pokemon implements ICapturar {
     //funcion para capturar pokemon, si el numero es menor a 500 se captura
     public boolean capturarPokemon() {
         int numRandom = (int) (Math.random() * 1000);
-        if (numRandom < 500) {
-            return true;
-        }
-        return false;
+        return numRandom < 500;
     }
 
     @Override
