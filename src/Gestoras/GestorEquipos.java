@@ -5,14 +5,14 @@ import Model.Pokemones.Pokemon;
 import java.util.*;
 
 public class GestorEquipos {
-    private HashMap<Entrenador, LinkedHashSet<Pokemon>> equipos;
+    private HashMap<Entrenador, Mochila> equipos;
 
     public GestorEquipos() {
         this.equipos = new HashMap<>();
     }
 
     public boolean agregarEquipo(Entrenador entrenador, Mochila mochila) {
-        equipos.put(entrenador,mochila.obtenerTodos());
+        equipos.put(entrenador,mochila);
         return true;
     }
 
@@ -24,7 +24,8 @@ public class GestorEquipos {
         {
             if (entrenador.equals(aux))
             {
-                return equipos.remove(entrenador).contains(entrenador);
+                 equipos.remove(entrenador);
+                 return true;
             }
         }
         return false;
@@ -37,7 +38,7 @@ public class GestorEquipos {
         {
             if(entrenador.equals(aux))
             {
-                return equipos.get(entrenador);
+                return equipos.get(entrenador).obtenerTodos();
             }
         }
         return null;
@@ -47,14 +48,13 @@ public class GestorEquipos {
     public Boolean reemplazarPokemon(String nombre, String apellido,Pokemon pokemonNuevo,String pokemonDescarte)
     {
         Entrenador entrenador = new Entrenador(nombre, apellido);
-        Pokemon descarte = new Pokemon(pokemonDescarte);
 
         for(Entrenador e:equipos.keySet())
         {
             if(e.equals(entrenador))
             {
-                equipos.get(e).remove(descarte);
-                equipos.get(e).add(pokemonNuevo);
+                equipos.get(e).eliminar(pokemonDescarte);
+                equipos.get(e).agregar(pokemonNuevo);
 
                 return true;
             }
