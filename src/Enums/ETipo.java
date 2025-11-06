@@ -5,7 +5,8 @@ public enum ETipo {
     PLANTA(40),
     ROCA(45),
     AGUA(50),
-    ELECTRICO(45);
+    ELECTRICO(45),
+    HIELO(40);
 
     private final int poderBase;
 
@@ -22,30 +23,34 @@ public enum ETipo {
         switch (this) {
             case FUEGO:
                 if (defensor == PLANTA) return 2.0;
-                if (defensor == AGUA || defensor == ROCA) return 0.5;
+                if (defensor == AGUA) return 0.5;
+                break;
+
+            case AGUA:
+                if (defensor == ROCA) return 2.0;
+                if (defensor == ELECTRICO) return 0.5;
                 break;
 
             case PLANTA:
-                if (defensor == AGUA || defensor == ROCA) return 2.0;
+                if (defensor == AGUA) return 2.0;
                 if (defensor == FUEGO) return 0.5;
                 break;
 
             case ROCA:
-                if (defensor == FUEGO || defensor == ELECTRICO) return 2.0;
-                if (defensor == AGUA || defensor == PLANTA) return 0.5;
-                break;
-
-            case AGUA:
-                if (defensor == FUEGO || defensor == ROCA) return 2.0;
-                if (defensor == PLANTA || defensor == AGUA) return 0.5;
+                if (defensor == HIELO) return 2.0;
+                if (defensor == PLANTA) return 0.5;
                 break;
 
             case ELECTRICO:
                 if (defensor == AGUA) return 2.0;
-                if (defensor == ROCA || defensor == ELECTRICO) return 0.5;
+                if (defensor == ROCA) return 0.5;
+                break;
+
+            case HIELO:
+                if (defensor == FUEGO) return 2.0;
+                if (defensor == ROCA) return 0.5;
                 break;
         }
-        return 1.0; // daño neutro
+        return 1.0;
     }
-}
 

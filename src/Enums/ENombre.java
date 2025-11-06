@@ -8,7 +8,8 @@ public enum ENombre {
         DRAGONITE("Dragonite"),
         GEODUDE("Geodude"),
         GROWLITHE("Growlithe"),
-        JIGGLYPUFF("Jigglypuff"),
+        SNORUNT("Snorunt"),
+        MAGNETITE("Magnetite"),
         PIKACHU("Pikachu"),
         SQUIRTLE("Squirtle");
 

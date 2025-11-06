@@ -1,6 +1,7 @@
 package Model.Entrenador;
 
 import Interfaces.IConvertirJSON;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -15,6 +16,10 @@ public class Entrenador implements IConvertirJSON<Entrenador> {
         this.uuid = UUID.randomUUID();
         this.nombre = nombre;
         this.apellido = apellido;
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     public String getApellido() {
@@ -33,9 +38,7 @@ public class Entrenador implements IConvertirJSON<Entrenador> {
         this.nombre = nombre;
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -60,11 +63,29 @@ public class Entrenador implements IConvertirJSON<Entrenador> {
 
     @Override
     public JSONObject toJSONObject() {
-        return null;
+        JSONObject object = new JSONObject();
+        try {
+            object.put("uuid", uuid.toString());
+            object.put("nombre", nombre);
+            object.put("apellido", apellido);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return object;
     }
 
     @Override
-    public Entrenador fromJSON(JSONObject jsonObject) {
-        return null;
+    public static Entrenador fromJSON(JSONObject jsonObject) {
+        Entrenador generico = new Entrenador();
+        try{
+            generico.uuid = UUID.fromString(jsonObject.getString("uuid"));
+            generico.nombre = jsonObject.getString("nombre");
+            generico.apellido = jsonObject.getString("apellido");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return generico;
     }
 }
