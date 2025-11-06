@@ -29,7 +29,7 @@ public class GestorEquipos {
         }
         return false;
     }
-    public LinkedHashSet<Pokemon> getMochilaEquipo(String nombre, String apellido )
+    public LinkedHashSet<Pokemon> getAllPokemonsFromEquipo(String nombre, String apellido )
     {
         Entrenador aux = new Entrenador(nombre,apellido);
 

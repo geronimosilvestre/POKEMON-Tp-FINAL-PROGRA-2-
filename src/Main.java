@@ -30,7 +30,7 @@ public class Main {
 
 
 
-     
+
         saltarLinea(1);
         do {
             opcion = menu(sc);
