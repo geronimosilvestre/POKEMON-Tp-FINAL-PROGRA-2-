@@ -1,8 +1,10 @@
 import Gestoras.GestorEquipo;
 import Gestoras.GestorPokedex;
-import Model.Entrenador;
-import Model.Pokemon;
+import Model.Entrenador.Entrenador;
+import Model.Pokemones.Pokemon;
 import Model.Pokemones.*;
+import Enums.ENombre;
+import Enums.ETipo;
 
 import java.util.Scanner;
 
@@ -13,28 +15,17 @@ public class Main {
 
 
         GestorPokedex gp = new GestorPokedex();
-        //creacion de pokemons
-        Pokemon arbok =new Arbok();
-        Pokemon bulbasaur =new Bulbasaur();
-        Pokemon caterpie = new Caterpie();
-        Pokemon charmander =new Charmander();
-        Pokemon dragonite = new Dragonite();
-        Pokemon geodude =new Geodude();
-        Pokemon growlithe =new Growlithe ();
-        Pokemon jigglypuff =new Jigglypuff ();
-        Pokemon pikachu =new Pikachu ();
-        Pokemon squirtle = new Squirtle ();
+        Pokemon pikachu = new Pokemon(ENombre.PIKACHU, ETipo.ELECTRICO, 100, 50, 30);
+        Pokemon charmander = new Pokemon(ENombre.CHARMANDER, ETipo.FUEGO, 95, 52, 35);
+        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE, ETipo.AGUA, 110, 48, 50);
+        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR, ETipo.PLANTA, 105, 49, 45);
+        Pokemon geodude = new Pokemon(ENombre.GEODUDE, ETipo.ROCA, 120, 45, 60);
+        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE, ETipo.FUEGO, 100, 55, 40);
+        Pokemon jigglypuff = new Pokemon(ENombre.JIGGLYPUFF, ETipo.NORMAL, 115, 45, 20);
+        Pokemon caterpie = new Pokemon(ENombre.CATERPIE, ETipo.PLANTA, 80, 30, 35);
+        Pokemon arbok = new Pokemon(ENombre.ARBOK, ETipo.PLANTA, 95, 60, 44);
+        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE, ETipo.FUEGO, 150, 85, 70);
 
-        gp.agregarPokemon(arbok);
-        gp.agregarPokemon(bulbasaur);
-        gp.agregarPokemon(caterpie);
-        gp.agregarPokemon(charmander);
-        gp.agregarPokemon(dragonite);
-        gp.agregarPokemon(geodude);
-        gp.agregarPokemon(growlithe);
-        gp.agregarPokemon(jigglypuff);
-        gp.agregarPokemon(pikachu);
-        gp.agregarPokemon(squirtle);
 
 
 
@@ -42,9 +33,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int opcion, opcion1;
 
-        Pokemon caterpie1 = new Caterpie("Marcelo");
-        Pokemon caterpie2 = new Caterpie("Emanuel");
-        Pokemon caterpie3 = new Caterpie("Nico");
 
         Entrenador entrenador = new Entrenador("Joel","Gardel");
         Entrenador entrenador2 = new Entrenador("Agus","Flores");

@@ -1,6 +1,6 @@
 package Gestoras;
-import Model.Entrenador;
-import Model.Pokemon;
+import Model.Entrenador.Entrenador;
+import Model.Pokemones.Pokemon;
 
 import java.util.*;
 

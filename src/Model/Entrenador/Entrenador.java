@@ -1,9 +1,12 @@
-package Model;
+package Model.Entrenador;
+
+import Interfaces.IConvertirJSON;
+import org.json.JSONObject;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public class Entrenador {
+public class Entrenador implements IConvertirJSON<Entrenador> {
     String nombre;
     String apellido;
     UUID uuid;
@@ -36,13 +39,14 @@ public class Entrenador {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Entrenador that)) return false;
-        return Objects.equals(nombre, that.nombre) && Objects.equals(apellido, that.apellido) && Objects.equals(uuid, that.uuid);
+        if (!(o instanceof Entrenador)) return false;
+        Entrenador that = (Entrenador) o;
+        return Objects.equals(uuid, that.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nombre, apellido, uuid);
+        return Objects.hashCode(uuid);
     }
 
     @Override
@@ -52,5 +56,15 @@ public class Entrenador {
                 ", apellido='" + apellido + '\'' +
                 ", uuid=" + uuid +
                 '}';
+    }
+
+    @Override
+    public JSONObject toJSONObject() {
+        return null;
+    }
+
+    @Override
+    public Entrenador fromJSON(JSONObject jsonObject) {
+        return null;
     }
 }

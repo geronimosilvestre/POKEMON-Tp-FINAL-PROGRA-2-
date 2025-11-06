@@ -1,9 +1,8 @@
 package Gestoras;
 
-import Model.Entrenador;
-import Model.Pokemon;
+import Model.Entrenador.Entrenador;
+import Model.Pokemones.Pokemon;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;

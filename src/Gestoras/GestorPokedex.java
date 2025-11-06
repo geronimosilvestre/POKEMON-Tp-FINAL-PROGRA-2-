@@ -1,10 +1,8 @@
 package Gestoras;
 
-import Model.Pokemon;
-import Model.Pokemones.*;
+import Model.Pokemones.Pokemon;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GestorPokedex{
 

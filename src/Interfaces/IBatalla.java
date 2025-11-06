@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Model.Pokemon;
+import Model.Pokemones.Pokemon;
 
 public interface IBatalla {
 
