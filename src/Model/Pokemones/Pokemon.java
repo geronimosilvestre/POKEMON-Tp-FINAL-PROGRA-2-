@@ -136,7 +136,7 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
     }
 
     @Override
-    public static Pokemon fromJSON(JSONObject jsonObject) {
+    public Pokemon fromJSON(JSONObject jsonObject) {
         Pokemon generico = new Pokemon();
         try {
             generico.uuid = UUID.fromString(jsonObject.getString("uuid"));

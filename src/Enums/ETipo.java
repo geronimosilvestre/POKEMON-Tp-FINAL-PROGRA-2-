@@ -53,4 +53,6 @@ public enum ETipo {
         }
         return 1.0;
     }
+}
+
 

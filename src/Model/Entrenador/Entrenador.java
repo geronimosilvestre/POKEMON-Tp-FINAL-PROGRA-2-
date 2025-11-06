@@ -18,6 +18,12 @@ public class Entrenador implements IConvertirJSON<Entrenador> {
         this.apellido = apellido;
     }
 
+    public Entrenador() {
+        this.uuid = UUID.randomUUID();
+        this.nombre = "";
+        this.apellido = "";
+    }
+
     public UUID getUuid() {
         return uuid;
     }
@@ -74,7 +80,7 @@ public class Entrenador implements IConvertirJSON<Entrenador> {
     }
 
     @Override
-    public static Entrenador fromJSON(JSONObject jsonObject) {
+    public  Entrenador fromJSON(JSONObject jsonObject) {
         Entrenador generico = new Entrenador();
         try{
             generico.uuid = UUID.fromString(jsonObject.getString("uuid"));
