@@ -40,6 +40,16 @@ public class Mochila {
          return sb.toString();
      }
 
+    public Pokemon getPokemon(String nombre)
+    {
+        Pokemon aux= new Pokemon(nombre);
+
+        if(pokemones.contains(aux))
+        {
+            return aux;
+        }
+        return null;
+    }
 
     public LinkedHashSet<Pokemon> obtenerTodos() {
         return pokemones;

@@ -4,10 +4,10 @@ import Model.Pokemones.Pokemon;
 
 import java.util.*;
 
-public class GestorEquipos {
+public class Equipos {
     private HashMap<Entrenador, Mochila> equipos;
 
-    public GestorEquipos() {
+    public Equipos() {
         this.equipos = new HashMap<>();
     }
 
@@ -30,7 +30,7 @@ public class GestorEquipos {
         }
         return false;
     }
-    public LinkedHashSet<Pokemon> getAllPokemonsFromEquipo(String nombre, String apellido )
+    public Mochila getMochila(String nombre, String apellido )
     {
         Entrenador aux = new Entrenador(nombre,apellido);
 
@@ -38,8 +38,20 @@ public class GestorEquipos {
         {
             if(entrenador.equals(aux))
             {
-                return equipos.get(entrenador).obtenerTodos();
+                return equipos.get(entrenador);
             }
+        }
+        return null;
+
+    }
+
+    public Entrenador getEntrenador(String nombre, String apellido)
+    {
+
+        Entrenador aux = new Entrenador(nombre, apellido);
+        for (Entrenador entrenador : equipos.keySet()) {
+            if (entrenador.equals(aux))
+                return entrenador;
         }
         return null;
 

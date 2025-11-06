@@ -13,7 +13,8 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
     private UUID uuid;
     private ENombre nombre;
     private ETipo tipo;
-    private int vida;
+    private int vidaRestante;
+    private int vidaCompleta;
     private int ataque;
     private int defensa;
 
@@ -22,11 +23,12 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
 
 
 
-    public Pokemon(ENombre nombre, ETipo tipo,int vida, int ataque, int defensa) {
+    public Pokemon(ENombre nombre, ETipo tipo,int vidaRestante, int vidaCompleta, int ataque, int defensa) {
         this.uuid = UUID.randomUUID();
         this.nombre = nombre;
         this.tipo = tipo;
-        this.vida = vida;
+        this.vidaCompleta = vidaCompleta;
+        this.vidaRestante = vidaRestante;
         this.ataque = ataque;
         this.defensa = defensa;
 
@@ -36,7 +38,8 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
         this.uuid = UUID.randomUUID();
         this.nombre = null;
         this.tipo = null;
-        this.vida = 0;
+        this.vidaRestante = 0;
+        this.vidaCompleta = 0;
         this.ataque = 0;
         this.defensa = 0;
 
@@ -68,12 +71,17 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
         this.tipo = tipo;
     }
 
-    public int getVida() {
-        return vida;
+    public int getVidaCompleta() {
+        return vidaCompleta;
     }
 
-    public void setVida(int vida) {
-        this.vida = vida;
+
+    public int getVidaRestante() {
+        return vidaRestante;
+    }
+
+    public void setVidaRestante(int vidaRestante) {
+        this.vidaRestante = vidaRestante;
     }
 
     public int getAtaque() {
@@ -108,11 +116,12 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
     public String toString() {
         return "Pokemon{" +
                 "uuid=" + uuid +
-                ", vida=" + vida +
-                ", ataque=" + ataque +
-                ", defensa=" + defensa +
                 ", nombre=" + nombre +
                 ", tipo=" + tipo +
+                ", vidaRestante=" + vidaRestante +
+                ", vidaCompleta=" + vidaCompleta +
+                ", ataque=" + ataque +
+                ", defensa=" + defensa +
                 ", ataqueEspecial=" + ataqueEspecial +
                 ", defensaEspecial=" + defensaEspecial +
                 '}';
@@ -126,7 +135,8 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
             object.put("uuid", this.uuid.toString());
             object.put("nombre", this.nombre.name());
             object.put("tipo", this.tipo.name());
-            object.put("vida",this.vida);
+            object.put("vidaRestante", this.vidaRestante);
+            object.put("vidaCompleta", this.vidaCompleta);
             object.put("ataque",this.ataque);
             object.put("defensa",this.defensa);
         } catch (JSONException e) {
@@ -141,7 +151,8 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
         try {
             generico.uuid = UUID.fromString(jsonObject.getString("uuid"));
             generico.nombre =ETipo.valueOf(jsonObject.getString("nombre");
-            generico.vida = jsonObject.getInt("vida");
+            generico.vidaRestante = jsonObject.getInt("vidaRestante");
+            generico.vidaCompleta = jsonObject.getInt("vidaCompleta");
             generico.ataque = jsonObject.getInt("ataque");
             generico.defensa = jsonObject.getInt("defensa");
 
