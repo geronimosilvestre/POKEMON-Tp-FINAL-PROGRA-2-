@@ -30,62 +30,7 @@ public class Main {
 
 
 
-        // Variables
-        Scanner sc = new Scanner(System.in);
-        int opcion, opcion1;
-
-
-        Entrenador entrenador = new Entrenador("Joel","Gardel");
-        Entrenador entrenador2 = new Entrenador("Agus","Flores");
-        GestorEquipo gestorEquipo = new GestorEquipo();
-
-        gestorEquipo.crearEquipo(entrenador);
-        Pokemon random = gestorEquipo.crearPokemonRandom();
-
-        //Aca se le pregunta al usuario si le interesa ese pokemon en particular
-        gestorEquipo.agregarPokemon(entrenador,random);
-
-
-
-
-
-
-        // En el switch va a existir una opcion para setear el principal
-
-
-        // opcion para iniciar batalla
-        /*Boolean batallaActiva= true;
-        int rondas = 20;
-        while(batallaActiva && rondas>0){
-            
-
-            rondas--;
-
-
-        } */
-
-
-
-
-        //Switch para agregar pokemones
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        gestorEquipo.crearEquipo(entrenador);
-        // LinkedHashSet<Pokemon> mochilaDelEntrenador = gestorEquipo.crearMochilaEntrenador();
-
+     
         saltarLinea(1);
         do {
             opcion = menu(sc);

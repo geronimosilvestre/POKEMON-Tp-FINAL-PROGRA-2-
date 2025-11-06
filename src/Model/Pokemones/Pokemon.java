@@ -42,6 +42,12 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
 
     }
 
+    public Pokemon(String nombre)
+    {
+        this.uuid = UUID.randomUUID();
+        this.nombre = ENombre.valueOf(nombre);
+    }
+
     public UUID getUuid() {
         return uuid;
     }
@@ -90,18 +96,12 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Pokemon pokemon)) return false;
-        return Objects.equals(uuid, pokemon.uuid);
+        return nombre == pokemon.nombre;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(uuid);
-    }
-
-    //funcion para capturar pokemon, si el numero es menor a 500 se captura
-    public boolean capturarPokemon() {
-        int numRandom = (int) (Math.random() * 1000);
-        return numRandom < 500;
+        return Objects.hashCode(nombre);
     }
 
     @Override

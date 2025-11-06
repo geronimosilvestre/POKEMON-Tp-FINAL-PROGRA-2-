@@ -39,17 +39,15 @@ public class Entrenador implements IConvertirJSON<Entrenador> {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Entrenador)) return false;
-        Entrenador that = (Entrenador) o;
-        return Objects.equals(uuid, that.uuid);
+        if (!(o instanceof Entrenador that)) return false;
+        return Objects.equals(nombre, that.nombre) && Objects.equals(apellido, that.apellido);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(uuid);
+        return Objects.hash(nombre, apellido);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class Pokedex{
         return true;
     }
 
-    public Pokemon obtener(int posicion) {
+    public Pokemon buscar(int posicion) {
         return pokemones.get(posicion);
     }
 
@@ -26,6 +26,10 @@ public class Pokedex{
 
     public int tamanioActual() {
         return pokemones.size();
+    }
+
+    public Pokemon getRandom() {
+        return pokemones.get((int)(Math.random() * pokemones.size()));
     }
 
 
