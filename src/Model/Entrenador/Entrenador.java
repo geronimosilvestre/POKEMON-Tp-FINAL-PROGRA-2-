@@ -12,6 +12,7 @@ public class Entrenador implements IConvertirJSON<Entrenador> {
     String apellido;
     UUID uuid;
 
+
     public Entrenador(String nombre, String apellido) {
         this.uuid = UUID.randomUUID();
         this.nombre = nombre;

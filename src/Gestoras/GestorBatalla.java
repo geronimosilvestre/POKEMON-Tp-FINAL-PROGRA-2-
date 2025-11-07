@@ -37,6 +37,7 @@ public class GestorBatalla {
                 defensor.setVidaRestante(atacante.getVidaCompleta()-damage);
             }
         }
+        return true;
     }
 
 }
