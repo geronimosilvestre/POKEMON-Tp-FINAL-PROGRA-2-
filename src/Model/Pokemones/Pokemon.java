@@ -163,6 +163,8 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
 
         return generico;
     }
+
+
 }
 
 
