@@ -117,7 +117,7 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
         return "Pokemon{" +
                 "uuid=" + uuid +
                 ", nombre=" + nombre +
-                ", tipo=" + tipo +
+                ", tipo=" + tipo+
                 ", vidaRestante=" + vidaRestante +
                 ", vidaCompleta=" + vidaCompleta +
                 ", ataque=" + ataque +
@@ -151,6 +151,7 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
         try {
             generico.uuid = UUID.fromString(jsonObject.getString("uuid"));
             generico.nombre = ENombre.valueOf(jsonObject.getString("nombre"));
+            generico.tipo = ETipo.valueOf(jsonObject.getString("tipo"));
             generico.vidaRestante = jsonObject.getInt("vidaRestante");
             generico.vidaCompleta = jsonObject.getInt("vidaCompleta");
             generico.ataque = jsonObject.getInt("ataque");
