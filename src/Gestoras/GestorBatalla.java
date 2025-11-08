@@ -7,6 +7,7 @@ import Model.Pokemones.Pokemon;
 import java.util.*;
 
 public class GestorBatalla {
+
     private Equipos equipos;
 
 
@@ -36,6 +37,7 @@ public class GestorBatalla {
                 defensor.setVidaRestante(atacante.getVidaCompleta()-damage);
             }
         }
+        return true;
     }
 
 }
