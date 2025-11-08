@@ -13,7 +13,7 @@ import java.util.List;
 // TP GRUPAL POKEDEX (Flores, Jimenez, Pascuan, Silvestre).
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws archivoYaExisteException {
 
 
         Pokedex pokedex = new Pokedex();
@@ -46,17 +46,18 @@ public class Main {
         array.put(magnetite.toJSONObject());
         array.put(snorunt.toJSONObject());
 
-        try {
-            pokedex.grabarUnJson(array, "Pokedex.json");
-        } catch (archivoYaExisteException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-
-        try {
-            List<Pokemon> lista = Pokedex.leerPokemonesFromJson("Pokedex.json");
-        } catch (JSONException e) {
-            System.out.println(e.getMessage());
-        }
+            JsonUtiles.grabarUnJson(array, "Z:/carpeta_que_no_existe/pokemones.json");
+//        try {
+//            pokedex.grabar(array, "Pokedex.json");
+//        } catch (archivoYaExisteException e) {
+//            System.out.println("Error: " + e.getMessage());
+//        }
+//
+//        try {
+//            List<Pokemon> lista = Pokedex.leer("Pokedex.json");
+//        } catch (JSONException e) {
+//            System.out.println(e.getMessage());
+//        }
 
 
 //

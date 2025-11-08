@@ -43,7 +43,7 @@ public class Pokedex{
     }
 
 
-    public  void grabarUnJson(JSONArray jsonArray, String archivo) throws archivoYaExisteException {
+    public  void grabar(JSONArray jsonArray, String archivo) throws archivoYaExisteException {
         File file = new File(archivo);
 
         if (file.exists()) {
@@ -55,7 +55,7 @@ public class Pokedex{
 
 
 
-    public static List<Pokemon> leerPokemonesFromJson(String archivo) throws JSONException {
+    public static List<Pokemon> leer(String archivo) throws JSONException {
         List<Pokemon> pokemones = new ArrayList<>();
 
 
