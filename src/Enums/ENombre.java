@@ -11,7 +11,8 @@ public enum ENombre {
         SNORUNT("Snorunt"),
         MAGNETITE("Magnetite"),
         PIKACHU("Pikachu"),
-        SQUIRTLE("Squirtle");
+        SQUIRTLE("Squirtle"),
+        JIGGLYPUFF("Jigglypuff");
 
 
 
