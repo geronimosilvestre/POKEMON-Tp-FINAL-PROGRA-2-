@@ -1,0 +1,110 @@
+[
+    {
+        "tipo": "ELECTRICO",
+        "vidaRestante": 100,
+        "ataque": 50,
+        "vidaCompleta": 100,
+        "defensa": 30,
+        "uuid": "4b85b07f-eb6b-4233-8ed6-3b2a607006ca",
+        "nombre": "PIKACHU"
+    },
+    {
+        "tipo": "FUEGO",
+        "vidaRestante": 95,
+        "ataque": 52,
+        "vidaCompleta": 95,
+        "defensa": 35,
+        "uuid": "37d07a90-8c2e-4a16-80a7-6cc86776655c",
+        "nombre": "CHARMANDER"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 110,
+        "ataque": 48,
+        "vidaCompleta": 110,
+        "defensa": 50,
+        "uuid": "e00d3ee8-5f03-41bc-b8e7-7d2a6e3c04ec",
+        "nombre": "SQUIRTLE"
+    },
+    {
+        "tipo": "PLANTA",
+        "vidaRestante": 105,
+        "ataque": 49,
+        "vidaCompleta": 105,
+        "defensa": 45,
+        "uuid": "d007bc9a-b9a8-4b8d-bcaf-28bfab901613",
+        "nombre": "BULBASAUR"
+    },
+    {
+        "tipo": "ROCA",
+        "vidaRestante": 120,
+        "ataque": 45,
+        "vidaCompleta": 120,
+        "defensa": 60,
+        "uuid": "247df8b5-fb0e-4c5c-bb68-d07423c09ddf",
+        "nombre": "GEODUDE"
+    },
+    {
+        "tipo": "FUEGO",
+        "vidaRestante": 100,
+        "ataque": 55,
+        "vidaCompleta": 100,
+        "defensa": 40,
+        "uuid": "d5e0d5f9-10c3-40f5-a6a9-c7bf29846829",
+        "nombre": "GROWLITHE"
+    },
+    {
+        "tipo": "HIELO",
+        "vidaRestante": 115,
+        "ataque": 45,
+        "vidaCompleta": 115,
+        "defensa": 20,
+        "uuid": "281f1159-c821-4041-be29-bd79496fc485",
+        "nombre": "MAGNETITE"
+    },
+    {
+        "tipo": "PLANTA",
+        "vidaRestante": 80,
+        "ataque": 30,
+        "vidaCompleta": 80,
+        "defensa": 35,
+        "uuid": "227cd06c-f491-4cb9-ab6b-30b3fc708a9d",
+        "nombre": "CATERPIE"
+    },
+    {
+        "tipo": "PLANTA",
+        "vidaRestante": 95,
+        "ataque": 60,
+        "vidaCompleta": 95,
+        "defensa": 44,
+        "uuid": "44decf2f-dc6d-4913-8604-1d70b83fc470",
+        "nombre": "ARBOK"
+    },
+    {
+        "tipo": "FUEGO",
+        "vidaRestante": 150,
+        "ataque": 85,
+        "vidaCompleta": 150,
+        "defensa": 70,
+        "uuid": "3af9316f-8d48-4636-9dec-9c33d1648d09",
+        "nombre": "DRAGONITE"
+    },
+    {
+        "tipo": "ELECTRICO",
+        "vidaRestante": 90,
+        "ataque": 55,
+        "vidaCompleta": 90,
+        "defensa": 35,
+        "uuid": "7c894f1d-94d5-4f3d-a772-678be5a14b8a",
+        "nombre": "MAGNETITE"
+    },
+    {
+        "tipo": "HIELO",
+        "vidaRestante": 95,
+        "ataque": 45,
+        "vidaCompleta": 95,
+        "defensa": 30,
+        "uuid": "c79d95e3-cf8f-4ed3-a919-40a142ddb7fa",
+        "nombre": "SNORUNT"
+    }
+]
