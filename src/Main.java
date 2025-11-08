@@ -224,10 +224,9 @@ public class Main {
         System.out.println(pokedex.listar()); // muestra la lista con índices
 
         System.out.print("Ingresá la posición del Pokémon para ver su info completa: ");
-        String input = sc.nextLine();
-
+        int pos = sc.nextInt();
+        sc.nextLine();
         try {
-            int pos = Integer.parseInt(input);
             Pokemon p = pokedex.buscar(pos);
             System.out.println("\n--- Información del Pokémon ---");
             System.out.println(p);
