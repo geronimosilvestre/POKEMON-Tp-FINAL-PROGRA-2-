@@ -5,7 +5,7 @@
         "ataque": 50,
         "vidaCompleta": 100,
         "defensa": 30,
-        "uuid": "4b85b07f-eb6b-4233-8ed6-3b2a607006ca",
+        "uuid": "9a11af63-7651-4298-8f5a-f0fd0c3eb215",
         "nombre": "PIKACHU"
     },
     {
@@ -14,7 +14,7 @@
         "ataque": 52,
         "vidaCompleta": 95,
         "defensa": 35,
-        "uuid": "37d07a90-8c2e-4a16-80a7-6cc86776655c",
+        "uuid": "b5cc1a24-8b99-46c7-8d23-73dcaf4341cf",
         "nombre": "CHARMANDER"
     },
     {
@@ -23,7 +23,7 @@
         "ataque": 48,
         "vidaCompleta": 110,
         "defensa": 50,
-        "uuid": "e00d3ee8-5f03-41bc-b8e7-7d2a6e3c04ec",
+        "uuid": "f7aeb504-d2df-48e2-a29d-f16a5366fc8a",
         "nombre": "SQUIRTLE"
     },
     {
@@ -32,7 +32,7 @@
         "ataque": 49,
         "vidaCompleta": 105,
         "defensa": 45,
-        "uuid": "d007bc9a-b9a8-4b8d-bcaf-28bfab901613",
+        "uuid": "aae2cb28-1dd5-48a1-aeb7-8ba667754252",
         "nombre": "BULBASAUR"
     },
     {
@@ -41,7 +41,7 @@
         "ataque": 45,
         "vidaCompleta": 120,
         "defensa": 60,
-        "uuid": "247df8b5-fb0e-4c5c-bb68-d07423c09ddf",
+        "uuid": "8cf306ea-79d6-4162-89bd-6e4b6fa75e31",
         "nombre": "GEODUDE"
     },
     {
@@ -50,7 +50,7 @@
         "ataque": 55,
         "vidaCompleta": 100,
         "defensa": 40,
-        "uuid": "d5e0d5f9-10c3-40f5-a6a9-c7bf29846829",
+        "uuid": "129bb346-0cbd-4e2a-8a68-d17156a93b0e",
         "nombre": "GROWLITHE"
     },
     {
@@ -59,7 +59,7 @@
         "ataque": 45,
         "vidaCompleta": 115,
         "defensa": 20,
-        "uuid": "281f1159-c821-4041-be29-bd79496fc485",
+        "uuid": "9beab648-3038-455b-b48a-b3652f88f492",
         "nombre": "MAGNETITE"
     },
     {
@@ -68,7 +68,7 @@
         "ataque": 30,
         "vidaCompleta": 80,
         "defensa": 35,
-        "uuid": "227cd06c-f491-4cb9-ab6b-30b3fc708a9d",
+        "uuid": "ced6d7c7-9f35-4ac6-ab69-541a92eb8ae0",
         "nombre": "CATERPIE"
     },
     {
@@ -77,7 +77,7 @@
         "ataque": 60,
         "vidaCompleta": 95,
         "defensa": 44,
-        "uuid": "44decf2f-dc6d-4913-8604-1d70b83fc470",
+        "uuid": "a98e22f9-5587-4963-a1d0-463136318a9e",
         "nombre": "ARBOK"
     },
     {
@@ -86,7 +86,7 @@
         "ataque": 85,
         "vidaCompleta": 150,
         "defensa": 70,
-        "uuid": "3af9316f-8d48-4636-9dec-9c33d1648d09",
+        "uuid": "ea747c89-e780-422f-8f11-c3a81f881c60",
         "nombre": "DRAGONITE"
     },
     {
@@ -95,7 +95,7 @@
         "ataque": 55,
         "vidaCompleta": 90,
         "defensa": 35,
-        "uuid": "7c894f1d-94d5-4f3d-a772-678be5a14b8a",
+        "uuid": "87c9b972-012e-4ed1-8e89-fc29ab529e9a",
         "nombre": "MAGNETITE"
     },
     {
@@ -104,7 +104,7 @@
         "ataque": 45,
         "vidaCompleta": 95,
         "defensa": 30,
-        "uuid": "c79d95e3-cf8f-4ed3-a919-40a142ddb7fa",
+        "uuid": "f41941ce-03af-4918-b9a8-1f24d71e4c28",
         "nombre": "SNORUNT"
     }
 ]

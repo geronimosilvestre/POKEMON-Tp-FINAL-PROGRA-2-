@@ -8,12 +8,13 @@ import Utiles.JsonUtiles;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // TP GRUPAL POKEDEX (Flores, Jimenez, Pascuan, Silvestre).
 
 public class Main {
-    public static void main(String[] args) throws archivoYaExisteException {
+    public static void main(String[] args) {
 
 
         Pokedex pokedex = new Pokedex();
@@ -46,21 +47,30 @@ public class Main {
         array.put(magnetite.toJSONObject());
         array.put(snorunt.toJSONObject());
 
-            JsonUtiles.grabarUnJson(array, "Z:/carpeta_que_no_existe/pokemones.json");
-//        try {
-//            pokedex.grabar(array, "Pokedex.json");
-//        } catch (archivoYaExisteException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-//
-//        try {
-//            List<Pokemon> lista = Pokedex.leer("Pokedex.json");
-//        } catch (JSONException e) {
-//            System.out.println(e.getMessage());
-//        }
 
 
-//
+
+        try {
+            pokedex.grabar(array, "Pokedex.json");
+        } catch (archivoYaExisteException e) {
+            System.out.println( e.getMessage());
+        }
+
+        ArrayList<Pokemon> lista = new ArrayList<>();
+
+        try {
+             lista = (ArrayList<Pokemon>) Pokedex.leer("Pokedex.json");
+        } catch (JSONException e) {
+            System.out.println(e.getMessage());
+        }
+
+        for (Pokemon p : lista){
+            pokedex.agregar(p);
+        }
+        System.out.println(pokedex.listar());
+
+
+
 //        Mochila mochila1 = new Mochila();
 //        Mochila mochila2 = new Mochila();
 //
@@ -85,7 +95,7 @@ public class Main {
 //
 //        equipos.agregarEquipo(entrenador1, mochila1);
 //        equipos.agregarEquipo(entrenador2, mochila2);
-
+// ll
 
         //Menu.mainmenu(args);
 

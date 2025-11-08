@@ -33,7 +33,16 @@ public class Pokedex{
     public ArrayList<Pokemon> obtenerTodos() {
         return pokemones;
     }
+    public String listar(){
+        StringBuilder sb = new StringBuilder();
+        for(Pokemon pokemon : pokemones){
 
+           sb.append(pokemon.getNombre());
+           sb.append("\n");
+        }
+        return sb.toString();
+
+    }
     public int tamanioActual() {
         return pokemones.size();
     }
