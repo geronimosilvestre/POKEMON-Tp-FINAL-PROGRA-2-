@@ -1,24 +1,65 @@
+import Enums.ENombre;
+import Enums.ETipo;
+import Exceptions.archivoYaExisteException;
+import Gestoras.Pokedex;
 import Menu.Menu;
+import Model.Pokemones.Pokemon;
+import Utiles.JsonUtiles;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.List;
 
 // TP GRUPAL POKEDEX (Flores, Jimenez, Pascuan, Silvestre).
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws archivoYaExisteException {
 
 
-//        Pokedex pokedex = new Pokedex();
-//        Pokemon pikachu = new Pokemon(ENombre.PIKACHU, ETipo.ELECTRICO, 100, 100, 50, 30);
-//        Pokemon charmander = new Pokemon(ENombre.CHARMANDER, ETipo.FUEGO, 95, 95, 52, 35);
-//        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE, ETipo.AGUA, 110, 110, 48, 50);
-//        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR, ETipo.PLANTA, 105, 105, 49, 45);
-//        Pokemon geodude = new Pokemon(ENombre.GEODUDE, ETipo.ROCA, 120, 120, 45, 60);
-//        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE, ETipo.FUEGO, 100, 100, 55, 40);
-//        Pokemon jigglypuff = new Pokemon(ENombre.MAGNETITE, ETipo.HIELO, 115, 115, 45, 20); // ← cambiado
-//        Pokemon caterpie = new Pokemon(ENombre.CATERPIE, ETipo.PLANTA, 80, 80, 30, 35);
-//        Pokemon arbok = new Pokemon(ENombre.ARBOK, ETipo.PLANTA, 95, 95, 60, 44);
-//        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE, ETipo.FUEGO, 150, 150, 85, 70);
-//        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE, ETipo.ELECTRICO, 90, 90, 55, 35);
-//        Pokemon snorunt = new Pokemon(ENombre.SNORUNT, ETipo.HIELO, 95, 95, 45, 30);
+        Pokedex pokedex = new Pokedex();
+        Pokemon pikachu = new Pokemon(ENombre.PIKACHU, ETipo.ELECTRICO, 100, 100, 50, 30);
+        Pokemon charmander = new Pokemon(ENombre.CHARMANDER, ETipo.FUEGO, 95, 95, 52, 35);
+        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE, ETipo.AGUA, 110, 110, 48, 50);
+        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR, ETipo.PLANTA, 105, 105, 49, 45);
+        Pokemon geodude = new Pokemon(ENombre.GEODUDE, ETipo.ROCA, 120, 120, 45, 60);
+        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE, ETipo.FUEGO, 100, 100, 55, 40);
+        Pokemon jigglypuff = new Pokemon(ENombre.MAGNETITE, ETipo.HIELO, 115, 115, 45, 20); // ← cambiado
+        Pokemon caterpie = new Pokemon(ENombre.CATERPIE, ETipo.PLANTA, 80, 80, 30, 35);
+        Pokemon arbok = new Pokemon(ENombre.ARBOK, ETipo.PLANTA, 95, 95, 60, 44);
+        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE, ETipo.FUEGO, 150, 150, 85, 70);
+        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE, ETipo.ELECTRICO, 90, 90, 55, 35);
+        Pokemon snorunt = new Pokemon(ENombre.SNORUNT, ETipo.HIELO, 95, 95, 45, 30);
+
+
+        JSONArray array = new JSONArray();
+
+        array.put(pikachu.toJSONObject());
+        array.put(charmander.toJSONObject());
+        array.put(squirtle.toJSONObject());
+        array.put(bulbasaur.toJSONObject());
+        array.put(geodude.toJSONObject());
+        array.put(growlithe.toJSONObject());
+        array.put(jigglypuff.toJSONObject());
+        array.put(caterpie.toJSONObject());
+        array.put(arbok.toJSONObject());
+        array.put(dragonite.toJSONObject());
+        array.put(magnetite.toJSONObject());
+        array.put(snorunt.toJSONObject());
+
+            JsonUtiles.grabarUnJson(array, "Z:/carpeta_que_no_existe/pokemones.json");
+//        try {
+//            pokedex.grabar(array, "Pokedex.json");
+//        } catch (archivoYaExisteException e) {
+//            System.out.println("Error: " + e.getMessage());
+//        }
+//
+//        try {
+//            List<Pokemon> lista = Pokedex.leer("Pokedex.json");
+//        } catch (JSONException e) {
+//            System.out.println(e.getMessage());
+//        }
+
+
 //
 //        Mochila mochila1 = new Mochila();
 //        Mochila mochila2 = new Mochila();
@@ -46,7 +87,7 @@ public class Main {
 //        equipos.agregarEquipo(entrenador2, mochila2);
 
 
-        Menu.mainmenu(args);
+        //Menu.mainmenu(args);
 
 
 
