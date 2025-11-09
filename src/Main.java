@@ -9,6 +9,7 @@ import Gestoras.Equipos;
 import Gestoras.GestorBatalla;
 import Gestoras.Mochila;
 import Gestoras.Pokedex;
+import Menu.Menu;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
 import org.json.JSONArray;
@@ -24,18 +25,18 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         Pokedex pokedex = new Pokedex();
-        Pokemon pikachu = new Pokemon(ENombre.PIKACHU, ETipo.ELECTRICO);
-        Pokemon charmander = new Pokemon(ENombre.CHARMANDER, ETipo.FUEGO);
-        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE, ETipo.AGUA);
-        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR, ETipo.PLANTA);
-        Pokemon geodude = new Pokemon(ENombre.GEODUDE, ETipo.ROCA);
-        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE, ETipo.FUEGO);
-        Pokemon jigglypuff = new Pokemon(ENombre.JIGGLYPUFF, ETipo.HIELO); // ← cambiado
-        Pokemon caterpie = new Pokemon(ENombre.CATERPIE, ETipo.PLANTA);
-        Pokemon arbok = new Pokemon(ENombre.ARBOK, ETipo.PLANTA);
-        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE, ETipo.FUEGO);
-        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE, ETipo.ELECTRICO);
-        Pokemon snorunt = new Pokemon(ENombre.SNORUNT, ETipo.HIELO);
+        Pokemon pikachu = new Pokemon(ENombre.PIKACHU);
+        Pokemon charmander = new Pokemon(ENombre.CHARMANDER);
+        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE);
+        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR);
+        Pokemon geodude = new Pokemon(ENombre.GEODUDE);
+        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE);
+        Pokemon jigglypuff = new Pokemon(ENombre.JIGGLYPUFF);
+        Pokemon caterpie = new Pokemon(ENombre.CATERPIE);
+        Pokemon arbok = new Pokemon(ENombre.ARBOK);
+        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE);
+        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE);
+        Pokemon snorunt = new Pokemon(ENombre.SNORUNT);
 
 
         JSONArray array = new JSONArray();
@@ -88,12 +89,9 @@ public class Main {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println("\n===== MENÚ PRINCIPAL =====");
-            System.out.println("1. Equipos");
-            System.out.println("2. Pokédex");
-            System.out.println("3. Batallar");
-            System.out.println("0. Salir");
-            System.out.print("Elegí una opción: ");
+            //se muestra el menu prinicipal
+                Menu.menuPrincipal();
+
             int opcion = sc.nextInt();
             sc.nextLine();
 
@@ -120,12 +118,9 @@ public class Main {
         boolean volver = false;
 
         while (!volver) {
-            System.out.println("\n===== MENÚ EQUIPOS =====");
-            System.out.println("1. Agregar peleador");
-            System.out.println("2. Ver peleadores y sus Pokémon");
-            System.out.println("3.   Iniciar batalla  ");
-            System.out.println("0. Volver");
-            System.out.print("Opción: ");
+            //se muestra menu equipos
+                Menu.menuEquipos();
+
             int opcion = sc.nextInt();
             sc.nextLine();
 
@@ -176,13 +171,10 @@ public class Main {
 
         boolean volverMochila = false;
         while (!volverMochila) {
-            System.out.println("\n--- Menú Mochila ---");
-            System.out.println("1. Rellenar / completar automáticamente");
-            System.out.println("2. Rellenar manualmente");
-            System.out.println("3. Ver mochila");
-            System.out.println("4. Eliminar Pokémon");
-            System.out.println("5. Guardar peleador y volver");
-            System.out.print("Opción: ");
+
+            //se muestra el menu para la mochila
+            Menu.menuMochila();
+
             int op = sc.nextInt();
             sc.nextLine();
 
@@ -190,15 +182,19 @@ public class Main {
                 case 1 -> {
                    int tamanio=mochila.size();
 
+<<<<<<< HEAD
                     while (tamanio<3) {
+=======
+                    while (tamanio < 3) {
+>>>>>>> main
                         Pokemon p = pokedex.getRandom();
                         try {
                             tamanio++;
                             mochila.agregar(p);
+                            tamanio++;
                             System.out.println("Agregado: " + p.getNombre());
                         } catch (capacidadInvalidaException | existException e ) {
                             System.out.println("No se pudo agregar el Pokémon: " + e.getMessage());
-
                         }
 
                     }
@@ -336,8 +332,8 @@ public class Main {
 
         Mochila mochila1 = equipos.getMochila(entrenador1.getNombre(),entrenador1.getApellido());
         Mochila mochila2 = equipos.getMochila(entrenador2.getNombre(),entrenador2.getApellido());
-        Pokemon pokemon1;
-        Pokemon pokemon2;
+        Pokemon pokemon1= null;
+        Pokemon pokemon2 = null;
 
         System.out.println("Nombre del primer entrenador: " + entrenador2.getNombre());
 
@@ -384,13 +380,15 @@ public class Main {
         boolean batallaActiva = true;
         int turno = 1;
 
+        Entrenador entrenadorAtacante;
+        Entrenador entrenadorDefensor;
+        Pokemon pokemonAtacante;
+        Pokemon pokemonDefensor;
+
         while (batallaActiva) {
             System.out.println("=== Turno " + turno + " ===");
 
-            Entrenador entrenadorAtacante;
-            Entrenador entrenadorDefensor;
-            Pokemon pokemonAtacante;
-            Pokemon pokemonDefensor;
+
 
             if (turno % 2 != 0) {
                 entrenadorAtacante = entrenador1;
@@ -435,47 +433,110 @@ public class Main {
                         System.out.println("\n" + entrenadorAtacante.getNombre() + " ha ganado la batalla!");
                         batallaActiva = false;
                     } else {
+
                         System.out.println(entrenadorDefensor.getNombre() + ", elegí otro Pokémon:");
                         try {
-                            System.out.println(equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido()).listar());
+                           Mochila mochilita =  equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido());
+                            StringBuilder sb= new StringBuilder();
+                            for (int i = 0; i < mochilita.size(); i++) {
+                                Pokemon p = mochilita.getPokemonIndex(i);
+                                sb.append(p.getNombre() + " - vida restante: " + p.getVidaRestante() + "\n");
+
+                            }
+
+                            System.out.println(sb);
                         } catch (capacidadInvalidaException e) {
                             System.out.println(e.getMessage());
                         }
-                        System.out.print("Nombre del nuevo Pokémon: ");
-                        String nuevoNombre = sc.nextLine().trim().toUpperCase();
 
-                        Pokemon nuevoPoke = new Pokemon(nuevoNombre);
+                        Pokemon cambioPokemon = null;
+
+                        //VERIFICA MUERTE
+
+                        while (cambioPokemon == null) {
+                            try {
+                                System.out.print("Su Pokémon se murió. Escribí el nombre de otro Pokémon de la mochila: ");
+                                String nuevo = sc.nextLine();
+
+                                cambioPokemon = equipos.getMochila(
+                                        entrenadorDefensor.getNombre(),
+                                        entrenadorDefensor.getApellido()
+                                ).getPokemon(nuevo);
+
+                                // Verifica que tenga vida > 0
+                                if (cambioPokemon.getVidaRestante() <= 0) {
+                                    cambioPokemon = null;
+                                    throw new IllegalArgumentException("El Pokémon elegido está debilitado. Elegí otro.");
+                                }
+
+                                // Si es un Pokémon válido y con vida, se asigna
+                                if (turno % 2 != 0)
+                                    pokemon2 = cambioPokemon;
+                                else
+                                    pokemon1 = cambioPokemon;
+
+                                System.out.println(cambioPokemon.getNombre() + " entra en combate!");
 
 
-                        if (nuevoPoke != null) {
-                            if (turno % 2 != 0) pokemon2 = nuevoPoke;
-                            else pokemon1 = nuevoPoke;
-                            System.out.println(nuevoPoke.getNombre() + " entra en combate!");
-                        } else {
-                            System.out.println("No se encontró ese Pokémon, pierde el turno.");
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(e.getMessage());
+                            } catch (existException e) {
+                                System.out.println(e.getMessage());
+                                System.out.println("No se encontró ese Pokémon, vuelva a buscar.");
+                            }
+
                         }
-                    }
-                }
 
+                    }
+
+                }
             } else if (opcion == 2) {
                 System.out.println(entrenadorAtacante.getNombre() + ", elegí otro Pokémon:");
+
                 try {
-                    System.out.println(equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido()).listar());
+                    Mochila mochilita =  equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido());
+                    StringBuilder sb= new StringBuilder();
+                    for (int i = 0; i < mochilita.size(); i++) {
+                        Pokemon p = mochilita.getPokemonIndex(i);
+                        sb.append(p.getNombre() + " - " + p.getVidaRestante() + "\n");
+
+                    }
+
+                    System.out.println(sb);
                 } catch (capacidadInvalidaException e) {
                     System.out.println(e.getMessage());
                 }
-                System.out.print("Nombre del nuevo Pokémon: ");
-                String nuevoNombre = sc.nextLine().trim().toUpperCase();
-
-                Pokemon nuevoPoke = new Pokemon(nuevoNombre);
 
 
-                if (nuevoPoke != null) {
-                    if (turno % 2 != 0) pokemon1 = nuevoPoke;
-                    else pokemon2 = nuevoPoke;
-                    System.out.println("Nuevo Pokémon activo: " + nuevoPoke.getNombre());
-                } else {
-                    System.out.println("No se encontró ese Pokémon.");
+                Pokemon reemplazoNormal = null;
+
+                while (reemplazoNormal == null) {
+                    try {
+                        System.out.print("Para reemplazar el pokemon activo, escribe manualmente el nombre de otro : ");
+                        String nuevoNombre = sc.nextLine();
+
+                        reemplazoNormal = equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido()).getPokemon(nuevoNombre);
+
+
+                        // Verifica que tenga vida > 0
+                        if (reemplazoNormal.getVidaRestante() <= 0) {
+                            reemplazoNormal = null;
+                            throw new IllegalArgumentException("El Pokémon elegido está debilitado. Elegí otro.");
+                        }
+
+                        if (reemplazoNormal != null) {
+                            if (turno % 2 != 0)
+                                pokemon1 = reemplazoNormal;
+                            else
+                                pokemon2 = reemplazoNormal;
+
+                            System.out.println(reemplazoNormal.getNombre() + " entra en combate!");
+                        }
+
+                    } catch (IllegalArgumentException | existException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Intentá con otro nombre.\n");
+                    }
                 }
             }
 

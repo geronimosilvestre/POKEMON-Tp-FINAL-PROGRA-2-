@@ -83,6 +83,34 @@ public class Menu {
         saltarLinea(20);
     }
 
+    public static void menuMochila(){
+        System.out.println("\n--- Menú Mochila ---");
+        System.out.println("1. Rellenar / completar automáticamente");
+        System.out.println("2. Rellenar manualmente");
+        System.out.println("3. Ver mochila");
+        System.out.println("4. Eliminar Pokémon");
+        System.out.println("5. Guardar peleador y volver");
+        System.out.print("Opción: ");
+    }
+
+    public static void menuEquipos(){
+        System.out.println("\n===== MENÚ EQUIPOS =====");
+        System.out.println("1. Agregar peleador");
+        System.out.println("2. Ver peleadores y sus Pokémon");
+        System.out.println("3. Iniciar batalla  ");
+        System.out.println("0. Volver");
+        System.out.print("Opción: ");
+    }
+
+    public static void menuPrincipal(){
+        System.out.println("\n===== MENÚ PRINCIPAL =====");
+        System.out.println("1. Equipos");
+        System.out.println("2. Pokédex");
+        System.out.println("3. Batallar");
+        System.out.println("0. Salir");
+        System.out.print("Elegí una opción: ");
+    }
+
 
 }
 
