@@ -9,15 +9,11 @@ import Gestoras.Equipos;
 import Gestoras.GestorBatalla;
 import Gestoras.Mochila;
 import Gestoras.Pokedex;
-import Menu.Menu;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
-import Utiles.JsonUtiles;
 import org.json.JSONArray;
 import org.json.JSONException;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -28,18 +24,18 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         Pokedex pokedex = new Pokedex();
-        Pokemon pikachu = new Pokemon(ENombre.PIKACHU, ETipo.ELECTRICO, 100, 100, 50, 30);
-        Pokemon charmander = new Pokemon(ENombre.CHARMANDER, ETipo.FUEGO, 95, 95, 52, 35);
-        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE, ETipo.AGUA, 110, 110, 48, 50);
-        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR, ETipo.PLANTA, 105, 105, 49, 45);
-        Pokemon geodude = new Pokemon(ENombre.GEODUDE, ETipo.ROCA, 120, 120, 45, 60);
-        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE, ETipo.FUEGO, 100, 100, 55, 40);
-        Pokemon jigglypuff = new Pokemon(ENombre.JIGGLYPUFF, ETipo.HIELO, 115, 115, 45, 20); // ← cambiado
-        Pokemon caterpie = new Pokemon(ENombre.CATERPIE, ETipo.PLANTA, 80, 80, 30, 35);
-        Pokemon arbok = new Pokemon(ENombre.ARBOK, ETipo.PLANTA, 95, 95, 60, 44);
-        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE, ETipo.FUEGO, 150, 150, 85, 70);
-        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE, ETipo.ELECTRICO, 90, 90, 55, 35);
-        Pokemon snorunt = new Pokemon(ENombre.SNORUNT, ETipo.HIELO, 95, 95, 45, 30);
+        Pokemon pikachu = new Pokemon(ENombre.PIKACHU, ETipo.ELECTRICO);
+        Pokemon charmander = new Pokemon(ENombre.CHARMANDER, ETipo.FUEGO);
+        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE, ETipo.AGUA);
+        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR, ETipo.PLANTA);
+        Pokemon geodude = new Pokemon(ENombre.GEODUDE, ETipo.ROCA);
+        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE, ETipo.FUEGO);
+        Pokemon jigglypuff = new Pokemon(ENombre.JIGGLYPUFF, ETipo.HIELO); // ← cambiado
+        Pokemon caterpie = new Pokemon(ENombre.CATERPIE, ETipo.PLANTA);
+        Pokemon arbok = new Pokemon(ENombre.ARBOK, ETipo.PLANTA);
+        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE, ETipo.FUEGO);
+        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE, ETipo.ELECTRICO);
+        Pokemon snorunt = new Pokemon(ENombre.SNORUNT, ETipo.HIELO);
 
 
         JSONArray array = new JSONArray();
@@ -60,6 +56,7 @@ public class Main {
 
 
 
+        // SE GRABAN POKEMONS EN JSON
         try {
             pokedex.grabar(array, "Pokedex.json");
         } catch (archivoYaExisteException e) {
@@ -68,12 +65,14 @@ public class Main {
 
         ArrayList<Pokemon> lista = new ArrayList<>();
 
+        //LEEN POKEMON DE JSON
         try {
              lista = (ArrayList<Pokemon>) Pokedex.leer("Pokedex.json");
         } catch (JSONException e) {
             System.out.println(e.getMessage());
         }
 
+        //SE CREAN LOS OBJETOS DE LOS DISTINTOS POKEMON
         try {
             for (Pokemon p : lista) {
                 pokedex.agregar(p);
@@ -83,8 +82,6 @@ public class Main {
         }
         Scanner sc = new Scanner(System.in);
         Equipos equipos = new Equipos();
-
-        Mochila mochilita = new Mochila();
 
 
 
@@ -295,7 +292,7 @@ public class Main {
         try {
             Pokemon p = pokedex.buscar(pos);
             System.out.println("\n--- Información del Pokémon ---");
-            System.out.println(p);
+            System.out.println(p.toString());
         } catch (NumberFormatException e) {
             System.out.println("Error: Debés ingresar un número válido.");
         } catch (IndexOutOfBoundsException e) {
@@ -320,57 +317,67 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
+
+        ArrayList<Entrenador> entrenadores = equipos.getEntrenadores();
+
+
+
         // === SELECCIÓN DE ENTRENADORES ===
-        System.out.print("\nIngresá el nombre del primer entrenador: ");
-        String nombre1 = sc.nextLine().trim();
-        System.out.print("Ingresá el apellido del primer entrenador: ");
-        String apellido1 = sc.nextLine().trim();
 
-        Entrenador entrenador1 = equipos.getEntrenador(nombre1, apellido1);
-        if (entrenador1 == null) {
-            System.out.println("No se encontró el entrenador " + nombre1 + " " + apellido1);
-            return;
-        }
+        Entrenador entrenador1 =  entrenadores.get(0);
+        System.out.println("Nombre del primer entrenador: " + entrenador1.getNombre());
 
-        System.out.print("\nIngresá el nombre del segundo entrenador: ");
-        String nombre2 = sc.nextLine().trim();
-        System.out.print("Ingresá el apellido del segundo entrenador: ");
-        String apellido2 = sc.nextLine().trim();
 
-        Entrenador entrenador2 = equipos.getEntrenador(nombre2, apellido2);
-        if (entrenador2 == null) {
-            System.out.println("No se encontró el entrenador " + nombre2 + " " + apellido2);
-            return;
-        }
+
+
+        Entrenador entrenador2 =   entrenadores.get(1);
+
+
+        Mochila mochila1 = equipos.getMochila(entrenador1.getNombre(),entrenador1.getApellido());
+        Mochila mochila2 = equipos.getMochila(entrenador2.getNombre(),entrenador2.getApellido());
+        Pokemon pokemon1;
+        Pokemon pokemon2;
+
+        System.out.println("Nombre del primer entrenador: " + entrenador2.getNombre());
 
         // === ELECCIÓN DE POKÉMON PRINCIPALES ===
         System.out.println("\nPokémon del equipo de " + entrenador1.getNombre() + ":");
+
         try {
-            System.out.println(equipos.getMochila(entrenador1.getNombre(), entrenador1.getApellido()).listar());
+            System.out.println(mochila1.listar());
         } catch (capacidadInvalidaException e) {
             System.out.println(e.getMessage());
         }
-        System.out.print("Ingresá el nombre del Pokémon principal: ");
-        String nombrePoke1 = sc.nextLine().trim().toUpperCase();
+        System.out.print("Ingresá el numero para seleccionar un   Pokémon como principal: ");
 
-        Pokemon poke1 = equipos.getMochila(entrenador1.getNombre(),entrenador1.getApellido()).getPokemon(nombrePoke1);
+        try {
+            pokemon1 = mochila1.getPokemonIndex(sc.nextInt());
+            sc.nextLine();
+        } catch (capacidadInvalidaException e) {
+            System.out.println(e.getMessage());
+        }
+
+
 
 
 
 
         System.out.println("\nPokémon del equipo de " + entrenador2.getNombre() + ":");
         try {
-            System.out.println(equipos.getMochila(entrenador2.getNombre(), entrenador2.getApellido()).listar());
+            System.out.println(mochila2.listar());
         } catch (capacidadInvalidaException e) {
             System.out.println(e.getMessage());
         }
         System.out.print("Ingresá el nombre del Pokémon principal: ");
-        String nombrePoke2 = sc.nextLine().trim().toUpperCase();
+        try {
+            pokemon2 = mochila2.getPokemonIndex(sc.nextInt());
+            sc.nextLine();
+        } catch (capacidadInvalidaException e) {
+            System.out.println(e.getMessage());
+        }
 
-        Pokemon poke2 = equipos.getMochila(entrenador2.getNombre(),entrenador2.getApellido()).getPokemon(nombrePoke2);
 
-
-        System.out.println("\n¡La batalla comienza entre " + poke1.getNombre() + " y " + poke2.getNombre() + "!\n");
+        System.out.println("\n¡La batalla comienza entre " + pokemon1.getNombre() + " y " + pokemon2.getNombre() + "!\n");
 
         // === BUCLE DE BATALLA ===
         boolean batallaActiva = true;
@@ -379,33 +386,44 @@ public class Main {
         while (batallaActiva) {
             System.out.println("=== Turno " + turno + " ===");
 
-            Entrenador atacante = (turno % 2 != 0) ? entrenador1 : entrenador2;
-            Entrenador defensor = (turno % 2 != 0) ? entrenador2 : entrenador1;
+            Entrenador entrenadorAtacante;
+            Entrenador entrenadorDefensor;
+            Pokemon pokemonAtacante;
+            Pokemon pokemonDefensor;
 
-            Pokemon pokeAtacante = (turno % 2 != 0) ? poke1 : poke2;
-            Pokemon pokeDefensor = (turno % 2 != 0) ? poke2 : poke1;
+            if (turno % 2 != 0) {
+                entrenadorAtacante = entrenador1;
+                entrenadorDefensor = entrenador2;
+                pokemonAtacante = pokemon1;
+                pokemonDefensor = pokemon2;
+            } else {
+                entrenadorAtacante = entrenador2;
+                entrenadorDefensor = entrenador1;
+                pokemonAtacante = pokemon2;
+                pokemonDefensor = pokemon1;
+            }
 
-            System.out.println("\nTurno de " + atacante.getNombre() + " (" + pokeAtacante.getNombre() + ")");
-            System.out.println("Vida de tu Pokémon: " + pokeAtacante.getVidaRestante());
-            System.out.println("Vida del oponente: " + pokeDefensor.getVidaRestante());
+            System.out.println("\nTurno de " + entrenadorAtacante.getNombre() + " (" + pokemonAtacante.getNombre() + ")");
+            System.out.println("Vida de tu Pokémon: " + pokemonAtacante.getVidaRestante());
+            System.out.println("Vida del oponente: " + pokemonDefensor.getVidaRestante());
             System.out.println("1. Atacar");
             System.out.println("2. Cambiar Pokémon");
             System.out.print("Elegí una opción: ");
 
             int opcion = sc.nextInt();
-            sc.nextLine(); // limpiar buffer
+            sc.nextLine();
 
             if (opcion == 1) {
-                gestorBatalla.atacar(pokeAtacante, pokeDefensor);
-                System.out.println(pokeAtacante.getNombre() + " atacó a " + pokeDefensor.getNombre());
-                System.out.println("Vida de " + pokeDefensor.getNombre() + ": " + pokeDefensor.getVidaRestante());
+                gestorBatalla.atacar(pokemonAtacante, pokemonDefensor);
+                System.out.println(pokemonAtacante.getNombre() + " atacó a " + pokemonDefensor.getNombre());
+                System.out.println("Vida de " + pokemonDefensor.getNombre() + ": " + pokemonDefensor.getVidaRestante());
 
-                if (pokeDefensor.getVidaRestante() <= 0) {
-                    System.out.println("\n" + pokeDefensor.getNombre() + " ha sido derrotado.");
+                if (pokemonDefensor.getVidaRestante() <= 0) {
+                    System.out.println("\n" + pokemonDefensor.getNombre() + " ha sido derrotado.");
 
                     // Verificar si todos los Pokémon del defensor están debilitados
                     boolean todosDebilitados = true;
-                    for (Pokemon p : equipos.getMochila(defensor.getNombre(), defensor.getApellido()).obtenerTodos()) {
+                    for (Pokemon p : equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido()).obtenerTodos()) {
                         if (p.getVidaRestante() > 0) {
                             todosDebilitados = false;
                             break;
@@ -413,12 +431,12 @@ public class Main {
                     }
 
                     if (todosDebilitados) {
-                        System.out.println("\n" + atacante.getNombre() + " ha ganado la batalla!");
+                        System.out.println("\n" + entrenadorAtacante.getNombre() + " ha ganado la batalla!");
                         batallaActiva = false;
                     } else {
-                        System.out.println(defensor.getNombre() + ", elegí otro Pokémon:");
+                        System.out.println(entrenadorDefensor.getNombre() + ", elegí otro Pokémon:");
                         try {
-                            System.out.println(equipos.getMochila(defensor.getNombre(), defensor.getApellido()).listar());
+                            System.out.println(equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido()).listar());
                         } catch (capacidadInvalidaException e) {
                             System.out.println(e.getMessage());
                         }
@@ -429,8 +447,8 @@ public class Main {
 
 
                         if (nuevoPoke != null) {
-                            if (turno % 2 != 0) poke2 = nuevoPoke;
-                            else poke1 = nuevoPoke;
+                            if (turno % 2 != 0) pokemon2 = nuevoPoke;
+                            else pokemon1 = nuevoPoke;
                             System.out.println(nuevoPoke.getNombre() + " entra en combate!");
                         } else {
                             System.out.println("No se encontró ese Pokémon, pierde el turno.");
@@ -439,9 +457,9 @@ public class Main {
                 }
 
             } else if (opcion == 2) {
-                System.out.println(atacante.getNombre() + ", elegí otro Pokémon:");
+                System.out.println(entrenadorAtacante.getNombre() + ", elegí otro Pokémon:");
                 try {
-                    System.out.println(equipos.getMochila(atacante.getNombre(), atacante.getApellido()).listar());
+                    System.out.println(equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido()).listar());
                 } catch (capacidadInvalidaException e) {
                     System.out.println(e.getMessage());
                 }
@@ -452,8 +470,8 @@ public class Main {
 
 
                 if (nuevoPoke != null) {
-                    if (turno % 2 != 0) poke1 = nuevoPoke;
-                    else poke2 = nuevoPoke;
+                    if (turno % 2 != 0) pokemon1 = nuevoPoke;
+                    else pokemon2 = nuevoPoke;
                     System.out.println("Nuevo Pokémon activo: " + nuevoPoke.getNombre());
                 } else {
                     System.out.println("No se encontró ese Pokémon.");
@@ -464,7 +482,3 @@ public class Main {
         }
     }
 }
-
-
-
-
