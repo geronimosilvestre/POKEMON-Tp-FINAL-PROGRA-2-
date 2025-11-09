@@ -1,5 +1,6 @@
 package Gestoras;
 
+import Exceptions.*;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
 
@@ -15,24 +16,43 @@ public class Mochila {
          this.pokemones = new LinkedHashSet<>();
      }
 
-     public boolean agregar(Pokemon pokemon)
+     public boolean agregar(Pokemon pokemon) throws  capacidadInvalidaException, existException
      {
-        return pokemones.add(pokemon);
-     }
-
-     public boolean eliminar(String nombre)
-     {
-         Pokemon aux= new Pokemon(nombre);
-         if(pokemones.contains(aux))
-         {
-             return pokemones.remove(aux);
+         if (pokemones.size() == 3) {
+             throw new capacidadInvalidaException("La mochila no puede tener mas de 3 pokemones");
          }
-         return false;
+         if (pokemones.size() < 3) {
+
+
+             if (pokemones.contains(pokemon)) {
+                 throw new existException("Pokemon ya existe");
+             }
+                 return pokemones.add(pokemon);
+
+         }
+        return  false;
      }
 
-     public String listar()
+    public boolean eliminar(String nombre) throws capacidadInvalidaException, existException {
+        Pokemon aux = new Pokemon(nombre);
+        if (pokemones.size() == 0) {
+            throw new capacidadInvalidaException("Mochila vacia");
+        }
+        if (!pokemones.contains(aux)) {
+        throw new existException("No existe ese pokemon en la mochila");
+
+        }
+
+        return pokemones.remove(aux);
+
+     }
+
+     public String listar() throws capacidadInvalidaException
      {
         StringBuilder sb = new StringBuilder();
+        if (pokemones.size() == 0) {
+            throw new capacidadInvalidaException("Mochila vacia");
+        }
          for (Pokemon pokemon : pokemones)
          {
              sb.append(pokemon.getNombre()+ "\n");
@@ -44,13 +64,20 @@ public class Mochila {
     {
         Pokemon aux= new Pokemon(nombre);
 
-        if(pokemones.contains(aux))
+        for(Pokemon pokemon : pokemones)
         {
-            return aux;
+            if(pokemon.equals(aux))
+                {
+                return pokemon;
+                }
         }
         return null;
     }
 
+    public int size()
+    {
+        return pokemones.size();
+    }
     public LinkedHashSet<Pokemon> obtenerTodos() {
         return pokemones;
     }
