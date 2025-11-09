@@ -53,9 +53,12 @@ public class Mochila {
         if (pokemones.size() == 0) {
             throw new capacidadInvalidaException("Mochila vacia");
         }
-         for (Pokemon pokemon : pokemones)
-         {
-             sb.append(pokemon.getNombre()+ "\n");
+         int contador = 0;
+
+         for (Pokemon p : pokemones) {
+             sb.append("[").append(contador).append("] ")
+                     .append(p.getNombre()).append("\n");
+             contador++;
          }
          return sb.toString();
      }
@@ -70,6 +73,19 @@ public class Mochila {
                 {
                 return pokemon;
                 }
+        }
+        return null;
+    }
+    public Pokemon getPokemonIndex(int indice) throws capacidadInvalidaException {
+        int contador = 0;
+        if (indice < 0 || indice >= pokemones.size()) {
+            throw new capacidadInvalidaException("No existe un pokemon con ese indice")
+        }
+        for (Pokemon p : pokemones) {
+            if (contador == indice) {
+                return p;
+            }
+            contador++;
         }
         return null;
     }
