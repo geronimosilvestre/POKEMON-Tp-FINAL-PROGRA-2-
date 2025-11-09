@@ -25,10 +25,10 @@ public class Pokemon implements IConvertirJSON<Pokemon>, IBatalla {
 
 
 
-    public Pokemon(ENombre pokemon, ETipo tipo) {
+    public Pokemon(ENombre pokemon) {
         this.uuid = UUID.randomUUID();
         this.nombre = pokemon;
-        this.tipo = tipo;
+        this.tipo = pokemon.getTipo();
         this.vidaCompleta = pokemon.getVidaCompleta();
         this.vidaRestante = pokemon.getVidaCompleta();
         this.ataque = pokemon.getAtaque();
