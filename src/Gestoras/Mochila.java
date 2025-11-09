@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
 
-public class Mochila<T extends IBatalla> {
+public class Mochila {
     private LinkedHashSet<Pokemon> pokemones;
 
      public  Mochila()
@@ -80,7 +80,7 @@ public class Mochila<T extends IBatalla> {
     public Pokemon getPokemonIndex(int indice) throws capacidadInvalidaException {
         int contador = 0;
         if (indice < 0 || indice >= pokemones.size()) {
-            throw new capacidadInvalidaException("No existe un pokemon con ese indice")
+            throw new capacidadInvalidaException("No existe un pokemon con ese indice");
         }
         for (Pokemon p : pokemones) {
             if (contador == indice) {

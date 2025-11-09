@@ -335,8 +335,8 @@ public class Main {
 
         Mochila mochila1 = equipos.getMochila(entrenador1.getNombre(),entrenador1.getApellido());
         Mochila mochila2 = equipos.getMochila(entrenador2.getNombre(),entrenador2.getApellido());
-        Pokemon pokemon1;
-        Pokemon pokemon2;
+        Pokemon pokemon1= null;
+        Pokemon pokemon2 = null;
 
         System.out.println("Nombre del primer entrenador: " + entrenador2.getNombre());
 
