@@ -191,9 +191,9 @@ public class Main {
 
             switch (op) {
                 case 1 -> {
-                   int tamanio= mochila.size();
+                   int tamanio=0;
 
-                    while (tamanio <3) {
+                    while (mochila.size()<3) {
                         Pokemon p = pokedex.getRandom();
                         try {
                             mochila.agregar(p);

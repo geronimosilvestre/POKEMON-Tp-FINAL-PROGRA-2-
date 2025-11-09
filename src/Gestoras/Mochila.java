@@ -21,12 +21,12 @@ public class Mochila {
          if (pokemones.size() == 3) {
              throw new capacidadInvalidaException("La mochila no puede tener mas de 3 pokemones");
          }
+         if (pokemones.contains(pokemon)) {
+             throw new existException("Pokemon ya existe");
+         }
          if (pokemones.size() < 3) {
 
 
-             if (pokemones.contains(pokemon)) {
-                 throw new existException("Pokemon ya existe");
-             }
                  return pokemones.add(pokemon);
 
          }
