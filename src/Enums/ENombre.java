@@ -3,18 +3,18 @@ package Enums;
 import java.util.UUID;
 
 public enum ENombre {
-        ARBOK("Arbok", 95, 60, 44),
-        BULBASAUR("Bulbasaur", 105, 49, 45),
-        CATERPIE("Caterpie", 80, 30, 35),
-        CHARMANDER("Charmander", 95, 52, 35),
-        DRAGONITE("Dragonite", 150, 85, 70),
-        GEODUDE("Geodude", 120, 45, 60),
-        GROWLITHE("Growlithe", 100, 55, 40),
-        SNORUNT("Snorunt", 95, 45, 30),
-        MAGNETITE("Magnetite", 90, 55, 35),
-        PIKACHU("Pikachu",  100, 100, 50),
-        SQUIRTLE("Squirtle",110, 48, 50),
-        JIGGLYPUFF("Jigglypuff", 115, 45, 20);
+        ARBOK("Arbok", 95, 60, 44, ETipo.PLANTA ),
+        BULBASAUR("Bulbasaur", 105, 49, 45, ETipo.PLANTA),
+        CATERPIE("Caterpie", 80, 30, 35, ETipo.PLANTA),
+        CHARMANDER("Charmander", 95, 52, 35, ETipo.FUEGO),
+        DRAGONITE("Dragonite", 150, 85, 70, ETipo.FUEGO),
+        GEODUDE("Geodude", 120, 45, 60, ETipo.ROCA),
+        GROWLITHE("Growlithe", 100, 55, 40, ETipo.FUEGO),
+        SNORUNT("Snorunt", 95, 45, 30, ETipo.HIELO),
+        MAGNETITE("Magnetite", 90, 55, 35, ETipo.ELECTRICO),
+        PIKACHU("Pikachu",  100, 100, 50, ETipo.ELECTRICO),
+        SQUIRTLE("Squirtle",110, 48, 50,  ETipo.AGUA),
+        JIGGLYPUFF("Jigglypuff", 115, 45, 20, ETipo.HIELO);
 
 
 
@@ -22,12 +22,14 @@ public enum ENombre {
     private int vidaCompleta;
     private int ataque;
     private int defensa;
+    private ETipo tipo;
 
-    ENombre(String nombre,  int vidaCompleta, int ataque, int defensa) {
+    ENombre(String nombre,  int vidaCompleta, int ataque, int defensa, ETipo tipo) {
         this.nombre = nombre;
         this.vidaCompleta = vidaCompleta;
         this.ataque = ataque;
         this.defensa = defensa;
+        this.tipo = tipo;
     }
 
 
@@ -42,5 +44,8 @@ public enum ENombre {
     }
     public int getDefensa() {
         return defensa;
+    }
+    public  ETipo getTipo() {
+        return tipo;
     }
 }

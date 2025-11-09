@@ -1,7 +1,6 @@
 package Gestoras;
 
 import Exceptions.*;
-import Interfaces.IBatalla;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
 

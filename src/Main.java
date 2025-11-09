@@ -9,6 +9,7 @@ import Gestoras.Equipos;
 import Gestoras.GestorBatalla;
 import Gestoras.Mochila;
 import Gestoras.Pokedex;
+import Menu.Menu;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
 import org.json.JSONArray;
@@ -24,18 +25,18 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         Pokedex pokedex = new Pokedex();
-        Pokemon pikachu = new Pokemon(ENombre.PIKACHU, ETipo.ELECTRICO);
-        Pokemon charmander = new Pokemon(ENombre.CHARMANDER, ETipo.FUEGO);
-        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE, ETipo.AGUA);
-        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR, ETipo.PLANTA);
-        Pokemon geodude = new Pokemon(ENombre.GEODUDE, ETipo.ROCA);
-        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE, ETipo.FUEGO);
-        Pokemon jigglypuff = new Pokemon(ENombre.JIGGLYPUFF, ETipo.HIELO); // ← cambiado
-        Pokemon caterpie = new Pokemon(ENombre.CATERPIE, ETipo.PLANTA);
-        Pokemon arbok = new Pokemon(ENombre.ARBOK, ETipo.PLANTA);
-        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE, ETipo.FUEGO);
-        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE, ETipo.ELECTRICO);
-        Pokemon snorunt = new Pokemon(ENombre.SNORUNT, ETipo.HIELO);
+        Pokemon pikachu = new Pokemon(ENombre.PIKACHU);
+        Pokemon charmander = new Pokemon(ENombre.CHARMANDER);
+        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE);
+        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR);
+        Pokemon geodude = new Pokemon(ENombre.GEODUDE);
+        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE);
+        Pokemon jigglypuff = new Pokemon(ENombre.JIGGLYPUFF);
+        Pokemon caterpie = new Pokemon(ENombre.CATERPIE);
+        Pokemon arbok = new Pokemon(ENombre.ARBOK);
+        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE);
+        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE);
+        Pokemon snorunt = new Pokemon(ENombre.SNORUNT);
 
 
         JSONArray array = new JSONArray();
@@ -88,12 +89,9 @@ public class Main {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println("\n===== MENÚ PRINCIPAL =====");
-            System.out.println("1. Equipos");
-            System.out.println("2. Pokédex");
-            System.out.println("3. Batallar");
-            System.out.println("0. Salir");
-            System.out.print("Elegí una opción: ");
+            //se muestra el menu prinicipal
+                Menu.menuPrincipal();
+
             int opcion = sc.nextInt();
             sc.nextLine();
 
@@ -120,12 +118,9 @@ public class Main {
         boolean volver = false;
 
         while (!volver) {
-            System.out.println("\n===== MENÚ EQUIPOS =====");
-            System.out.println("1. Agregar peleador");
-            System.out.println("2. Ver peleadores y sus Pokémon");
-            System.out.println("3.   Iniciar batalla  ");
-            System.out.println("0. Volver");
-            System.out.print("Opción: ");
+            //se muestra menu equipos
+                Menu.menuEquipos();
+
             int opcion = sc.nextInt();
             sc.nextLine();
 
@@ -176,13 +171,10 @@ public class Main {
 
         boolean volverMochila = false;
         while (!volverMochila) {
-            System.out.println("\n--- Menú Mochila ---");
-            System.out.println("1. Rellenar / completar automáticamente");
-            System.out.println("2. Rellenar manualmente");
-            System.out.println("3. Ver mochila");
-            System.out.println("4. Eliminar Pokémon");
-            System.out.println("5. Guardar peleador y volver");
-            System.out.print("Opción: ");
+
+            //se muestra el menu para la mochila
+            Menu.menuMochila();
+
             int op = sc.nextInt();
             sc.nextLine();
 
