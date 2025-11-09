@@ -1,5 +1,7 @@
 package Gestoras;
 
+import Enums.ENombre;
+import Enums.ETipo;
 import Exceptions.*;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
@@ -63,18 +65,33 @@ public class Mochila {
          return sb.toString();
      }
 
-    public Pokemon getPokemon(String nombre)
+    public Pokemon getPokemon(String nombre) throws existException,IllegalArgumentException
     {
-        Pokemon aux= new Pokemon(nombre);
-
-        for(Pokemon pokemon : pokemones)
-        {
-            if(pokemon.equals(aux))
-                {
-                return pokemon;
-                }
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nombre vacío");
         }
-        return null;
+
+        ENombre nombreEnum = null;
+        //Chequear si existe realmente un pokemon a partir del String
+
+
+        for (ENombre n : ENombre.values()) {
+            if (n.name().equalsIgnoreCase(nombre.trim())) {
+                nombreEnum = n;
+                break;
+            }
+        }
+        if (nombreEnum == null) {
+            throw new IllegalArgumentException("Nombre ingresado inexistente: " + nombre);
+        }
+
+        Pokemon aux = new Pokemon(nombreEnum);
+        for (Pokemon pokemon : pokemones) {
+            if (pokemon.equals(aux)) {
+                return pokemon;
+            }
+        }
+        throw new existException("No existe ese pokemon en la mochila: " + nombre);
     }
     public Pokemon getPokemonIndex(int indice) throws capacidadInvalidaException {
         int contador = 0;

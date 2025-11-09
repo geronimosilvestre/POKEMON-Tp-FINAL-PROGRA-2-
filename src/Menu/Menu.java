@@ -97,7 +97,7 @@ public class Menu {
         System.out.println("\n===== MENÚ EQUIPOS =====");
         System.out.println("1. Agregar peleador");
         System.out.println("2. Ver peleadores y sus Pokémon");
-        System.out.println("3.   Iniciar batalla  ");
+        System.out.println("3. Iniciar batalla  ");
         System.out.println("0. Volver");
         System.out.print("Opción: ");
     }

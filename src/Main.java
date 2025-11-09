@@ -426,47 +426,96 @@ public class Main {
                         System.out.println("\n" + entrenadorAtacante.getNombre() + " ha ganado la batalla!");
                         batallaActiva = false;
                     } else {
-                        System.out.println(entrenadorDefensor.getNombre() + ", elegí otro Pokémon:");
-                        try {
-                            System.out.println(equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido()).listar());
-                        } catch (capacidadInvalidaException e) {
-                            System.out.println(e.getMessage());
-                        }
-                        System.out.print("Nombre del nuevo Pokémon: ");
-                        String nuevoNombre = sc.nextLine().trim().toUpperCase();
 
-                        Pokemon nuevoPoke = new Pokemon(nuevoNombre);
+//                        System.out.println(entrenadorDefensor.getNombre() + ", elegí otro Pokémon:");
+//                        try {
+//                           Mochila mochilita =  equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido());
+//                            StringBuilder sb= new StringBuilder();
+//                            for (int i = 0; i < mochilita.size(); i++) {
+//                                Pokemon p = mochilita.getPokemonIndex(i);
+//                                sb.append(p.getNombre() + " - " + p.getVidaRestante() + "\n");
+//
+//                            }
+//
+//                            System.out.println(sb);
+//                        } catch (capacidadInvalidaException e) {
+//                            System.out.println(e.getMessage());
+//                        }
+//
+//                        Pokemon cambioPokemon = null;
+//
+//                        while (cambioPokemon == null) {
+//                            try {
+//                                System.out.print("Su pokemon se murio, escribe a mano el nombre de otro Pokémon de la mochila: ");
+//                                String nuevo = sc.nextLine();
+//
+//
+//
+//                                cambioPokemon = equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido()).getPokemon(nuevo);
+//
+//                                if (cambioPokemon != null) {
+//                                    if (turno % 2 != 0)
+//                                        pokemon2 = cambioPokemon;
+//                                    else
+//                                        pokemon1 = cambioPokemon;
+//
+//                                    System.out.println(cambioPokemon.getNombre() + " entra en combate!");
+//                                }
+//
+//                            } catch (IllegalArgumentException e) {
+//                                System.out.println(e.getMessage());
+//                            } catch (existException e) {
+//                                System.out.println(e.getMessage());
+//                                System.out.println("No se encontró ese Pokémon, vuelva a buscar.");
+//                            }
+//                        }
 
+                        GestorBatalla.elegirNuevoPokemon(sc,equipos,entrenadorDefensor,turno,pokemon1,pokemon2);
 
-                        if (nuevoPoke != null) {
-                            if (turno % 2 != 0) pokemon2 = nuevoPoke;
-                            else pokemon1 = nuevoPoke;
-                            System.out.println(nuevoPoke.getNombre() + " entra en combate!");
-                        } else {
-                            System.out.println("No se encontró ese Pokémon, pierde el turno.");
-                        }
                     }
                 }
 
             } else if (opcion == 2) {
                 System.out.println(entrenadorAtacante.getNombre() + ", elegí otro Pokémon:");
                 try {
-                    System.out.println(equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido()).listar());
+                    Mochila mochilita =  equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido());
+                    StringBuilder sb= new StringBuilder();
+                    for (int i = 0; i < mochilita.size(); i++) {
+                        Pokemon p = mochilita.getPokemonIndex(i);
+                        sb.append(p.getNombre() + " - " + p.getVidaRestante() + "\n");
+
+                    }
+
+                    System.out.println(sb);
                 } catch (capacidadInvalidaException e) {
                     System.out.println(e.getMessage());
                 }
-                System.out.print("Nombre del nuevo Pokémon: ");
-                String nuevoNombre = sc.nextLine().trim().toUpperCase();
-
-                Pokemon nuevoPoke = new Pokemon(nuevoNombre);
 
 
-                if (nuevoPoke != null) {
-                    if (turno % 2 != 0) pokemon1 = nuevoPoke;
-                    else pokemon2 = nuevoPoke;
-                    System.out.println("Nuevo Pokémon activo: " + nuevoPoke.getNombre());
-                } else {
-                    System.out.println("No se encontró ese Pokémon.");
+                Pokemon reemplazoNormal = null;
+
+                while (reemplazoNormal == null) {
+                    try {
+                        System.out.print("Para reemplazar el pokemon activo, escribe manualmente el nombre de otro : ");
+                        String nuevoNombre = sc.nextLine();
+
+
+
+                        reemplazoNormal = equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido()).getPokemon(nuevoNombre);
+
+                        if (reemplazoNormal != null) {
+                            if (turno % 2 != 0)
+                                pokemon2 = reemplazoNormal;
+                            else
+                                pokemon1 = reemplazoNormal;
+
+                            System.out.println(reemplazoNormal.getNombre() + " entra en combate!");
+                        }
+
+                    } catch (IllegalArgumentException | existException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Intentá con otro nombre.\n");
+                    }
                 }
             }
 

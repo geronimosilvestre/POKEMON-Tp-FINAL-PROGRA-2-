@@ -114,7 +114,7 @@ public class Pokemon implements IConvertirJSON<Pokemon>, IBatalla {
 
     @Override
     public String toString() {
-        return "\n POKEMON: " + nombre +
+        return "\n POKEMON: " + nombre.getNombre() +
                 "\n id: " + uuid +
                 "\n TIPO: " + tipo+
                 "\n VIDA RESTANTE: " + vidaRestante +
@@ -130,7 +130,7 @@ public class Pokemon implements IConvertirJSON<Pokemon>, IBatalla {
         JSONObject object = new JSONObject();
         try {
             object.put("uuid", this.uuid.toString());
-            object.put("nombre", this.getNombre());
+            object.put("nombre", this.nombre.getNombre());
             object.put("tipo", this.tipo.name());
             object.put("vidaRestante", this.vidaRestante);
             object.put("vidaCompleta", this.vidaCompleta);
@@ -161,7 +161,8 @@ public class Pokemon implements IConvertirJSON<Pokemon>, IBatalla {
 
     @Override
     public double ataqueNormal() {
-        return this.ataque * (Math.random());
+        double variacion = 0.8 + (Math.random() * 0.4); // entre 0.8 y 1.2
+        return this.ataque * variacion;
     }
 }
 
