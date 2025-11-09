@@ -28,18 +28,18 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         Pokedex pokedex = new Pokedex();
-        Pokemon pikachu = new Pokemon(ENombre.PIKACHU, ETipo.ELECTRICO, 100, 100, 50, 30);
-        Pokemon charmander = new Pokemon(ENombre.CHARMANDER, ETipo.FUEGO, 95, 95, 52, 35);
-        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE, ETipo.AGUA, 110, 110, 48, 50);
-        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR, ETipo.PLANTA, 105, 105, 49, 45);
-        Pokemon geodude = new Pokemon(ENombre.GEODUDE, ETipo.ROCA, 120, 120, 45, 60);
-        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE, ETipo.FUEGO, 100, 100, 55, 40);
-        Pokemon jigglypuff = new Pokemon(ENombre.JIGGLYPUFF, ETipo.HIELO, 115, 115, 45, 20); // ← cambiado
-        Pokemon caterpie = new Pokemon(ENombre.CATERPIE, ETipo.PLANTA, 80, 80, 30, 35);
-        Pokemon arbok = new Pokemon(ENombre.ARBOK, ETipo.PLANTA, 95, 95, 60, 44);
-        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE, ETipo.FUEGO, 150, 150, 85, 70);
-        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE, ETipo.ELECTRICO, 90, 90, 55, 35);
-        Pokemon snorunt = new Pokemon(ENombre.SNORUNT, ETipo.HIELO, 95, 95, 45, 30);
+        Pokemon pikachu = new Pokemon(ENombre.PIKACHU, ETipo.ELECTRICO);
+        Pokemon charmander = new Pokemon(ENombre.CHARMANDER, ETipo.FUEGO);
+        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE, ETipo.AGUA);
+        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR, ETipo.PLANTA);
+        Pokemon geodude = new Pokemon(ENombre.GEODUDE, ETipo.ROCA);
+        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE, ETipo.FUEGO);
+        Pokemon jigglypuff = new Pokemon(ENombre.JIGGLYPUFF, ETipo.HIELO); // ← cambiado
+        Pokemon caterpie = new Pokemon(ENombre.CATERPIE, ETipo.PLANTA);
+        Pokemon arbok = new Pokemon(ENombre.ARBOK, ETipo.PLANTA);
+        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE, ETipo.FUEGO);
+        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE, ETipo.ELECTRICO);
+        Pokemon snorunt = new Pokemon(ENombre.SNORUNT, ETipo.HIELO);
 
 
         JSONArray array = new JSONArray();

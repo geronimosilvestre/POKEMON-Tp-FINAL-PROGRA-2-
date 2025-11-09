@@ -24,14 +24,14 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
 
 
 
-    public Pokemon(ENombre nombre, ETipo tipo,int vidaRestante, int vidaCompleta, int ataque, int defensa) {
+    public Pokemon(ENombre pokemon, ETipo tipo) {
         this.uuid = UUID.randomUUID();
-        this.nombre = nombre;
+        this.nombre = pokemon;
         this.tipo = tipo;
-        this.vidaCompleta = vidaCompleta;
-        this.vidaRestante = vidaRestante;
-        this.ataque = ataque;
-        this.defensa = defensa;
+        this.vidaCompleta = pokemon.getVidaCompleta();
+        this.vidaRestante = pokemon.getVidaCompleta();
+        this.ataque = pokemon.getAtaque();
+        this.defensa = pokemon.getDefensa();
 
     }
 
