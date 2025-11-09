@@ -188,18 +188,19 @@ public class Main {
 
             switch (op) {
                 case 1 -> {
-                   int tamanio=0;
+                   int tamanio=mochila.size();
 
-                    while (mochila.size()<3) {
+                    while (tamanio<3) {
                         Pokemon p = pokedex.getRandom();
                         try {
+                            tamanio++;
                             mochila.agregar(p);
                             System.out.println("Agregado: " + p.getNombre());
                         } catch (capacidadInvalidaException | existException e ) {
                             System.out.println("No se pudo agregar el Pokémon: " + e.getMessage());
 
                         }
-                        tamanio++;
+
                     }
                    if(tamanio == 3) {
                        System.out.println("La mochila ya contiene 3 pokemones");
