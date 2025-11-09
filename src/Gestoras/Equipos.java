@@ -82,6 +82,16 @@ public class Equipos {
 
     }
 
+    public ArrayList<Entrenador> getEntrenadores()
+    {
+        ArrayList<Entrenador> entrenadores = new ArrayList<>();
+        for (Entrenador entrenador : equipos.keySet()) {
+            entrenadores.add(entrenador);
+        }
+        return entrenadores;
+
+    }
+
     public Boolean reemplazarPokemon(String nombre, String apellido, Pokemon pokemonNuevo, String pokemonDescarte) throws capacidadInvalidaException, existException {
         Entrenador entrenador = new Entrenador(nombre, apellido);
 
