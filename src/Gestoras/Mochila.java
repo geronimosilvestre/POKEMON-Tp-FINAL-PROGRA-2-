@@ -1,6 +1,7 @@
 package Gestoras;
 
 import Exceptions.*;
+import Interfaces.IBatalla;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
 
-public class Mochila {
+public class Mochila<T extends IBatalla> {
     private LinkedHashSet<Pokemon> pokemones;
 
      public  Mochila()

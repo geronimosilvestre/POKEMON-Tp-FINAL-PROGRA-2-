@@ -9,15 +9,11 @@ import Gestoras.Equipos;
 import Gestoras.GestorBatalla;
 import Gestoras.Mochila;
 import Gestoras.Pokedex;
-import Menu.Menu;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
-import Utiles.JsonUtiles;
 import org.json.JSONArray;
 import org.json.JSONException;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -60,6 +56,7 @@ public class Main {
 
 
 
+        // SE GRABAN POKEMONS EN JSON
         try {
             pokedex.grabar(array, "Pokedex.json");
         } catch (archivoYaExisteException e) {
@@ -68,12 +65,14 @@ public class Main {
 
         ArrayList<Pokemon> lista = new ArrayList<>();
 
+        //LEEN POKEMON DE JSON
         try {
              lista = (ArrayList<Pokemon>) Pokedex.leer("Pokedex.json");
         } catch (JSONException e) {
             System.out.println(e.getMessage());
         }
 
+        //SE CREAN LOS OBJETOS DE LOS DISTINTOS POKEMON
         try {
             for (Pokemon p : lista) {
                 pokedex.agregar(p);
@@ -83,8 +82,6 @@ public class Main {
         }
         Scanner sc = new Scanner(System.in);
         Equipos equipos = new Equipos();
-
-        Mochila mochilita = new Mochila();
 
 
 
@@ -295,7 +292,7 @@ public class Main {
         try {
             Pokemon p = pokedex.buscar(pos);
             System.out.println("\n--- Información del Pokémon ---");
-            System.out.println(p);
+            System.out.println(p.toString());
         } catch (NumberFormatException e) {
             System.out.println("Error: Debés ingresar un número válido.");
         } catch (IndexOutOfBoundsException e) {
@@ -464,7 +461,3 @@ public class Main {
         }
     }
 }
-
-
-
-

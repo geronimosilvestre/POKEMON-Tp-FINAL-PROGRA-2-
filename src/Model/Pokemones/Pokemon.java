@@ -2,6 +2,7 @@ package Model.Pokemones;
 import Enums.ENombre;
 import Enums.ETipo;
 import Exceptions.existException;
+import Interfaces.IBatalla;
 import Interfaces.ICapturar;
 import Interfaces.IConvertirJSON;
 import org.json.JSONException;
@@ -10,7 +11,7 @@ import org.json.JSONObject;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Pokemon implements IConvertirJSON<Pokemon> {
+public class Pokemon implements IConvertirJSON<Pokemon>, IBatalla {
     private UUID uuid;
     private ENombre nombre;
     private ETipo tipo;
@@ -115,17 +116,17 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
 
     @Override
     public String toString() {
-        return "Pokemon{" +
-                "uuid=" + uuid +
-                ", nombre=" + nombre +
-                ", tipo=" + tipo+
-                ", vidaRestante=" + vidaRestante +
-                ", vidaCompleta=" + vidaCompleta +
-                ", ataque=" + ataque +
-                ", defensa=" + defensa +
-                ", ataqueEspecial=" + ataqueEspecial +
-                ", defensaEspecial=" + defensaEspecial +
-                '}';
+        return "\n POKEMON: " + nombre +
+                "\n id: " + uuid +
+
+                "\n TIPO: " + tipo+
+                "\n VIDA RESTANTE: " + vidaRestante +
+                "\n VIDA COMPLETA: " + vidaCompleta +
+                "\n ATAQUE: " + ataque +
+                "\n DEFENSA: " + defensa +
+                "\n ATAQUE ESPECIAL: " + ataqueEspecial +
+                "\n DEFENSA ESPECIAL: " + defensaEspecial +
+                "\n }";
     }
 
     @Override
@@ -157,16 +158,16 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
             generico.vidaCompleta = jsonObject.getInt("vidaCompleta");
             generico.ataque = jsonObject.getInt("ataque");
             generico.defensa = jsonObject.getInt("defensa");
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return generico;
     }
 
-
+    @Override
+    public double ataqueNormal() {
+        return this.ataque * (Math.random());
+    }
 }
 
 
