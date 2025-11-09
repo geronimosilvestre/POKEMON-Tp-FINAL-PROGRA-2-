@@ -12,6 +12,7 @@ import Gestoras.Pokedex;
 import Menu.Menu;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
+import Utiles.JsonUtiles;
 import org.json.JSONArray;
 import org.json.JSONException;
 import java.util.ArrayList;
@@ -41,21 +42,53 @@ public class Main {
 
         JSONArray array = new JSONArray();
 
-        array.put(pikachu.toJSONObject());
-        array.put(charmander.toJSONObject());
-        array.put(squirtle.toJSONObject());
-        array.put(bulbasaur.toJSONObject());
-        array.put(geodude.toJSONObject());
-        array.put(growlithe.toJSONObject());
-        array.put(jigglypuff.toJSONObject());
-        array.put(caterpie.toJSONObject());
-        array.put(arbok.toJSONObject());
-        array.put(dragonite.toJSONObject());
-        array.put(magnetite.toJSONObject());
-        array.put(snorunt.toJSONObject());
+        array.put(pikachu.toJSON());
+        array.put(charmander.toJSON());
+        array.put(squirtle.toJSON());
+        array.put(bulbasaur.toJSON());
+        array.put(geodude.toJSON());
+        array.put(growlithe.toJSON());
+        array.put(jigglypuff.toJSON());
+        array.put(caterpie.toJSON());
+        array.put(arbok.toJSON());
+        array.put(dragonite.toJSON());
+        array.put(magnetite.toJSON());
+        array.put(snorunt.toJSON());
+
+    Equipos equipos1= new Equipos();
+
+    Entrenador entrenador1 = new Entrenador("h","j");
+    Entrenador entrenador2 = new Entrenador("hj","ej");
+    Mochila mochila1 = new Mochila();
+        try {
+            mochila1.agregar(arbok);
+            mochila1.agregar(pikachu);
+            mochila1.agregar(charmander);
+            equipos1.agregarEquipo(entrenador1,mochila1);
+            equipos1.agregarEquipo(entrenador2,mochila1);
+
+        } catch (capacidadInvalidaException e) {
+            throw new RuntimeException(e);
+        } catch (existException e) {
+            throw new RuntimeException(e);
+        } catch (emptyNameException e) {
+            throw new RuntimeException(e);
+        }
+        JsonUtiles.grabarUnJson(equipos1.toJSON(), "equipo.json");
+
+        JSONArray jsonArray = new JSONArray(JsonUtiles.leerUnJson("equipo.json"));
+
+        Equipos equiposp = equipos1.fromJSON(jsonArray);
 
 
 
+        try {
+            System.out.println(equiposp.listar());
+        } catch (capacidadInvalidaException e) {
+            throw new RuntimeException(e);
+        } catch (existException e) {
+            throw new RuntimeException(e);
+        }
 
         // SE GRABAN POKEMONS EN JSON
         try {

@@ -11,7 +11,7 @@ import org.json.JSONObject;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Pokemon implements IConvertirJSON<Pokemon>, IBatalla {
+public class Pokemon implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
     private UUID uuid;
     private ENombre nombre;
     private ETipo tipo;
@@ -125,7 +125,7 @@ public class Pokemon implements IConvertirJSON<Pokemon>, IBatalla {
     }
 
     @Override
-    public JSONObject toJSONObject() {
+    public JSONObject toJSON() {
 
         JSONObject object = new JSONObject();
         try {

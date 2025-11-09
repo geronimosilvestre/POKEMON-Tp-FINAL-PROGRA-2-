@@ -3,12 +3,15 @@ package Gestoras;
 import Enums.ETipo;
 import Exceptions.capacidadInvalidaException;
 import Exceptions.existException;
+import Interfaces.IConvertirJSON;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.Scanner;
 
-public class GestorBatalla {
+public class GestorBatalla  {
 
     private Equipos equipos;
 
@@ -101,4 +104,6 @@ public class GestorBatalla {
         }
         return  cambioPokemon;
     }
+
+
 }

@@ -1,0 +1,74 @@
+[
+    [
+        {
+            "apellido": "j",
+            "uuid": "8c657aeb-03f1-423c-a0b9-b03d81194d69",
+            "nombre": "h"
+        },
+        [
+            {
+                "tipo": "PLANTA",
+                "vidaRestante": 95,
+                "ataque": 60,
+                "vidaCompleta": 95,
+                "defensa": 44,
+                "uuid": "bf21234c-98ab-4874-b63f-c73d0ba86b37",
+                "nombre": "Arbok"
+            },
+            {
+                "tipo": "ELECTRICO",
+                "vidaRestante": 100,
+                "ataque": 100,
+                "vidaCompleta": 100,
+                "defensa": 50,
+                "uuid": "b779e4f7-f999-4f1d-a284-03f55dc772d0",
+                "nombre": "Pikachu"
+            },
+            {
+                "tipo": "FUEGO",
+                "vidaRestante": 95,
+                "ataque": 52,
+                "vidaCompleta": 95,
+                "defensa": 35,
+                "uuid": "8686b821-daf4-4844-b202-ac1dad6c505f",
+                "nombre": "Charmander"
+            }
+        ]
+    ],
+    [
+        {
+            "apellido": "ej",
+            "uuid": "e0fdda8c-0b44-4398-b6b8-c0017265fd65",
+            "nombre": "hj"
+        },
+        [
+            {
+                "tipo": "PLANTA",
+                "vidaRestante": 95,
+                "ataque": 60,
+                "vidaCompleta": 95,
+                "defensa": 44,
+                "uuid": "bf21234c-98ab-4874-b63f-c73d0ba86b37",
+                "nombre": "Arbok"
+            },
+            {
+                "tipo": "ELECTRICO",
+                "vidaRestante": 100,
+                "ataque": 100,
+                "vidaCompleta": 100,
+                "defensa": 50,
+                "uuid": "b779e4f7-f999-4f1d-a284-03f55dc772d0",
+                "nombre": "Pikachu"
+            },
+            {
+                "tipo": "FUEGO",
+                "vidaRestante": 95,
+                "ataque": 52,
+                "vidaCompleta": 95,
+                "defensa": 35,
+                "uuid": "8686b821-daf4-4844-b202-ac1dad6c505f",
+                "nombre": "Charmander"
+            }
+        ]
+    ]
+]

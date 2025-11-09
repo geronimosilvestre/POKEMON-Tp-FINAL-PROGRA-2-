@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Entrenador implements IConvertirJSON<Entrenador> {
+public class Entrenador implements IConvertirJSON<JSONObject,Entrenador> {
     String nombre;
     String apellido;
     UUID uuid;
@@ -67,7 +67,7 @@ public class Entrenador implements IConvertirJSON<Entrenador> {
     }
 
     @Override
-    public JSONObject toJSONObject() {
+    public JSONObject toJSON() {
         JSONObject object = new JSONObject();
         try {
             object.put("uuid", uuid.toString());

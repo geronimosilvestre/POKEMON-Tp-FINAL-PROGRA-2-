@@ -1,12 +1,15 @@
 package Gestoras;
 
 import Exceptions.*;
+import Interfaces.IConvertirJSON;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.*;
 
-public class Equipos {
+public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
     private HashMap<Entrenador, Mochila> equipos;
 
     public Equipos() {
@@ -133,7 +136,76 @@ public class Equipos {
     }
 
 
+    @Override
+    public JSONArray toJSON() {
 
+        JSONArray arrayContenedor=new JSONArray();
+
+        for (Map.Entry<Entrenador, Mochila> entry : equipos.entrySet()) {
+
+            JSONArray arrayPokemones= new JSONArray();
+
+            JSONArray arrayEquipoIndividual=new JSONArray();
+
+            JSONObject entrenador=new JSONObject();
+
+            entrenador=entry.getKey().toJSON();
+
+            arrayEquipoIndividual.put(entrenador);
+
+            for(Pokemon p: entry.getValue().obtenerTodos()){
+
+                arrayPokemones.put(p.toJSON());
+
+            }
+            arrayEquipoIndividual.put(arrayPokemones);
+            arrayContenedor.put(arrayEquipoIndividual);
+        }
+
+        return arrayContenedor;
+    }
+
+    @Override
+    public Equipos fromJSON(JSONArray arrayContenedor) {
+        Equipos equipos = new Equipos();
+
+        for (int i = 0; i < arrayContenedor.length(); i++) {
+            JSONArray arrayEquipoIndividual = arrayContenedor.getJSONArray(i);
+
+            // Primer elemento: el entrenador
+            JSONObject jsonEntrenador = arrayEquipoIndividual.getJSONObject(0);
+            Entrenador entrenador = new Entrenador().fromJSON(jsonEntrenador);
+
+            // Segundo elemento: el array de pokemones
+            JSONArray arrayPokemones = arrayEquipoIndividual.getJSONArray(1);
+            Mochila mochila = new Mochila();
+
+            for (int j = 0; j < arrayPokemones.length(); j++) {
+                JSONObject jsonPokemon = arrayPokemones.getJSONObject(j);
+                Pokemon pokemon = new Pokemon().fromJSON(jsonPokemon);
+                try {
+                    mochila.agregar(pokemon);
+                } catch (capacidadInvalidaException e) {
+                    throw new RuntimeException(e);
+                } catch (existException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            // Agregar al mapa
+            try {
+                equipos.agregarEquipo(entrenador, mochila);
+            } catch (emptyNameException e) {
+                throw new RuntimeException(e);
+            } catch (existException e) {
+                throw new RuntimeException(e);
+            } catch (capacidadInvalidaException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return equipos;
+    }
 
 }
 
