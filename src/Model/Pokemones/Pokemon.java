@@ -20,8 +20,6 @@ public class Pokemon implements IConvertirJSON<Pokemon>, IBatalla {
     private int ataque;
     private int defensa;
 
-    private int ataqueEspecial;
-    private int defensaEspecial;
 
 
 
@@ -118,14 +116,11 @@ public class Pokemon implements IConvertirJSON<Pokemon>, IBatalla {
     public String toString() {
         return "\n POKEMON: " + nombre +
                 "\n id: " + uuid +
-
                 "\n TIPO: " + tipo+
                 "\n VIDA RESTANTE: " + vidaRestante +
                 "\n VIDA COMPLETA: " + vidaCompleta +
                 "\n ATAQUE: " + ataque +
                 "\n DEFENSA: " + defensa +
-                "\n ATAQUE ESPECIAL: " + ataqueEspecial +
-                "\n DEFENSA ESPECIAL: " + defensaEspecial +
                 "\n }";
     }
 
