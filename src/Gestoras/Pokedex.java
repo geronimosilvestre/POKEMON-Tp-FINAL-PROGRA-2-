@@ -1,7 +1,8 @@
 package Gestoras;
 
 import Exceptions.archivoYaExisteException;
-import Exceptions.nombreYaEncontradoException;
+
+import Exceptions.existException;
 import Model.Pokemones.Pokemon;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,12 +23,12 @@ public class Pokedex{
         pokemones = new ArrayList<>();
     }
 
-    public boolean agregar(Pokemon pokemon) throws nombreYaEncontradoException {
+    public boolean agregar(Pokemon pokemon) throws existException {
         if (!pokemones.contains(pokemon)) {
             pokemones.add(pokemon);
             return true;
         } else {
-            throw new nombreYaEncontradoException("El Pokemon no se puede repetir, intente con otro");
+            throw new existException("El Pokemon no se puede repetir, intente con otro");
         }
     }
 
@@ -38,7 +39,7 @@ public class Pokedex{
     public ArrayList<Pokemon> obtenerTodos() {
         return pokemones;
     }
-    public String listar( ){
+    public String listar( )  {
         StringBuilder sb = new StringBuilder();
         int contador = 0;
         for(Pokemon pokemon : pokemones){

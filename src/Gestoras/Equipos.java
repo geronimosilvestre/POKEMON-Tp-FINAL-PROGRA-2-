@@ -1,8 +1,6 @@
 package Gestoras;
 
-import Exceptions.equiposCompletosException;
-import Exceptions.nombreYaEncontradoException;
-import Exceptions.vacioException;
+import Exceptions.*;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
 
@@ -15,27 +13,37 @@ public class Equipos {
         this.equipos = new HashMap<>();
     }
 
-    public boolean agregarEquipo(Entrenador entrenador, Mochila mochila) throws nombreYaEncontradoException, equiposCompletosException {
+    public boolean agregarEquipo(Entrenador entrenador, Mochila mochila) throws emptyNameException,existException, capacidadInvalidaException {
+        if(entrenador.getApellido().equals("") || entrenador.getApellido().equals("")) {
+            throw new emptyNameException("Entrenador vacio");
+        }
         if(this.equipos.containsKey(entrenador)) {
-            throw new equiposCompletosException("Equipo ya existe");
+            throw new existException("Entrenador ya existe");
+        }
+        if(mochila.size()== 0)
+        {
+            throw new capacidadInvalidaException("Mochila vacia");
         }
 
-        int cantidadDeEquipos = contar();
+        int cantidadDeEquipos = size();
         if (cantidadDeEquipos >2) {
-            throw new nombreYaEncontradoException("No se puede agregar mas de 2 equipos");
+            throw new capacidadInvalidaException("No se puede agregar mas de 2 equipos");
         }
 
         equipos.put(entrenador,mochila);
         return true;
     }
 
-    public int contar() {
+    public int size() {
         return this.equipos.size();
     }
 
-    public boolean eliminarEquipo(String nombre, String apellido) {
+    public boolean eliminarEquipo(String nombre, String apellido) throws existException {
 
         Entrenador aux = new Entrenador(nombre, apellido);
+        if(!this.equipos.containsKey(aux)) {
+            throw new existException("Entrenador no encontrado");
+        }
 
         for(Entrenador entrenador : equipos.keySet())
         {
@@ -74,17 +82,18 @@ public class Equipos {
 
     }
 
-    public Boolean reemplazarPokemon(String nombre, String apellido,Pokemon pokemonNuevo,String pokemonDescarte)
-    {
+    public Boolean reemplazarPokemon(String nombre, String apellido, Pokemon pokemonNuevo, String pokemonDescarte) throws capacidadInvalidaException, existException {
         Entrenador entrenador = new Entrenador(nombre, apellido);
 
-        for(Entrenador e:equipos.keySet())
-        {
-            if(e.equals(entrenador))
-            {
+        for (Entrenador e : equipos.keySet()) {
+            if (e.equals(entrenador)) {
+//                try {
+//
+//                } catch (mochilaLlenaException | vacioException | nombreYaEncontradoException ex) {
+//                    System.out.println(ex.getMessage());
+//                }
                 equipos.get(e).eliminar(pokemonDescarte);
-                equipos.get(e).agregar(pokemonNuevo);
-
+                 equipos.get(e).agregar(pokemonNuevo);
                 return true;
             }
         }
@@ -94,17 +103,18 @@ public class Equipos {
 
     }
 
-    public String listar() throws vacioException {
+    public String listar() throws capacidadInvalidaException,existException {
         StringBuilder sb = new StringBuilder();
         if (this.equipos.isEmpty()) {
-            throw new vacioException("No se encontraron equipos");
+            throw new capacidadInvalidaException("No se encontraron equipos");
         }
         int contador = 0;
         for (Map.Entry<Entrenador, Mochila> entry : equipos.entrySet()) {
             String nombreEntrenador = entry.getKey().getNombre();
+            String apellidoEntrenador = entry.getKey().getApellido();
             String nombrePokemones = entry.getValue().listar();
             contador++;
-            sb.append("Equipo " + contador).append("\n").append(nombreEntrenador).append("\n").append(nombrePokemones);
+            sb.append("Equipo " + contador).append("\n").append(nombreEntrenador).append(" " + apellidoEntrenador).append("\n").append(nombrePokemones);
 
 
         }

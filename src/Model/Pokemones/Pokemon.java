@@ -1,6 +1,7 @@
 package Model.Pokemones;
 import Enums.ENombre;
 import Enums.ETipo;
+import Exceptions.existException;
 import Interfaces.ICapturar;
 import Interfaces.IConvertirJSON;
 import org.json.JSONException;
@@ -48,15 +49,15 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
     public Pokemon(String nombre)
     {
         this.uuid = UUID.randomUUID();
-        this.nombre = ENombre.valueOf(nombre);
+        this.nombre = ENombre.valueOf(nombre.toUpperCase());
     }
 
     public UUID getUuid() {
         return uuid;
     }
 
-    public ENombre getNombre() {
-        return nombre;
+    public String getNombre() {
+        return nombre.getNombre();
     }
 
     public void setNombre(ENombre nombre) {
@@ -133,7 +134,7 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
         JSONObject object = new JSONObject();
         try {
             object.put("uuid", this.uuid.toString());
-            object.put("nombre", this.nombre.name());
+            object.put("nombre", this.getNombre());
             object.put("tipo", this.tipo.name());
             object.put("vidaRestante", this.vidaRestante);
             object.put("vidaCompleta", this.vidaCompleta);
@@ -150,7 +151,7 @@ public class Pokemon implements IConvertirJSON<Pokemon> {
         Pokemon generico = new Pokemon();
         try {
             generico.uuid = UUID.fromString(jsonObject.getString("uuid"));
-            generico.nombre = ENombre.valueOf(jsonObject.getString("nombre"));
+            generico.nombre = ENombre.valueOf(jsonObject.getString("nombre").toUpperCase());
             generico.tipo = ETipo.valueOf(jsonObject.getString("tipo"));
             generico.vidaRestante = jsonObject.getInt("vidaRestante");
             generico.vidaCompleta = jsonObject.getInt("vidaCompleta");
