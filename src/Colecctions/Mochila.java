@@ -1,14 +1,10 @@
-package Gestoras;
+package Colecctions;
 
 import Enums.ENombre;
-import Enums.ETipo;
 import Exceptions.*;
-import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
 
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.Scanner;
 
 public class Mochila {
     private LinkedHashSet<Pokemon> pokemones;

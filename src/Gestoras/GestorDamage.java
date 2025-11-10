@@ -1,21 +1,20 @@
 package Gestoras;
 
+import Colecctions.Equipos;
+import Colecctions.Mochila;
 import Enums.ETipo;
 import Exceptions.capacidadInvalidaException;
 import Exceptions.existException;
-import Interfaces.IConvertirJSON;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.Scanner;
 
-public class GestorBatalla  {
+public class GestorDamage {
 
     private Equipos equipos;
 
-    public GestorBatalla(Equipos equipos) {
+    public GestorDamage(Equipos equipos) {
         this.equipos = equipos;
     }
 
@@ -58,52 +57,52 @@ public class GestorBatalla  {
         System.out.println("❤️ Vida total del equipo de " + entrenador.getNombre() + ": " + vidaTotal);
     }
 
-    public static Pokemon elegirNuevoPokemon(Scanner sc, Equipos equipos, Entrenador entrenadorDefensor, int turno,Pokemon pokemon1,Pokemon pokemon2)
-    {
-        System.out.println(entrenadorDefensor.getNombre() + ", elegí otro Pokémon:");
-        try {
-            Mochila mochilita =  equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido());
-            StringBuilder sb= new StringBuilder();
-            for (int i = 0; i < mochilita.size(); i++) {
-                Pokemon p = mochilita.getPokemonIndex(i);
-                sb.append(p.getNombre() + " - " + p.getVidaRestante() + "\n");
-
-            }
-
-            System.out.println(sb);
-        } catch (capacidadInvalidaException e) {
-            System.out.println(e.getMessage());
-        }
-
-        Pokemon cambioPokemon = null;
-
-        while (cambioPokemon == null) {
-            try {
-                System.out.print("Su pokemon se murio, escribe a mano el nombre de otro Pokémon de la mochila: ");
-                String nuevo = sc.nextLine();
-
-
-
-                cambioPokemon = equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido()).getPokemon(nuevo);
-
-                if (cambioPokemon != null) {
-                    if (turno % 2 != 0)
-                        pokemon2 = cambioPokemon;
-                    else
-                        pokemon1 = cambioPokemon;
-
-                    System.out.println(cambioPokemon.getNombre() + " entra en combate!");
-                }
-
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            } catch (existException e) {
-                System.out.println(e.getMessage());
-                System.out.println("No se encontró ese Pokémon, vuelva a buscar.");
-            }
-        }
-        return  cambioPokemon;
-    }
+//    public static Pokemon elegirNuevoPokemon(Scanner sc, Equipos equipos, Entrenador entrenadorDefensor, int turno,Pokemon pokemon1,Pokemon pokemon2)
+//    {
+//        System.out.println(entrenadorDefensor.getNombre() + ", elegí otro Pokémon:");
+//        try {
+//            Mochila mochilita =  equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido());
+//            StringBuilder sb= new StringBuilder();
+//            for (int i = 0; i < mochilita.size(); i++) {
+//                Pokemon p = mochilita.getPokemonIndex(i);
+//                sb.append(p.getNombre() + " - " + p.getVidaRestante() + "\n");
+//
+//            }
+//
+//            System.out.println(sb);
+//        } catch (capacidadInvalidaException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        Pokemon cambioPokemon = null;
+//
+//        while (cambioPokemon == null) {
+//            try {
+//                System.out.print("Su pokemon se murio, escribe a mano el nombre de otro Pokémon de la mochila: ");
+//                String nuevo = sc.nextLine();
+//
+//
+//
+//                cambioPokemon = equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido()).getPokemon(nuevo);
+//
+//                if (cambioPokemon != null) {
+//                    if (turno % 2 != 0)
+//                        pokemon2 = cambioPokemon;
+//                    else
+//                        pokemon1 = cambioPokemon;
+//
+//                    System.out.println(cambioPokemon.getNombre() + " entra en combate!");
+//                }
+//
+//            } catch (IllegalArgumentException e) {
+//                System.out.println(e.getMessage());
+//            } catch (existException e) {
+//                System.out.println(e.getMessage());
+//                System.out.println("No se encontró ese Pokémon, vuelva a buscar.");
+//            }
+//        }
+//        return  cambioPokemon;
+//    }
 
     public static Pokemon seleccionarNuevoPokemon(Scanner sc, Equipos equipos, Entrenador entrenador, int turno, boolean porMuerte // true si el Pokémon murió, false si es cambio normal
     ) {

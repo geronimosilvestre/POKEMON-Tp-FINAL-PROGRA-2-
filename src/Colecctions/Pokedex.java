@@ -1,4 +1,4 @@
-package Gestoras;
+package Colecctions;
 
 import Exceptions.archivoYaExisteException;
 
