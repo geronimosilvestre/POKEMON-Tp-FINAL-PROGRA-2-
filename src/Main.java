@@ -61,11 +61,11 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        try{
+//        try{
             JsonUtiles.grabarUnJson(equipos1.toJSON(), "equipos.json");
-        }catch (JSONException e){
-            System.out.println(e.getMessage());
-        }
+//        }catch (JSONException e){
+//            System.out.println(e.getMessage());
+//        }
 
 
 
