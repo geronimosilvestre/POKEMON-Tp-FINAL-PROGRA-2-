@@ -12,8 +12,12 @@ import Model.Pokemones.Pokemon;
 import Utiles.JsonUtiles;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONTokener;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 import static Gestoras.GestorDamage.seleccionarNuevoPokemon;
@@ -24,7 +28,9 @@ public class GestorJuego {
         boolean volver = false;
 
         while (!volver) {
+
             //se muestra menu equipos
+
             Menu.menuEquipos();
 
             int opcion = sc.nextInt();
@@ -34,8 +40,12 @@ public class GestorJuego {
                 case 1 -> {
 
                     try {
+
                         agregarPeleador(sc, pokedex, equipos);
+
                     } catch (capacidadInvalidaException e) {
+                        System.out.println(e.getMessage());
+                    }catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                     }
 
@@ -45,36 +55,50 @@ public class GestorJuego {
                     try {
                         System.out.println(equipos.listar());
                     } catch (capacidadInvalidaException | existException e) {
-                        System.out.println("Error: " + e.getMessage());
+                        System.out.println(e.getMessage());
                     }
                 }
                 case 3->{
                     System.out.println("ingrese el nombre del archivo");
 
                     String nombreArchivo = sc.nextLine();
+                    JSONTokener tokener = null;
+
+                    try {
+                        tokener = JsonUtiles.leerUnJson(nombreArchivo);
+                    } catch (FileNotFoundException e) {
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+
+
 
                     JSONArray jsonArray = null;
+
                     try {
-                        jsonArray = new JSONArray(JsonUtiles.leerUnJson(nombreArchivo));
+                        jsonArray = new JSONArray(tokener);
                     } catch (JSONException e) {
-                        throw new RuntimeException(e);
+                        System.out.println(e.getMessage());
+                    }catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        break;
                     }
 
 
                     try {
-                        equipos=  equipos.fromJSON(jsonArray);
+                        equipos =  equipos.fromJSON(jsonArray);
 
                     } catch (JSONException e) {
-                        throw new RuntimeException(e);
+                        System.out.println(e.getMessage());
                     }
 
 
                     try {
                         System.out.println(equipos.listar());
                     } catch (capacidadInvalidaException e) {
-                        throw new RuntimeException(e);
+                        System.out.println(e.getMessage());
                     } catch (existException e) {
-                        throw new RuntimeException(e);
+                        System.out.println(e.getMessage());
                     }
 
 
@@ -87,7 +111,7 @@ public class GestorJuego {
         return equipos;
     }
 
-    public static void agregarPeleador(Scanner sc, Pokedex pokedex, Equipos equipos)  throws capacidadInvalidaException  {
+    public static void agregarPeleador(Scanner sc, Pokedex pokedex, Equipos equipos)  throws capacidadInvalidaException, IllegalArgumentException  {
 
 
         if (equipos.size() >= 2) {
@@ -100,8 +124,15 @@ public class GestorJuego {
         System.out.print("Apellido del entrenador: ");
         String apellido = sc.nextLine().trim();
 
+        Entrenador entrenador = null;
+        try{
+            entrenador = new Entrenador(nombre, apellido);
 
-        Entrenador entrenador = new Entrenador(nombre, apellido);
+        }catch(IllegalArgumentException e){
+                throw new IllegalArgumentException(e.getMessage());
+        }
+
+
         Mochila mochila = new Mochila();
 
         boolean volverMochila = false;
@@ -152,8 +183,10 @@ public class GestorJuego {
                 case 3 -> {
                     try {
                         System.out.println(mochila.listar());
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
+                    } catch (capacidadInvalidaException e) {
+                        System.out.println(e.getMessage());
+                    }catch (Exception e) {
+                        System.out.println(e.getMessage());
                     }
                 }
                 case 4 -> {
@@ -165,11 +198,10 @@ public class GestorJuego {
                         mochila.eliminar(nombrePoke);
                         System.out.println("Eliminado correctamente.");
                     } catch (existException e) {
-                        System.out.println("Error: " + e.getMessage());
+                        System.out.println(e.getMessage());
                     } catch ( capacidadInvalidaException e) {
-                        System.out.println("Error: " + e.getMessage());
-                    }catch (IllegalArgumentException e)
-                    {
+                        System.out.println(e.getMessage());
+                    }catch (IllegalArgumentException e) {
                         System.out.println("Nombre mal escrito");
                     }
                 }
@@ -178,14 +210,7 @@ public class GestorJuego {
 
                     while (!agregado) {
                         try {
-                            equipos.agregarEquipo(entrenador, mochila);
-                            System.out.println("Peleador agregado con éxito.");
 
-                            volverMochila = true;
-                            agregado = true;
-
-                        } catch (emptyNameException e) {
-                            System.out.println("El entrenador no tiene nombre o apellido \n");
 
                             System.out.print("Nombre del entrenador: ");
                             nombre = sc.nextLine().trim();
@@ -196,7 +221,17 @@ public class GestorJuego {
                             entrenador.setNombre(nombre);
                             entrenador.setApellido(apellido);
 
+                            equipos.agregarEquipo(entrenador, mochila);
 
+                            agregado = true;
+                            volverMochila = true;
+
+
+                            System.out.println("Peleador agregado con éxito.");
+
+
+                        } catch (emptyNameException e) {
+                            System.out.println("El entrenador no tiene nombre o apellido \n");
                         } catch (existException | capacidadInvalidaException e) {
                             System.out.println("Error al guardar el equipo: " + e.getMessage());
                             agregado = true;
@@ -221,11 +256,11 @@ public class GestorJuego {
             System.out.println("\n--- Información del Pokémon ---");
             System.out.println(p.toString());
         } catch (NumberFormatException e) {
-            System.out.println("Error: Debés ingresar un número válido.");
+            System.out.println("Debés ingresar un número válido.");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Error: No existe un Pokémon en esa posición.");
+            System.out.println("No existe un Pokémon en esa posición.");
         } catch (Exception e) {
-            System.out.println("Error inesperado: " + e.getMessage());
+            System.out.println("Error inesperado:  " + e.getMessage());
         }
     }
 
@@ -249,7 +284,13 @@ public class GestorJuego {
                             throw new capacidadInvalidaException("Los equipos estan  incompletos");
                         }
                         JsonUtiles.grabarUnJson(equipos.toJSON(), "BatallaReciente.json");
-                        System.out.println("✅ Batalla guardada correctamente en BatallaReciente.json");
+                        System.out.println("Batalla guardada correctamente en BatallaReciente.json");
+                        for (Entrenador e : equipos.getEntrenadores()) {
+                            for(Pokemon p : equipos.getMochila(e.getNombre(),e.getApellido()).obtenerTodos()){
+                                p.setVidaRestante(p.getVidaCompleta());
+                            }
+                        }
+
                     } catch (capacidadInvalidaException e) {
                         System.out.println("Error al guardar la batalla: " + e.getMessage());
                     } catch (Exception e) {

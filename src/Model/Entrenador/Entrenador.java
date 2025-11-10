@@ -1,32 +1,49 @@
 package Model.Entrenador;
 
 import Interfaces.IConvertirJSON;
+import Model.Entidad;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public class Entrenador implements IConvertirJSON<JSONObject,Entrenador> {
+public final class Entrenador extends Entidad implements IConvertirJSON<JSONObject,Entrenador> {
     String nombre;
     String apellido;
-    UUID uuid;
 
 
-    public Entrenador(String nombre, String apellido) {
-        this.uuid = UUID.randomUUID();
+    public Entrenador(String nombre, String apellido) throws IllegalArgumentException {
+        super();
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
+        }
+        if (apellido == null || apellido.trim().isEmpty()) {
+            throw new IllegalArgumentException("El apellido no puede estar vacío.");
+        }
+
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public Entrenador() {
-        this.uuid = UUID.randomUUID();
-        this.nombre = "";
-        this.apellido = "";
+    public Entrenador(UUID uuid,String nombre, String apellido) throws IllegalArgumentException {
+        super(uuid);
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
+        }
+        if (apellido == null || apellido.trim().isEmpty()) {
+            throw new IllegalArgumentException("El apellido no puede estar vacío.");
+        }
+
+        this.nombre = nombre;
+        this.apellido = apellido;
     }
 
-    public UUID getUuid() {
-        return uuid;
+
+    public Entrenador() {
+        super();
+        this.nombre = "";
+        this.apellido = "";
     }
 
     public String getApellido() {
@@ -62,7 +79,7 @@ public class Entrenador implements IConvertirJSON<JSONObject,Entrenador> {
         return "Entrenador{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
-                ", uuid=" + uuid +
+                ", uuid=" + super.getUuid() +
                 '}';
     }
 
@@ -70,7 +87,7 @@ public class Entrenador implements IConvertirJSON<JSONObject,Entrenador> {
     public JSONObject toJSON() {
         JSONObject object = new JSONObject();
         try {
-            object.put("uuid", uuid.toString());
+            object.put("uuid", super.getUuid().toString());
             object.put("nombre", nombre);
             object.put("apellido", apellido);
 
@@ -82,15 +99,17 @@ public class Entrenador implements IConvertirJSON<JSONObject,Entrenador> {
 
     @Override
     public   Entrenador fromJSON(JSONObject jsonObject) {
-        Entrenador generico = new Entrenador();
-        try{
-            generico.uuid = UUID.fromString(jsonObject.getString("uuid"));
-            generico.nombre = jsonObject.getString("nombre");
-            generico.apellido = jsonObject.getString("apellido");
 
+        try{
+
+            UUID uuid = UUID.fromString(jsonObject.getString("uuid"));
+            String nombre = jsonObject.getString("nombre");
+            String apellido = jsonObject.getString("apellido");
+
+            return new Entrenador(uuid, nombre, apellido);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return generico;
+        return null;
     }
 }

@@ -8,7 +8,6 @@ import Colecctions.Equipos;
 
 import Colecctions.Mochila;
 import Colecctions.Pokedex;
-import Gestoras.GestorDamage;
 import Gestoras.GestorJuego;
 import Menu.Menu;
 import Model.Entrenador.Entrenador;
@@ -17,60 +16,44 @@ import Utiles.JsonUtiles;
 import org.json.JSONArray;
 import org.json.JSONException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
-import static Gestoras.GestorDamage.seleccionarNuevoPokemon;
-import static Gestoras.GestorJuego.menuBatalla;
 
 
-// TP GRUPAL POKEDEX (Flores, Jimenez, Pascuan, Silvestre).
+// TP GRUPAL POKEDEX (Agustin Flores 💀, Valentina Jimenez,Joel Pascuan, Geronimo Silvestre).
 
 public class Main {
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder();
 
         Pokedex pokedex = new Pokedex();
-        Pokemon pikachu = new Pokemon(ENombre.PIKACHU);
-        Pokemon charmander = new Pokemon(ENombre.CHARMANDER);
-        Pokemon squirtle = new Pokemon(ENombre.SQUIRTLE);
-        Pokemon bulbasaur = new Pokemon(ENombre.BULBASAUR);
-        Pokemon geodude = new Pokemon(ENombre.GEODUDE);
-        Pokemon growlithe = new Pokemon(ENombre.GROWLITHE);
-        Pokemon jigglypuff = new Pokemon(ENombre.JIGGLYPUFF);
-        Pokemon caterpie = new Pokemon(ENombre.CATERPIE);
-        Pokemon arbok = new Pokemon(ENombre.ARBOK);
-        Pokemon dragonite = new Pokemon(ENombre.DRAGONITE);
-        Pokemon magnetite = new Pokemon(ENombre.MAGNETITE);
-        Pokemon snorunt = new Pokemon(ENombre.SNORUNT);
-
 
         JSONArray array = new JSONArray();
 
-        array.put(pikachu.toJSON());
-        array.put(charmander.toJSON());
-        array.put(squirtle.toJSON());
-        array.put(bulbasaur.toJSON());
-        array.put(geodude.toJSON());
-        array.put(growlithe.toJSON());
-        array.put(jigglypuff.toJSON());
-        array.put(caterpie.toJSON());
-        array.put(arbok.toJSON());
-        array.put(dragonite.toJSON());
-        array.put(magnetite.toJSON());
-        array.put(snorunt.toJSON());
+        for (ENombre nombre : ENombre.values()) {
+            Pokemon p = new Pokemon(nombre);
+            array.put(p.toJSON());
+        }
 
-    Equipos equipos1= new Equipos();
+        Equipos equipos1= new Equipos();
 
-    Entrenador entrenador1 = new Entrenador("JoeLPrueba","Pascuan");
+    Entrenador entrenador1 = new Entrenador("Joel","Pascuan");
     Entrenador entrenador2 = new Entrenador("Valentina","Jimenez");
     Mochila mochila1 = new Mochila();
+    Mochila mochila2 = new Mochila();
         try {
-            mochila1.agregar(arbok);
-            mochila1.agregar(pikachu);
-            mochila1.agregar(charmander);
+
+            mochila1.agregar(new Pokemon("Dragonite"));
+            mochila1.agregar(new Pokemon("Pikachu"));
+            mochila1.agregar(new Pokemon("Charmander"));
+
+            mochila2.agregar(new Pokemon ("Squirtle"));
+            mochila2.agregar(new Pokemon ("Bulbasaur"));
+            mochila2.agregar(new Pokemon ("Articuno"));
             equipos1.agregarEquipo(entrenador1,mochila1);
-            equipos1.agregarEquipo(entrenador2,mochila1);
+            equipos1.agregarEquipo(entrenador2,mochila2);
 
         } catch (capacidadInvalidaException e) {
             throw new RuntimeException(e);
@@ -79,7 +62,13 @@ public class Main {
         } catch (emptyNameException e) {
             throw new RuntimeException(e);
         }
-        JsonUtiles.grabarUnJson(equipos1.toJSON(), "Equipos.json");
+
+        try{
+            JsonUtiles.grabarUnJson(equipos1.toJSON(), "equipos.json");
+        }catch (JSONException e){
+            System.out.println(e.getMessage());
+        }
+
 
 
 
@@ -113,27 +102,36 @@ public class Main {
 
 
 
+
+
         boolean salir = false;
 
         while (!salir) {
             //se muestra el menu prinicipal
-                Menu.menuPrincipal();
+            Menu.menuPrincipal();
 
-            int opcion = sc.nextInt();
-            sc.nextLine();
 
-            switch (opcion) {
-                case 1 -> equipos = GestorJuego.menuEquipos(sc, pokedex, equipos);// tiene qe tener retorno para que reconosca el json
-                case 2 -> GestorJuego.menuPokedex(sc, pokedex);
-                case 3 -> GestorJuego.menuBatalla(sc, equipos);
-                case 0 -> salir = true;
-                default -> System.out.println("Opción inválida.");
+
+            try{
+                int opcion = sc.nextInt();
+                sc.nextLine();
+
+                switch (opcion) {
+                    case 1 ->
+                            equipos = GestorJuego.menuEquipos(sc, pokedex, equipos);// tiene qe tener retorno para que reconosca el json
+                    case 2 -> GestorJuego.menuPokedex(sc, pokedex);
+                    case 3 -> GestorJuego.menuBatalla(sc, equipos);
+                    case 0 -> salir = true;
+                    default -> System.out.println("Opción inválida.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println(" opcion ingresada invalida");
+                sc.nextLine();
             }
         }
 
         System.out.println("Programa finalizado.");
         sc.close();
     }
-
 
 }

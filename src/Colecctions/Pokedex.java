@@ -76,7 +76,13 @@ public class Pokedex{
         List<Pokemon> pokemones = new ArrayList<>();
 
 
-            JSONTokener tokener = leerUnJson(archivo);
+            JSONTokener tokener = null;
+            try{
+                tokener = leerUnJson(archivo);
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+
             if (tokener == null) {
                 throw new JSONException("No se pudo leer el archivo: " + archivo);
             }

@@ -24,14 +24,14 @@ public class JsonUtiles {
         }
     }
 
-    public static JSONTokener leerUnJson(String archivo) {
+    public static JSONTokener leerUnJson(String archivo) throws FileNotFoundException{
         JSONTokener tokener = null;
 
         try{
             tokener = new JSONTokener(new FileReader(archivo));
 
         }catch (FileNotFoundException e){
-            e.printStackTrace();
+            throw new FileNotFoundException("No se encontro el archivo: " + archivo);
         }
 
         return tokener;

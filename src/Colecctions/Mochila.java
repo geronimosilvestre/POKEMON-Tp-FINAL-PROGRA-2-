@@ -107,6 +107,7 @@ public class Mochila {
     {
         return pokemones.size();
     }
+
     public LinkedHashSet<Pokemon> obtenerTodos() {
         return pokemones;
     }

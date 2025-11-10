@@ -1,18 +1,17 @@
 package Model.Pokemones;
 import Enums.ENombre;
 import Enums.ETipo;
-import Exceptions.existException;
 import Interfaces.IBatalla;
-import Interfaces.ICapturar;
 import Interfaces.IConvertirJSON;
+import Model.Entidad;
+import Model.Entrenador.Entrenador;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public class Pokemon implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
-    private UUID uuid;
+public final class  Pokemon extends Entidad implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
     private ENombre nombre;
     private ETipo tipo;
     private int vidaRestante;
@@ -24,7 +23,6 @@ public class Pokemon implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
 
 
     public Pokemon(ENombre pokemon) {
-        this.uuid = UUID.randomUUID();
         this.nombre = pokemon;
         this.tipo = pokemon.getTipo();
         this.vidaCompleta = pokemon.getVidaCompleta();
@@ -35,7 +33,6 @@ public class Pokemon implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
     }
 
     public Pokemon() {
-        this.uuid = UUID.randomUUID();
         this.nombre = null;
         this.tipo = null;
         this.vidaRestante = 0;
@@ -47,12 +44,25 @@ public class Pokemon implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
 
     public Pokemon(String nombre)
     {
-        this.uuid = UUID.randomUUID();
-        this.nombre = ENombre.valueOf(nombre.toUpperCase());
+        ENombre pokemon = ENombre.valueOf(nombre.toUpperCase());
+        this.nombre = pokemon;
+        this.tipo = pokemon.getTipo();
+        this.vidaCompleta = pokemon.getVidaCompleta();
+        this.vidaRestante = pokemon.getVidaCompleta();
+        this.ataque = pokemon.getAtaque();
+        this.defensa = pokemon.getDefensa();
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public Pokemon(String nombre,UUID uuid)
+    {
+        super(uuid);
+        ENombre pokemon = ENombre.valueOf(nombre.toUpperCase());
+        this.nombre = pokemon;
+        this.tipo = pokemon.getTipo();
+        this.vidaCompleta = pokemon.getVidaCompleta();
+        this.vidaRestante = pokemon.getVidaCompleta();
+        this.ataque = pokemon.getAtaque();
+        this.defensa = pokemon.getDefensa();
     }
 
     public String getNombre() {
@@ -115,7 +125,7 @@ public class Pokemon implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
     @Override
     public String toString() {
         return "\n POKEMON: " + nombre.getNombre() +
-                "\n id: " + uuid +
+                "\n id: " + super.getUuid() +
                 "\n TIPO: " + tipo+
                 "\n VIDA RESTANTE: " + vidaRestante +
                 "\n VIDA COMPLETA: " + vidaCompleta +
@@ -129,7 +139,7 @@ public class Pokemon implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
 
         JSONObject object = new JSONObject();
         try {
-            object.put("uuid", this.uuid.toString());
+            object.put("uuid", super.getUuid().toString());
             object.put("nombre", this.nombre.getNombre());
             object.put("tipo", this.tipo.name());
             object.put("vidaRestante", this.vidaRestante);
@@ -144,20 +154,18 @@ public class Pokemon implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
 
     @Override
     public  Pokemon fromJSON(JSONObject jsonObject) throws JSONException {
-        Pokemon generico = new Pokemon();
         try {
-            generico.uuid = UUID.fromString(jsonObject.getString("uuid"));
-            generico.nombre = ENombre.valueOf(jsonObject.getString("nombre").toUpperCase());
-            generico.tipo = ETipo.valueOf(jsonObject.getString("tipo"));
-            generico.vidaRestante = jsonObject.getInt("vidaRestante");
-            generico.vidaCompleta = jsonObject.getInt("vidaCompleta");
-            generico.ataque = jsonObject.getInt("ataque");
-            generico.defensa = jsonObject.getInt("defensa");
+
+            UUID uuid = UUID.fromString(jsonObject.getString("uuid"));
+            ENombre nombre = ENombre.valueOf(jsonObject.getString("nombre").toUpperCase());
+            return new Pokemon(nombre.getNombre(),uuid);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return generico;
+        return null;
     }
+
 
     @Override
     public double ataqueNormal() {

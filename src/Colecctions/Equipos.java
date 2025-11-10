@@ -101,11 +101,6 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
 
         for (Entrenador e : equipos.keySet()) {
             if (e.equals(entrenador)) {
-//                try {
-//
-//                } catch (mochilaLlenaException | vacioException | nombreYaEncontradoException ex) {
-//                    System.out.println(ex.getMessage());
-//                }
                 equipos.get(e).eliminar(pokemonDescarte);
                  equipos.get(e).agregar(pokemonNuevo);
                 return true;
