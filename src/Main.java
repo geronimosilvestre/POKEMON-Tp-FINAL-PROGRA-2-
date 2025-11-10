@@ -1,7 +1,7 @@
 import Enums.ENombre;
 import Exceptions.archivoYaExisteException;
 import Exceptions.capacidadInvalidaException;
-import Exceptions.emptyNameException;
+
 import Exceptions.existException;
 import Colecctions.Equipos;
 import Colecctions.Mochila;
@@ -46,7 +46,6 @@ public class Main {
             mochila1.agregar(new Pokemon("Dragonite"));
             mochila1.agregar(new Pokemon("Pikachu"));
             mochila1.agregar(new Pokemon("Charmander"));
-
             mochila2.agregar(new Pokemon ("Squirtle"));
             mochila2.agregar(new Pokemon ("Bulbasaur"));
             mochila2.agregar(new Pokemon ("Articuno"));
@@ -54,18 +53,18 @@ public class Main {
             equipos1.agregarEquipo(entrenador2,mochila2);
 
         } catch (capacidadInvalidaException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         } catch (existException e) {
-            throw new RuntimeException(e);
-        } catch (emptyNameException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
+        } catch(Exception e){
+            System.out.println(e.getMessage());
         }
 
-//        try{
+        try {
             JsonUtiles.grabarUnJson(equipos1.toJSON(), "equipos.json");
-//        }catch (JSONException e){
-//            System.out.println(e.getMessage());
-//        }
+        } catch (JSONException e) {
+            System.out.println(e.getMessage());
+        }
 
 
 

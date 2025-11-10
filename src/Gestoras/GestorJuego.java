@@ -45,6 +45,8 @@ public class GestorJuego {
                         System.out.println(e.getMessage());
                     }catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
+                    }catch(Exception e){
+                        System.out.println(e.getMessage());
                     }
 
 
@@ -53,6 +55,8 @@ public class GestorJuego {
                     try {
                         System.out.println(equipos.listar());
                     } catch (capacidadInvalidaException | existException e) {
+                        System.out.println(e.getMessage());
+                    }catch(Exception e){
                         System.out.println(e.getMessage());
                     }
                 }
@@ -67,6 +71,8 @@ public class GestorJuego {
                     } catch (FileNotFoundException e) {
                         System.out.println(e.getMessage());
                         break;
+                    }catch(Exception e){
+                        System.out.println(e.getMessage());
                     }
 
 
@@ -88,6 +94,8 @@ public class GestorJuego {
 
                     } catch (JSONException e) {
                         System.out.println(e.getMessage());
+                    }catch(Exception e){
+                        System.out.println(e.getMessage());
                     }
 
 
@@ -96,6 +104,8 @@ public class GestorJuego {
                     } catch (capacidadInvalidaException e) {
                         System.out.println(e.getMessage());
                     } catch (existException e) {
+                        System.out.println(e.getMessage());
+                    }catch(Exception e){
                         System.out.println(e.getMessage());
                     }
 
@@ -126,6 +136,7 @@ public class GestorJuego {
         try{
             entrenador = new Entrenador(nombre, apellido);
 
+
         }catch(IllegalArgumentException e){
                 throw new IllegalArgumentException(e.getMessage());
         }
@@ -154,6 +165,8 @@ public class GestorJuego {
                             System.out.println("Agregado: " + p.getNombre());
                         } catch (capacidadInvalidaException | existException e ) {
                             System.out.println("No se pudo agregar el Pokémon: " + e.getMessage());
+                        }catch(Exception e){
+                            System.out.println(e.getMessage());
                         }
 
                     }
@@ -201,6 +214,8 @@ public class GestorJuego {
                         System.out.println(e.getMessage());
                     }catch (IllegalArgumentException e) {
                         System.out.println("Nombre mal escrito");
+                    }catch(Exception e){
+                        System.out.println(e.getMessage());
                     }
                 }
                 case 5 ->{
@@ -210,29 +225,24 @@ public class GestorJuego {
                         try {
 
 
-                            System.out.print("Nombre del entrenador: ");
-                            nombre = sc.nextLine().trim();
 
-                            System.out.print("Apellido del entrenador: ");
-                            apellido = sc.nextLine().trim();
+                             entrenador.setNombre(nombre);
+                             entrenador.setApellido(apellido);
 
-                            entrenador.setNombre(nombre);
-                            entrenador.setApellido(apellido);
+                             equipos.agregarEquipo(entrenador, mochila);
 
-                            equipos.agregarEquipo(entrenador, mochila);
+
 
                             agregado = true;
                             volverMochila = true;
-
-
                             System.out.println("Peleador agregado con éxito.");
 
 
-                        } catch (emptyNameException e) {
-                            System.out.println("El entrenador no tiene nombre o apellido \n");
-                        } catch (existException | capacidadInvalidaException e) {
+                        }catch (existException | capacidadInvalidaException e) {
                             System.out.println("Error al guardar el equipo: " + e.getMessage());
                             agregado = true;
+                        }catch(Exception e){
+                            System.out.println(e.getMessage());
                         }
                     }
                 }
@@ -310,6 +320,8 @@ public class GestorJuego {
             System.out.println(equipos.listar());
         } catch (capacidadInvalidaException | existException e) {
             System.out.println(e.getMessage());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
 
 
@@ -342,6 +354,8 @@ public class GestorJuego {
             System.out.println(mochila1.listar());
         } catch (capacidadInvalidaException e) {
             System.out.println(e.getMessage());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
         System.out.print("Ingresá el numero para seleccionar un   Pokémon como principal: ");
 
@@ -349,6 +363,8 @@ public class GestorJuego {
             pokemon1 = mochila1.getPokemonIndex(sc.nextInt());
             sc.nextLine();
         } catch (capacidadInvalidaException e) {
+            System.out.println(e.getMessage());
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
 
@@ -362,12 +378,16 @@ public class GestorJuego {
             System.out.println(mochila2.listar());
         } catch (capacidadInvalidaException e) {
             System.out.println(e.getMessage());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
         System.out.print("Ingresá el nombre del Pokémon principal: ");
         try {
             pokemon2 = mochila2.getPokemonIndex(sc.nextInt());
             sc.nextLine();
         } catch (capacidadInvalidaException e) {
+            System.out.println(e.getMessage());
+        }catch(Exception e){
             System.out.println(e.getMessage());
         }
 
@@ -399,12 +419,8 @@ public class GestorJuego {
                 pokemonDefensor = pokemon1;
             }
 
-            System.out.println("\nTurno de " + entrenadorAtacante.getNombre() + " (" + pokemonAtacante.getNombre() + ")");
-            System.out.println("Vida de tu Pokémon: " + pokemonAtacante.getVidaRestante());
-            System.out.println("Vida del oponente: " + pokemonDefensor.getVidaRestante());
-            System.out.println("1. Atacar");
-            System.out.println("2. Cambiar Pokémon");
-            System.out.print("Elegí una opción: ");
+
+            System.out.println(Menu.opcionesBatalla(entrenadorAtacante,pokemonAtacante,pokemonDefensor));
 
             int opcion = sc.nextInt();
             sc.nextLine();
@@ -427,26 +443,30 @@ public class GestorJuego {
                     }
 
                     if (todosDebilitados) {
-                        System.out.println("\n" + entrenadorAtacante.getNombre() + " ha ganado la batalla!");
+                        System.out.println("\n" + entrenadorAtacante.getNombre() + " "+ entrenadorAtacante.getApellido()+ " ha ganado la batalla!");
                         batallaActiva = false;
                     } else {
 
-                        System.out.println(entrenadorDefensor.getNombre() + ", elegí otro Pokémon:");
+                        System.out.println("\n" + entrenadorDefensor.getNombre() + ", elegí otro Pokémon:");
                         try {
                             Mochila mochilita = equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido());
                             StringBuilder sb = new StringBuilder();
                             for (int i = 0; i < mochilita.size(); i++) {
                                 Pokemon p = mochilita.getPokemonIndex(i);
-                                sb.append(p.getNombre() + " - vida restante: " + p.getVidaRestante() + "\n");
+                            sb.append("    "+p.getNombre() + " `♡´ vcmd" +
+                                    "ida restante: " + p.getVidaRestante() + "\n");
 
                             }
 
                             System.out.println(sb);
                         } catch (capacidadInvalidaException e) {
                             System.out.println(e.getMessage());
+                        }catch(Exception e){
+                            System.out.println(e.getMessage());
                         }
 
                         Pokemon cambioPokemon = seleccionarNuevoPokemon(sc, equipos, entrenadorDefensor, turno, true);
+
                         if (turno % 2 != 0)
                             pokemon2 = cambioPokemon;
                         else
@@ -464,12 +484,14 @@ public class GestorJuego {
                     StringBuilder sb = new StringBuilder();
                     for (int i = 0; i < mochilita.size(); i++) {
                         Pokemon p = mochilita.getPokemonIndex(i);
-                        sb.append(p.getNombre() + " - " + p.getVidaRestante() + "\n");
+                        sb.append("    "+p.getNombre() + " `♡´ vida restante: " + p.getVidaRestante() + "\n");
 
                     }
 
                     System.out.println(sb);
                 } catch (capacidadInvalidaException e) {
+                    System.out.println(e.getMessage());
+                }catch(Exception e){
                     System.out.println(e.getMessage());
                 }
 

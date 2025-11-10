@@ -17,10 +17,8 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
         this.equipos = new HashMap<>();
     }
 
-    public boolean agregarEquipo(Entrenador entrenador, Mochila mochila) throws emptyNameException,existException, capacidadInvalidaException {
-        if(entrenador.getApellido().equals("") || entrenador.getApellido().equals("")) {
-            throw new emptyNameException("Entrenador vacio");
-        }
+    public boolean agregarEquipo(Entrenador entrenador, Mochila mochila) throws existException, capacidadInvalidaException {
+
         if(this.equipos.containsKey(entrenador)) {
             throw new existException("Entrenador ya existe");
         }
@@ -182,21 +180,25 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
                 try {
                     mochila.agregar(pokemon);
                 } catch (capacidadInvalidaException e) {
-                    throw new RuntimeException(e);
+                    System.out.println(e.getMessage());
                 } catch (existException e) {
-                    throw new RuntimeException(e);
+                    System.out.println(e.getMessage());
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
                 }
             }
 
             // Agregar al map
             try {
                 equipos.agregarEquipo(entrenador, mochila);
-            } catch (emptyNameException e) {
-                throw new RuntimeException(e);
             } catch (existException e) {
-                throw new RuntimeException(e);
+
+                System.out.println(e.getMessage());
             } catch (capacidadInvalidaException e) {
-                throw new RuntimeException(e);
+
+                System.out.println(e.getMessage());
+            }catch(Exception e){
+                System.out.println(e.getMessage());
             }
         }
 

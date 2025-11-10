@@ -56,7 +56,22 @@ public class Menu {
         System.out.print("Opción: ");
     }
 
+   public static  String opcionesBatalla(Entrenador entrenadorAtacante, Pokemon  pokemonAtacante, Pokemon pokemonDefensor)
+   {
+       StringBuilder sb = new StringBuilder();
+       sb.append("\nTurno de ")
+               .append(entrenadorAtacante.getNombre()).append(" ")
+               .append(entrenadorAtacante.getApellido()).append(" (")
+               .append(pokemonAtacante.getNombre()).append(") (૭ ｡•̀ ᵕ •́｡ )૭\n")
+               .append("Vida de tu Pokémon: ").append(pokemonAtacante.getVidaRestante()).append("\n")
+               .append("Vida del oponente: ").append(pokemonDefensor.getVidaRestante()).append("\n \n")
+               .append("1. Atacar\n")
+               .append("2. Cambiar Pokémon (Pierde el turno)\n")
+               .append("Elegí una opción: ");
 
+       return sb.toString();
+
+   }
 
 
 

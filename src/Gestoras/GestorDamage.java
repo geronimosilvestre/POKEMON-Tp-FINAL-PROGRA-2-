@@ -62,7 +62,7 @@ public class GestorDamage {
         while (nuevoPokemon == null) {
             try {
                 if (porMuerte) {
-                    System.out.print("Su Pokémon se murió. Escribí el nombre de otro Pokémon de la mochila: ");
+                    System.out.print("Su Pokémon ha muerto (ಥ_ಥ)  Escribí el nombre de otro Pokémon de la mochila: ");
                 } else {
                     System.out.print("Para reemplazar el Pokémon activo, escribí el nombre de otro: ");
                 }
