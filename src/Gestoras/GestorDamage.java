@@ -3,7 +3,6 @@ package Gestoras;
 import Colecctions.Equipos;
 import Colecctions.Mochila;
 import Enums.ETipo;
-import Exceptions.capacidadInvalidaException;
 import Exceptions.existException;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;

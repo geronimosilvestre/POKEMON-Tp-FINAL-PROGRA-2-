@@ -1,7 +1,5 @@
 package Enums;
 
-import java.util.UUID;
-
 public enum ENombre {
     CHARMANDER("Charmander", 95, 52, 35, ETipo.FUEGO),
     GROWLITHE("Growlithe", 100, 55, 40, ETipo.FUEGO),

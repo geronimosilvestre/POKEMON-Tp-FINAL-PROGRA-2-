@@ -3,9 +3,7 @@ import Exceptions.archivoYaExisteException;
 import Exceptions.capacidadInvalidaException;
 import Exceptions.emptyNameException;
 import Exceptions.existException;
-
 import Colecctions.Equipos;
-
 import Colecctions.Mochila;
 import Colecctions.Pokedex;
 import Gestoras.GestorJuego;
