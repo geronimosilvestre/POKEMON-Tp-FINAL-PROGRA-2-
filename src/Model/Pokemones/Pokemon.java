@@ -121,7 +121,7 @@ public class Pokemon implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
                 "\n VIDA COMPLETA: " + vidaCompleta +
                 "\n ATAQUE: " + ataque +
                 "\n DEFENSA: " + defensa +
-                "\n }";
+                "\n ";
     }
 
     @Override
@@ -143,7 +143,7 @@ public class Pokemon implements IConvertirJSON<JSONObject,Pokemon>, IBatalla {
     }
 
     @Override
-    public Pokemon fromJSON(JSONObject jsonObject) {
+    public  Pokemon fromJSON(JSONObject jsonObject) throws JSONException {
         Pokemon generico = new Pokemon();
         try {
             generico.uuid = UUID.fromString(jsonObject.getString("uuid"));

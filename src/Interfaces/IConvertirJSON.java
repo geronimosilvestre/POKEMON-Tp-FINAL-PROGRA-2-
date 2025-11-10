@@ -9,7 +9,8 @@ import org.json.JSONObject;
 
 public interface IConvertirJSON< J, T> {
     public J toJSON();
-    public T fromJSON(J jsonObject);
+
+    public  T fromJSON(J jsonObjetOArray) throws JSONException;
 
 
 }

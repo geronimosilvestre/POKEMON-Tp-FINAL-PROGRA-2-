@@ -5,6 +5,7 @@ import Interfaces.IConvertirJSON;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.*;
@@ -166,17 +167,17 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
     }
 
     @Override
-    public Equipos fromJSON(JSONArray arrayContenedor) {
+    public  Equipos fromJSON(JSONArray arrayContenedor)  throws JSONException  {
         Equipos equipos = new Equipos();
 
         for (int i = 0; i < arrayContenedor.length(); i++) {
             JSONArray arrayEquipoIndividual = arrayContenedor.getJSONArray(i);
 
-            // Primer elemento: el entrenador
+            // Primer elemento del array es el entrenador
             JSONObject jsonEntrenador = arrayEquipoIndividual.getJSONObject(0);
             Entrenador entrenador = new Entrenador().fromJSON(jsonEntrenador);
 
-            // Segundo elemento: el array de pokemones
+            // Segundo elemento es el array de pokemones
             JSONArray arrayPokemones = arrayEquipoIndividual.getJSONArray(1);
             Mochila mochila = new Mochila();
 
@@ -192,7 +193,7 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
                 }
             }
 
-            // Agregar al mapa
+            // Agregar al map
             try {
                 equipos.agregarEquipo(entrenador, mochila);
             } catch (emptyNameException e) {

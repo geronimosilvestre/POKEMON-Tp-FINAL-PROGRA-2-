@@ -81,7 +81,7 @@ public class Entrenador implements IConvertirJSON<JSONObject,Entrenador> {
     }
 
     @Override
-    public  Entrenador fromJSON(JSONObject jsonObject) {
+    public   Entrenador fromJSON(JSONObject jsonObject) {
         Entrenador generico = new Entrenador();
         try{
             generico.uuid = UUID.fromString(jsonObject.getString("uuid"));

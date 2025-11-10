@@ -18,6 +18,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static Menu.Menu.menuBatalla;
+
 
 // TP GRUPAL POKEDEX (Flores, Jimenez, Pascuan, Silvestre).
 
@@ -57,8 +59,8 @@ public class Main {
 
     Equipos equipos1= new Equipos();
 
-    Entrenador entrenador1 = new Entrenador("h","j");
-    Entrenador entrenador2 = new Entrenador("hj","ej");
+    Entrenador entrenador1 = new Entrenador("JoeLPrueba","Pascuan");
+    Entrenador entrenador2 = new Entrenador("Valentina","Jimenez");
     Mochila mochila1 = new Mochila();
         try {
             mochila1.agregar(arbok);
@@ -74,21 +76,10 @@ public class Main {
         } catch (emptyNameException e) {
             throw new RuntimeException(e);
         }
-        JsonUtiles.grabarUnJson(equipos1.toJSON(), "equipo.json");
-
-        JSONArray jsonArray = new JSONArray(JsonUtiles.leerUnJson("equipo.json"));
-
-        Equipos equiposp = equipos1.fromJSON(jsonArray);
+        JsonUtiles.grabarUnJson(equipos1.toJSON(), "equipos.json");
 
 
 
-        try {
-            System.out.println(equiposp.listar());
-        } catch (capacidadInvalidaException e) {
-            throw new RuntimeException(e);
-        } catch (existException e) {
-            throw new RuntimeException(e);
-        }
 
         // SE GRABAN POKEMONS EN JSON
         try {
@@ -101,7 +92,7 @@ public class Main {
 
         //LEEN POKEMON DE JSON
         try {
-             lista = (ArrayList<Pokemon>) Pokedex.leer("Pokedex.json");
+             lista = (ArrayList<Pokemon>) pokedex.leer("Pokedex.json");
         } catch (JSONException e) {
             System.out.println(e.getMessage());
         }
@@ -129,15 +120,9 @@ public class Main {
             sc.nextLine();
 
             switch (opcion) {
-                case 1 -> menuEquipos(sc, pokedex, equipos);
+                case 1 -> equipos = menuEquipos(sc, pokedex, equipos);// tiene qe tener retorno para que reconosca el json
                 case 2 -> menuPokedex(sc, pokedex);
-                case 3 -> {
-                    try {
-                       // equipos.batallar();
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
-                    }
-                }
+                case 3 -> menuBatalla(sc, equipos);
                 case 0 -> salir = true;
                 default -> System.out.println("Opción inválida.");
             }
@@ -147,7 +132,7 @@ public class Main {
         sc.close();
     }
 
-    private static void menuEquipos(Scanner sc, Pokedex pokedex, Equipos equipos) {
+    private  static Equipos  menuEquipos(Scanner sc, Pokedex pokedex, Equipos equipos) {
         boolean volver = false;
 
         while (!volver) {
@@ -176,13 +161,42 @@ public class Main {
                     }
                 }
                 case 3->{
-                    GestorBatalla gestorBatalla= new GestorBatalla(equipos);
-                    iniciarBatalla(equipos, gestorBatalla);
+                    System.out.println("ingrese el nombre del archivo");
+
+                    String nombreArchivo = sc.nextLine();
+
+                    JSONArray jsonArray = null;
+                    try {
+                        jsonArray = new JSONArray(JsonUtiles.leerUnJson(nombreArchivo));
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                    try {
+                       equipos=  equipos.fromJSON(jsonArray);
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                    try {
+                        System.out.println(equipos.listar());
+                    } catch (capacidadInvalidaException e) {
+                        throw new RuntimeException(e);
+                    } catch (existException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+
                 }
                 case 0 -> volver = true;
                 default -> System.out.println("Opción inválida.");
             }
         }
+        return equipos;
     }
 
     private static void agregarPeleador(Scanner sc, Pokedex pokedex, Equipos equipos)  throws capacidadInvalidaException  {
@@ -327,9 +341,38 @@ public class Main {
         }
     }
 
-//
+    private static void menuBatalla(Scanner sc, Equipos equipos) {
+        boolean volver = false;
+        GestorBatalla gestorBatalla = new GestorBatalla(equipos);
 
+        while (!volver) {
+            Menu.menuBatalla();
+            int opcion = sc.nextInt();
+            sc.nextLine();
 
+            switch (opcion) {
+                case 1 ->
+                    iniciarBatalla(equipos, gestorBatalla);
+
+                case 2 -> {
+                    // Guardar datos de la batalla previa
+                    try {
+                        if (equipos.size() != 2) {
+                            throw new capacidadInvalidaException("Los equipos estan  incompletos");
+                        }
+                        JsonUtiles.grabarUnJson(equipos.toJSON(), "batallaReciente.json");
+                        System.out.println("✅ Batalla guardada correctamente en batallaReciente.json");
+                    } catch (capacidadInvalidaException e) {
+                        System.out.println("Error al guardar la batalla: " + e.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Error al guardar la batalla: " + e.getMessage());
+                    }
+                }
+                case 0 -> volver = true;
+                default -> System.out.println("Opción inválida.");
+            }
+        }
+    }
 
     public static void iniciarBatalla(Equipos equipos, GestorBatalla gestorBatalla) {
         Scanner sc = new Scanner(System.in);

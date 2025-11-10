@@ -72,7 +72,7 @@ public class Pokedex{
 
 
 
-    public static List<Pokemon> leer(String archivo) throws JSONException {
+    public  List<Pokemon> leer(String archivo) throws JSONException {
         List<Pokemon> pokemones = new ArrayList<>();
 
 
