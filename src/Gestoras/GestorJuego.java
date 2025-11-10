@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONTokener;
 
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -303,6 +304,28 @@ public class GestorJuego {
                         if (equipos.size() != 2) {
                             throw new capacidadInvalidaException("Los equipos estan  incompletos");
                         }
+                        boolean algunEquipoDerrotado = false;
+
+                        for (Entrenador e : equipos.getEntrenadores()) {
+                            Mochila aux = equipos.getMochila(e.getNombre(), e.getApellido());
+                            int contadorVivos = 0;
+
+                            for (Pokemon p : aux.obtenerTodos()) {
+                                if (p.getVidaRestante() > 0) {
+                                    contadorVivos++;
+                                }
+
+                            }
+
+                            if (contadorVivos == 0) {
+                                algunEquipoDerrotado = true;
+                            }//Si uno de los 2 equipos suma 0 vivos entonces ya puedo decir que uno de los 2 perdio
+                        }
+
+                        if (!algunEquipoDerrotado) {
+                            throw new teamsStillAliveException("No se puede guardar la batalla hasta que uno de los equipos sea derrotado por completo.");
+                        }
+
                         JsonUtiles.grabarUnJson(equipos.toJSON(), "BatallaReciente.json");
                         System.out.println("Batalla guardada correctamente en BatallaReciente.json");
                         for (Entrenador e : equipos.getEntrenadores()) {
@@ -311,7 +334,10 @@ public class GestorJuego {
                             }
                         }
 
-                    } catch (capacidadInvalidaException e) {
+                    }catch (teamsStillAliveException e){
+                        System.out.println(e.getMessage());
+                    }
+                    catch (capacidadInvalidaException e) {
                         System.out.println("Error al guardar la batalla: " + e.getMessage());
                     } catch (Exception e) {
                         System.out.println("Error al guardar la batalla: " + e.getMessage());
@@ -326,6 +352,12 @@ public class GestorJuego {
     public static void iniciarBatalla(Equipos equipos, GestorDamage gestorDamage) throws emptyTeamsException {
         if (equipos.size() != 2){
             throw new emptyTeamsException("complete los equipos antes de iniciar la batalla");
+        }
+        for (Entrenador e : equipos.getEntrenadores()) {
+            for (Pokemon p : equipos.getMochila(e.getNombre(), e.getApellido()).obtenerTodos()) {
+                System.out.println(p.getVidaRestante() + "Vida anterior");
+               p.setVidaRestante(p.getVidaCompleta());
+            }
         }
         Scanner sc = new Scanner(System.in);
 
@@ -357,8 +389,8 @@ public class GestorJuego {
 
         Mochila mochila1 = equipos.getMochila(entrenador1.getNombre(),entrenador1.getApellido());
         Mochila mochila2 = equipos.getMochila(entrenador2.getNombre(),entrenador2.getApellido());
-        Pokemon pokemon1= new Pokemon();
-        Pokemon pokemon2 = new Pokemon();
+        Pokemon pokemon1 = null;
+        Pokemon pokemon2 = null;
 
         System.out.println("Nombre del primer entrenador: " + entrenador2.getNombre());
 
@@ -375,26 +407,24 @@ public class GestorJuego {
         }
 
         boolean flag = false;
-        while(!flag){
         System.out.print("Ingresá el numero para seleccionar un Pokémon como principal: ");
+        while (!flag) {
 
             try {
-
                 int indice = sc.nextInt();
                 pokemon1 = mochila1.getPokemonIndex(indice);
                 sc.nextLine();
-                flag=true;
-            }catch (noIndexFoundException e) {
+                flag = true;
+            } catch (noIndexFoundException e) {
                 sc.nextLine();
                 System.out.println(e.getMessage());
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 sc.nextLine();
                 System.out.println("No ha ingresado un numero");
-            } catch(capacidadInvalidaException e) {
+            } catch (capacidadInvalidaException e) {
                 sc.nextLine();
                 System.out.println(e.getMessage());
-            }catch (Exception e){
+            } catch (Exception e) {
                 sc.nextLine();
                 System.out.println(e.getMessage());
             }
@@ -410,20 +440,35 @@ public class GestorJuego {
             System.out.println(mochila2.listar());
         } catch (capacidadInvalidaException e) {
             System.out.println(e.getMessage());
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         System.out.print("Ingresá el nombre del Pokémon principal: ");
-        try {
-            pokemon2 = mochila2.getPokemonIndex(sc.nextInt());
-            sc.nextLine();
-        } catch (noIndexFoundException e) {
-            System.out.println(e.getMessage());
-        }catch (capacidadInvalidaException e) {
-            System.out.println(e.getMessage());
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+         flag = false;
+        while (!flag) {
+            try {
+                int indice = sc.nextInt();
+                pokemon2 = mochila2.getPokemonIndex(indice);
+                sc.nextLine();
+                flag = true;
+            } catch (noIndexFoundException e) {
+                sc.nextLine();
+                System.out.println(e.getMessage());
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("No ha ingresado un numero");
+            } catch (capacidadInvalidaException e) {
+                sc.nextLine();
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                sc.nextLine();
+                System.out.println(e.getMessage());
+            }
+
+
+
+    }
+
 
 
         System.out.println("\n¡La batalla comienza entre " + pokemon1.getNombre() + " y " + pokemon2.getNombre() + "!\n");
@@ -467,7 +512,7 @@ public class GestorJuego {
                 if (pokemonDefensor.getVidaRestante() <= 0) {
                     System.out.println("\n" + pokemonDefensor.getNombre() + " ha sido derrotado.");
 
-                    // Verificar si todos los Pokémon del defensor están debilitados
+
                     boolean todosDebilitados = true;
                     for (Pokemon p : equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido()).obtenerTodos()) {
                         if (p.getVidaRestante() > 0) {
@@ -477,7 +522,19 @@ public class GestorJuego {
                     }
 
                     if (todosDebilitados) {
-                        System.out.println("\n" + entrenadorAtacante.getNombre() + " "+ entrenadorAtacante.getApellido()+ " ha ganado la batalla!");
+                        System.out.println(
+                                """
+                                +-------------------------------------------+
+                                |                                           |
+                                |   """ + entrenadorAtacante.getNombre() + " " + entrenadorAtacante.getApellido() +
+                                        " ha ganado la batalla!  " + """
+    |
+    |                                           |
+    +-------------------------------------------+
+    """
+                        );
+
+
                         batallaActiva = false;
                     } else {
 
@@ -487,8 +544,7 @@ public class GestorJuego {
                             StringBuilder sb = new StringBuilder();
                             for (int i = 0; i < mochilita.size(); i++) {
                                 Pokemon p = mochilita.getPokemonIndex(i);
-                            sb.append("    "+p.getNombre() + " `♡´ vcmd" +
-                                    "ida restante: " + p.getVidaRestante() + "\n");
+                            sb.append("    "+p.getNombre() + " `♡´ vida restante: " + p.getVidaRestante() + "\n");
 
                             }
 

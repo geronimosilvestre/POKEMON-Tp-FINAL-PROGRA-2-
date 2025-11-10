@@ -60,11 +60,11 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        try {
+//        try {
             JsonUtiles.grabarUnJson(equipos1.toJSON(), "equipos.json");
-        } catch (JSONException e) {
-            System.out.println(e.getMessage());
-        }
+//        } catch (JSONException e) {
+//            System.out.println(e.getMessage());
+//        }
 
 
 
