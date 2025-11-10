@@ -1,5 +1,20 @@
 package Menu;
+
+import Model.Entrenador.Entrenador;
+import Model.Pokemones.Pokemon;
+
 public class Menu {
+
+    public static String mostrarResultadoAtaque(Pokemon atacante, Pokemon defensor, double efectividad, int damage) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(atacante.getNombre()).append(" atacó a ").append(defensor.getNombre()).append("\n")
+                .append("Tipo atacante: ").append(atacante.getTipo()).append(" → Tipo defensor: ").append(defensor.getTipo()).append("\n")
+                .append("Efectividad: x").append(efectividad).append("\n")
+                .append("Daño causado: ").append(damage).append("\n")
+                .append("❤ Vida restante de ").append(defensor.getNombre()).append(": ").append(defensor.getVidaRestante()).append("\n");
+
+        return sb.toString();
+    }
 
 
 

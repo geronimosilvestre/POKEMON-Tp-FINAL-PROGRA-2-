@@ -410,7 +410,7 @@ public class GestorJuego {
             sc.nextLine();
 
             if (opcion == 1) {
-                gestorDamage.atacar(pokemonAtacante, pokemonDefensor);
+                System.out.println(gestorDamage.atacar(pokemonAtacante, pokemonDefensor));
                 System.out.println(pokemonAtacante.getNombre() + " atacó a  " + pokemonDefensor.getNombre());
                 System.out.println("Vida de " + pokemonDefensor.getNombre() + ": " + pokemonDefensor.getVidaRestante());
 

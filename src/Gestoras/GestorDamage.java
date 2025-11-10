@@ -6,6 +6,7 @@ import Enums.ETipo;
 import Exceptions.existException;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
+import Menu.Menu;
 
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ public class GestorDamage {
     }
 
     // Atacar entre dos Pokémon
-    public void atacar(Pokemon atacante, Pokemon defensor) {
+    public String atacar(Pokemon atacante, Pokemon defensor) {
       ETipo tipoAtacante= atacante.getTipo();
       ETipo tipoDefensa= defensor.getTipo();
         double efectividad = tipoAtacante.calcularEfectividad(tipoDefensa);
@@ -34,12 +35,8 @@ public class GestorDamage {
         if (nuevaVida < 0) nuevaVida = 0;
         defensor.setVidaRestante(nuevaVida);
 
-        // Mensajes
-        System.out.println( atacante.getNombre() + " ataco a" + defensor.getNombre());
-        System.out.println("Tipo atacante: " + atacante.getTipo() + " → Tipo defensor: " + defensor.getTipo());
-        System.out.println("Efectividad: x" + efectividad);
-        System.out.println("Daño causado: " + damage);
-        System.out.println("<3 Vida restante de " + defensor.getNombre() + ": " + defensor.getVidaRestante());
+        return Menu.mostrarResultadoAtaque(atacante,defensor,efectividad,damage);
+
     }
 
     // Suma la vida total de todos los Pokémon de una mochila

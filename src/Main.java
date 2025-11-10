@@ -115,8 +115,7 @@ public class Main {
                 sc.nextLine();
 
                 switch (opcion) {
-                    case 1 ->
-                            equipos = GestorJuego.menuEquipos(sc, pokedex, equipos);// tiene qe tener retorno para que reconosca el json
+                    case 1 -> equipos = GestorJuego.menuEquipos(sc, pokedex, equipos);// tiene qe tener retorno para que reconosca el json
                     case 2 -> GestorJuego.menuPokedex(sc, pokedex);
                     case 3 -> GestorJuego.menuBatalla(sc, equipos);
                     case 0 -> salir = true;
