@@ -76,7 +76,7 @@ public class Main {
         } catch (emptyNameException e) {
             throw new RuntimeException(e);
         }
-        JsonUtiles.grabarUnJson(equipos1.toJSON(), "equipos.json");
+        JsonUtiles.grabarUnJson(equipos1.toJSON(), "Equipos.json");
 
 
 

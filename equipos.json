@@ -2,7 +2,7 @@
     [
         {
             "apellido": "Pascuan",
-            "uuid": "d43e5499-71e0-47fe-b515-d190f5b81eb9",
+            "uuid": "7a9744a9-dfc3-460f-9a7e-0dc995e52aa9",
             "nombre": "JoeLPrueba"
         },
         [
@@ -12,7 +12,7 @@
                 "ataque": 60,
                 "vidaCompleta": 95,
                 "defensa": 44,
-                "uuid": "9d3c8754-38b8-48bd-ae1f-0d42516102da",
+                "uuid": "8d1a255f-d2c7-4e18-b412-3d2f5b69c201",
                 "nombre": "Arbok"
             },
             {
@@ -21,7 +21,7 @@
                 "ataque": 100,
                 "vidaCompleta": 100,
                 "defensa": 50,
-                "uuid": "f4a34e45-d9e3-4d06-8400-38f49d32b366",
+                "uuid": "6a80e7bd-245e-4eff-b20a-b5961c120e42",
                 "nombre": "Pikachu"
             },
             {
@@ -30,7 +30,7 @@
                 "ataque": 52,
                 "vidaCompleta": 95,
                 "defensa": 35,
-                "uuid": "d8e79596-f18b-4e71-a80d-201401a5fdd7",
+                "uuid": "49103655-ac41-4a47-86ce-da4af5a0c202",
                 "nombre": "Charmander"
             }
         ]
@@ -38,7 +38,7 @@
     [
         {
             "apellido": "Jimenez",
-            "uuid": "7f5e3f3c-dece-49e0-a338-9f32d4e1d908",
+            "uuid": "462d0d87-7915-46b7-9f13-8c16aecf5b4e",
             "nombre": "Valentina"
         },
         [
@@ -48,7 +48,7 @@
                 "ataque": 60,
                 "vidaCompleta": 95,
                 "defensa": 44,
-                "uuid": "9d3c8754-38b8-48bd-ae1f-0d42516102da",
+                "uuid": "8d1a255f-d2c7-4e18-b412-3d2f5b69c201",
                 "nombre": "Arbok"
             },
             {
@@ -57,7 +57,7 @@
                 "ataque": 100,
                 "vidaCompleta": 100,
                 "defensa": 50,
-                "uuid": "f4a34e45-d9e3-4d06-8400-38f49d32b366",
+                "uuid": "6a80e7bd-245e-4eff-b20a-b5961c120e42",
                 "nombre": "Pikachu"
             },
             {
@@ -66,7 +66,7 @@
                 "ataque": 52,
                 "vidaCompleta": 95,
                 "defensa": 35,
-                "uuid": "d8e79596-f18b-4e71-a80d-201401a5fdd7",
+                "uuid": "49103655-ac41-4a47-86ce-da4af5a0c202",
                 "nombre": "Charmander"
             }
         ]
