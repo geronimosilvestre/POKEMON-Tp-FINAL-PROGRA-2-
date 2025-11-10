@@ -89,8 +89,11 @@ public class Mochila {
         }
         throw new existException("No existe ese pokemon en la mochila: " + nombre);
     }
-    public Pokemon getPokemonIndex(int indice) throws capacidadInvalidaException {
-        int contador = 0;
+    public Pokemon getPokemonIndex(int indice) throws capacidadInvalidaException,noIndexFoundException {
+        if(indice > 2|| indice < 0){
+            throw new noIndexFoundException("No existe un pokemon con ese indice");
+        }
+         int contador = 0;
         if (indice < 0 || indice >= pokemones.size()) {
             throw new capacidadInvalidaException("No existe un pokemon con ese indice");
         }
@@ -100,7 +103,7 @@ public class Mochila {
             }
             contador++;
         }
-        return null;
+        throw new noIndexFoundException("No existe un pokemon con ese indice");
     }
 
     public int size()

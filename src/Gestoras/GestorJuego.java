@@ -3,9 +3,7 @@ package Gestoras;
 import Colecctions.Equipos;
 import Colecctions.Mochila;
 import Colecctions.Pokedex;
-import Exceptions.capacidadInvalidaException;
-import Exceptions.emptyNameException;
-import Exceptions.existException;
+import Exceptions.*;
 import Menu.Menu;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
@@ -16,6 +14,7 @@ import org.json.JSONTokener;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static Gestoras.GestorDamage.seleccionarNuevoPokemon;
@@ -282,8 +281,21 @@ public class GestorJuego {
             sc.nextLine();
 
             switch (opcion) {
-                case 1 ->
+                case 1 -> {
+                    try {
+                        if (equipos.size() != 2) {
+                            throw new emptyTeamsException("Debe haber exactamente 2 equipos para iniciar la batalla");
+                        }
+
                         iniciarBatalla(equipos, gestorDamage);
+
+                    }
+                    catch(emptyTeamsException e){
+                        System.out.println(e.getMessage());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
 
                 case 2 -> {
                     // Guardar datos de la batalla previa
@@ -311,7 +323,10 @@ public class GestorJuego {
         }
     }
 
-    public static void iniciarBatalla(Equipos equipos, GestorDamage gestorDamage) {
+    public static void iniciarBatalla(Equipos equipos, GestorDamage gestorDamage) throws emptyTeamsException {
+        if (equipos.size() != 2){
+            throw new emptyTeamsException("complete los equipos antes de iniciar la batalla");
+        }
         Scanner sc = new Scanner(System.in);
 
         System.out.println("=== COMIENZA LA BATALLA ===");
@@ -342,13 +357,14 @@ public class GestorJuego {
 
         Mochila mochila1 = equipos.getMochila(entrenador1.getNombre(),entrenador1.getApellido());
         Mochila mochila2 = equipos.getMochila(entrenador2.getNombre(),entrenador2.getApellido());
-        Pokemon pokemon1= null;
-        Pokemon pokemon2 = null;
+        Pokemon pokemon1= new Pokemon();
+        Pokemon pokemon2 = new Pokemon();
 
         System.out.println("Nombre del primer entrenador: " + entrenador2.getNombre());
 
         // === ELECCIÓN DE POKÉMON PRINCIPALES ===
         System.out.println("\nPokémon del equipo de " + entrenador1.getNombre() + ":");
+
 
         try {
             System.out.println(mochila1.listar());
@@ -357,15 +373,31 @@ public class GestorJuego {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-        System.out.print("Ingresá el numero para seleccionar un   Pokémon como principal: ");
 
-        try {
-            pokemon1 = mochila1.getPokemonIndex(sc.nextInt());
-            sc.nextLine();
-        } catch (capacidadInvalidaException e) {
-            System.out.println(e.getMessage());
-        }catch(Exception e){
-            System.out.println(e.getMessage());
+        boolean flag = false;
+        while(!flag){
+        System.out.print("Ingresá el numero para seleccionar un Pokémon como principal: ");
+
+            try {
+
+                int indice = sc.nextInt();
+                pokemon1 = mochila1.getPokemonIndex(indice);
+                sc.nextLine();
+                flag=true;
+            }catch (noIndexFoundException e) {
+                sc.nextLine();
+                System.out.println(e.getMessage());
+            }
+            catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("No ha ingresado un numero");
+            } catch(capacidadInvalidaException e) {
+                sc.nextLine();
+                System.out.println(e.getMessage());
+            }catch (Exception e){
+                sc.nextLine();
+                System.out.println(e.getMessage());
+            }
         }
 
 
@@ -385,7 +417,9 @@ public class GestorJuego {
         try {
             pokemon2 = mochila2.getPokemonIndex(sc.nextInt());
             sc.nextLine();
-        } catch (capacidadInvalidaException e) {
+        } catch (noIndexFoundException e) {
+            System.out.println(e.getMessage());
+        }catch (capacidadInvalidaException e) {
             System.out.println(e.getMessage());
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -459,6 +493,8 @@ public class GestorJuego {
                             }
 
                             System.out.println(sb);
+                        }catch (noIndexFoundException e) {
+                            System.out.println(e.getMessage());
                         } catch (capacidadInvalidaException e) {
                             System.out.println(e.getMessage());
                         }catch(Exception e){
@@ -489,7 +525,9 @@ public class GestorJuego {
                     }
 
                     System.out.println(sb);
-                } catch (capacidadInvalidaException e) {
+                } catch (noIndexFoundException e) {
+                    System.out.println(e.getMessage());
+                }catch (capacidadInvalidaException e) {
                     System.out.println(e.getMessage());
                 }catch(Exception e){
                     System.out.println(e.getMessage());

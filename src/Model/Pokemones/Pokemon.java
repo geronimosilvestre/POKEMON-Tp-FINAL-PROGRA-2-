@@ -39,7 +39,6 @@ public final class  Pokemon extends Entidad implements IConvertirJSON<JSONObject
         this.vidaCompleta = 0;
         this.ataque = 0;
         this.defensa = 0;
-
     }
 
     public Pokemon(String nombre)
