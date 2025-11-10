@@ -18,6 +18,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static Gestoras.GestorBatalla.seleccionarNuevoPokemon;
 import static Menu.Menu.menuBatalla;
 
 
@@ -360,8 +361,8 @@ public class Main {
                         if (equipos.size() != 2) {
                             throw new capacidadInvalidaException("Los equipos estan  incompletos");
                         }
-                        JsonUtiles.grabarUnJson(equipos.toJSON(), "batallaReciente.json");
-                        System.out.println("✅ Batalla guardada correctamente en batallaReciente.json");
+                        JsonUtiles.grabarUnJson(equipos.toJSON(), "BatallaReciente.json");
+                        System.out.println("✅ Batalla guardada correctamente en BatallaReciente.json");
                     } catch (capacidadInvalidaException e) {
                         System.out.println("Error al guardar la batalla: " + e.getMessage());
                     } catch (Exception e) {
@@ -460,7 +461,6 @@ public class Main {
             System.out.println("=== Turno " + turno + " ===");
 
 
-
             if (turno % 2 != 0) {
                 entrenadorAtacante = entrenador1;
                 entrenadorDefensor = entrenador2;
@@ -485,7 +485,7 @@ public class Main {
 
             if (opcion == 1) {
                 gestorBatalla.atacar(pokemonAtacante, pokemonDefensor);
-                System.out.println(pokemonAtacante.getNombre() + " atacó a " + pokemonDefensor.getNombre());
+                System.out.println(pokemonAtacante.getNombre() + " atacó a  " + pokemonDefensor.getNombre());
                 System.out.println("Vida de " + pokemonDefensor.getNombre() + ": " + pokemonDefensor.getVidaRestante());
 
                 if (pokemonDefensor.getVidaRestante() <= 0) {
@@ -507,8 +507,8 @@ public class Main {
 
                         System.out.println(entrenadorDefensor.getNombre() + ", elegí otro Pokémon:");
                         try {
-                           Mochila mochilita =  equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido());
-                            StringBuilder sb= new StringBuilder();
+                            Mochila mochilita = equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido());
+                            StringBuilder sb = new StringBuilder();
                             for (int i = 0; i < mochilita.size(); i++) {
                                 Pokemon p = mochilita.getPokemonIndex(i);
                                 sb.append(p.getNombre() + " - vida restante: " + p.getVidaRestante() + "\n");
@@ -520,43 +520,12 @@ public class Main {
                             System.out.println(e.getMessage());
                         }
 
-                        Pokemon cambioPokemon = null;
+                        Pokemon cambioPokemon = seleccionarNuevoPokemon(sc, equipos, entrenadorDefensor, turno, true);
+                        if (turno % 2 != 0)
+                            pokemon2 = cambioPokemon;
+                        else
+                            pokemon1 = cambioPokemon;
 
-                        //VERIFICA MUERTE
-
-                        while (cambioPokemon == null) {
-                            try {
-                                System.out.print("Su Pokémon se murió. Escribí el nombre de otro Pokémon de la mochila: ");
-                                String nuevo = sc.nextLine();
-
-                                cambioPokemon = equipos.getMochila(
-                                        entrenadorDefensor.getNombre(),
-                                        entrenadorDefensor.getApellido()
-                                ).getPokemon(nuevo);
-
-                                // Verifica que tenga vida > 0
-                                if (cambioPokemon.getVidaRestante() <= 0) {
-                                    cambioPokemon = null;
-                                    throw new IllegalArgumentException("El Pokémon elegido está debilitado. Elegí otro.");
-                                }
-
-                                // Si es un Pokémon válido y con vida, se asigna
-                                if (turno % 2 != 0)
-                                    pokemon2 = cambioPokemon;
-                                else
-                                    pokemon1 = cambioPokemon;
-
-                                System.out.println(cambioPokemon.getNombre() + " entra en combate!");
-
-
-                            } catch (IllegalArgumentException e) {
-                                System.out.println(e.getMessage());
-                            } catch (existException e) {
-                                System.out.println(e.getMessage());
-                                System.out.println("No se encontró ese Pokémon, vuelva a buscar.");
-                            }
-
-                        }
 
                     }
 
@@ -565,8 +534,8 @@ public class Main {
                 System.out.println(entrenadorAtacante.getNombre() + ", elegí otro Pokémon:");
 
                 try {
-                    Mochila mochilita =  equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido());
-                    StringBuilder sb= new StringBuilder();
+                    Mochila mochilita = equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido());
+                    StringBuilder sb = new StringBuilder();
                     for (int i = 0; i < mochilita.size(); i++) {
                         Pokemon p = mochilita.getPokemonIndex(i);
                         sb.append(p.getNombre() + " - " + p.getVidaRestante() + "\n");
@@ -579,36 +548,14 @@ public class Main {
                 }
 
 
-                Pokemon reemplazoNormal = null;
+                Pokemon reemplazo = seleccionarNuevoPokemon(sc, equipos, entrenadorAtacante, turno, false);
 
-                while (reemplazoNormal == null) {
-                    try {
-                        System.out.print("Para reemplazar el pokemon activo, escribe manualmente el nombre de otro : ");
-                        String nuevoNombre = sc.nextLine();
-
-                        reemplazoNormal = equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido()).getPokemon(nuevoNombre);
+                if (turno % 2 != 0)
+                    pokemon1 = reemplazo;
+                else
+                    pokemon2 = reemplazo;
 
 
-                        // Verifica que tenga vida > 0
-                        if (reemplazoNormal.getVidaRestante() <= 0) {
-                            reemplazoNormal = null;
-                            throw new IllegalArgumentException("El Pokémon elegido está debilitado. Elegí otro.");
-                        }
-
-                        if (reemplazoNormal != null) {
-                            if (turno % 2 != 0)
-                                pokemon1 = reemplazoNormal;
-                            else
-                                pokemon2 = reemplazoNormal;
-
-                            System.out.println(reemplazoNormal.getNombre() + " entra en combate!");
-                        }
-
-                    } catch (IllegalArgumentException | existException e) {
-                        System.out.println(e.getMessage());
-                        System.out.println("Intentá con otro nombre.\n");
-                    }
-                }
             }
 
             if (batallaActiva) turno++;

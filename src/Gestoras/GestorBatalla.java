@@ -105,5 +105,38 @@ public class GestorBatalla  {
         return  cambioPokemon;
     }
 
+    public static Pokemon seleccionarNuevoPokemon(Scanner sc, Equipos equipos, Entrenador entrenador, int turno, boolean porMuerte // true si el Pokémon murió, false si es cambio normal
+    ) {
+        Pokemon nuevoPokemon = null;
+
+        while (nuevoPokemon == null) {
+            try {
+                if (porMuerte) {
+                    System.out.print("Su Pokémon se murió. Escribí el nombre de otro Pokémon de la mochila: ");
+                } else {
+                    System.out.print("Para reemplazar el Pokémon activo, escribí el nombre de otro: ");
+                }
+
+                String nombreNuevo = sc.nextLine();
+
+                Mochila mochila = equipos.getMochila(entrenador.getNombre(), entrenador.getApellido());
+                nuevoPokemon = mochila.getPokemon(nombreNuevo);
+
+                if (nuevoPokemon.getVidaRestante() <= 0) {
+                    nuevoPokemon = null;
+                    throw new IllegalArgumentException("El Pokémon elegido está debilitado. Elegí otro.");
+                }
+
+                System.out.println(nuevoPokemon.getNombre() + " entra en combate!");
+
+            } catch (IllegalArgumentException | existException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Intentá con otro nombre.\n");
+            }
+        }
+
+        return nuevoPokemon;
+    }
+
 
 }
