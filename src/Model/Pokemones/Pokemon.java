@@ -64,6 +64,8 @@ public final class  Pokemon extends Entidad implements IConvertirJSON<JSONObject
         this.defensa = pokemon.getDefensa();
     }
 
+
+
     public String getNombre() {
         return nombre.getNombre();
     }
@@ -153,16 +155,21 @@ public final class  Pokemon extends Entidad implements IConvertirJSON<JSONObject
 
     @Override
     public  Pokemon fromJSON(JSONObject jsonObject) throws JSONException {
-        try {
+
 
             UUID uuid = UUID.fromString(jsonObject.getString("uuid"));
             ENombre nombre = ENombre.valueOf(jsonObject.getString("nombre").toUpperCase());
-            return new Pokemon(nombre.getNombre(),uuid);
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
+            Pokemon p = new Pokemon(nombre.getNombre(), uuid);
+
+            p.setTipo(ETipo.valueOf(jsonObject.getString("tipo")));
+            p.setVidaRestante(jsonObject.getInt("vidaRestante"));
+            p.setAtaque(jsonObject.getInt("ataque"));
+            p.setDefensa(jsonObject.getInt("defensa"));
+
+            return p;
+
+
     }
 
 

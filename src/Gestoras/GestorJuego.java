@@ -91,7 +91,14 @@ public class GestorJuego {
 
                     try {
                         equipos =  equipos.fromJSON(jsonArray);
-
+                        System.out.println("DEBUG → Datos cargados desde JSON:");
+                        for (Entrenador e : equipos.getEntrenadores()) {
+                            System.out.println("Entrenador: " + e.getNombre());
+                            Mochila m = equipos.getMochila(e.getNombre(), e.getApellido());
+                            for (Pokemon p : m.obtenerTodos()) {
+                                System.out.println(" - " + p.getNombre() + " vidaRestante=" + p.getVidaRestante());
+                            }
+                        }
                     } catch (JSONException e) {
                         System.out.println(e.getMessage());
                     }catch(Exception e){

@@ -20,6 +20,10 @@ public abstract class Entidad {
         return uuid;
     }
 
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Entidad entidad)) return false;
