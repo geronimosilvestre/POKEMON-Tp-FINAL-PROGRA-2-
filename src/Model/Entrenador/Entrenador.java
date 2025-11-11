@@ -12,7 +12,7 @@ public final class Entrenador extends Entidad implements IConvertirJSON<JSONObje
     String nombre;
     String apellido;
 
-
+//Constructor que valida que no se ingresen nombres vacios, evita errores mas adelante
     public Entrenador(String nombre, String apellido) throws IllegalArgumentException {
         super();
         if (nombre == null || nombre.trim().isEmpty()) {
@@ -25,6 +25,8 @@ public final class Entrenador extends Entidad implements IConvertirJSON<JSONObje
         this.nombre = nombre;
         this.apellido = apellido;
     }
+
+    //Si tenemos un JSON con un entrenador se usa este constructor para deserializarlo a un objeto entrenador y poder usar el propio UUID que viene desde el archivo
 
     public Entrenador(UUID uuid,String nombre, String apellido) throws IllegalArgumentException {
         super(uuid);
@@ -63,6 +65,7 @@ public final class Entrenador extends Entidad implements IConvertirJSON<JSONObje
     }
 
 
+    //Dos entrenadores con el mismo nombre y apellido no son perimitidos
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Entrenador that)) return false;

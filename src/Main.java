@@ -24,18 +24,22 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         StringBuilder sb = new StringBuilder();
-
         Pokedex pokedex = new Pokedex();
-
         JSONArray array = new JSONArray();
 
-        for (ENombre nombre : ENombre.values()) {
-            Pokemon p = new Pokemon(nombre);
-            array.put(p.toJSON());
+        //Se crea un Json Array para meter a todos los pokemones existentes
+        //El JsonArray es serializado y luego deserealizado para ser metido en la pokedex, asi demostrar el funcionamiento
+
+        for (ENombre nombre : ENombre.values()) {  //Por cada valor de ENombre
+            Pokemon p = new Pokemon(nombre); //Creo un pokemon completo gracias a ese ENombre
+            array.put(p.toJSON()); //todos  los pokemones entran como JsonObject en el JsonArray
         }
 
         Equipos equipos1= new Equipos();
+        //El juego permite importar equipos  (Entrenador y pokemon)  ya creados desde  un archivo JSON
+        //Creamos un equipo manualmente  que se serializa a un .json para tener a mano un equipos.json y poder usarlo en el juego si es que el usuario no quiere crear nada
 
     Entrenador entrenador1 = new Entrenador("Joel","Pascuan");
     Entrenador entrenador2 = new Entrenador("Valentina","Jimenez");
@@ -76,10 +80,14 @@ public class Main {
         } catch (archivoYaExisteException e) {
             System.out.println( e.getMessage());
         }
+//        catch (JSONException e) {
+//            System.out.println(e.getMessage());
+//        }
 
         ArrayList<Pokemon> lista = new ArrayList<>();
 
         //LEEN POKEMON DE JSON
+        //De aqui es que se toman todos los pokemones que van a existir en la pokedex
         try {
              lista = (ArrayList<Pokemon>) pokedex.leer("Pokedex.json");
         } catch (JSONException e) {
@@ -112,6 +120,9 @@ public class Main {
             try{
                 int opcion = sc.nextInt();
                 sc.nextLine();
+
+                //Switch que contiene las opciones principales del juego
+                //Por dentro de cada case hay sub opciones con mas switch y llamadas a metodos
 
                 switch (opcion) {
                     case 1 -> equipos = GestorJuego.menuEquipos(sc, pokedex, equipos);// tiene qe tener retorno para que reconosca el json

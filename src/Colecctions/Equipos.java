@@ -17,6 +17,7 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
         this.equipos = new HashMap<>();
     }
 
+    // Dentro del map puede haber solo 2 equipos, cada equipo es un conunto de clave entrenado y valor mochila(mochila tiene pokemones)
     public boolean agregarEquipo(Entrenador entrenador, Mochila mochila) throws existException, capacidadInvalidaException {
 
         if(this.equipos.containsKey(entrenador)) {
@@ -40,6 +41,7 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
         return this.equipos.size();
     }
 
+    //Elimina el equipo entero a partir del nombre y apellido del entrenador
     public boolean eliminarEquipo(String nombre, String apellido) throws existException {
 
         Entrenador aux = new Entrenador(nombre, apellido);
@@ -57,6 +59,8 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
         }
         return false;
     }
+
+    //Obtener mochila a partir del nombre y apellido del entrenador
     public Mochila getMochila(String nombre, String apellido )
     {
         Entrenador aux = new Entrenador(nombre,apellido);
@@ -71,7 +75,7 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
         return null;
 
     }
-
+//Obtener un entrenador en particular a partir de su nombre y apellido
     public Entrenador getEntrenador(String nombre, String apellido)
     {
 
@@ -83,7 +87,7 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
         return null;
 
     }
-
+//Obtener todos los entrenadores para cuando quiero obtener la mochila de cada uno sin saber su nombre
     public ArrayList<Entrenador> getEntrenadores()
     {
         ArrayList<Entrenador> entrenadores = new ArrayList<>();
@@ -93,7 +97,7 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
         return entrenadores;
 
     }
-
+//Reemplazar pokemon para dentro de la batalla a partir del equipo
     public Boolean reemplazarPokemon(String nombre, String apellido, Pokemon pokemonNuevo, String pokemonDescarte) throws capacidadInvalidaException, existException {
         Entrenador entrenador = new Entrenador(nombre, apellido);
 
@@ -109,7 +113,7 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
 
 
     }
-
+//Lista los nombres de los entrenadores junto a los pokemones dentro su mochila
     public String listar() throws capacidadInvalidaException,existException {
         StringBuilder sb = new StringBuilder();
         if (this.equipos.isEmpty()) {

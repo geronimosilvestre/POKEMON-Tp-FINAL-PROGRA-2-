@@ -5,6 +5,8 @@ import Model.Pokemones.Pokemon;
 
 public class Menu {
 
+    //cada vez que un pokemon ataca a otro se aprovecha este texto
+
     public static String mostrarResultadoAtaque(Pokemon atacante, Pokemon defensor, double efectividad, int damage) {
         StringBuilder sb = new StringBuilder();
         sb.append(atacante.getNombre()).append(" atacó a ").append(defensor.getNombre()).append("\n")
@@ -54,7 +56,12 @@ public class Menu {
         System.out.println("2. Guardar batalla previa en JSON");
         System.out.println("0. Volver");
         System.out.print("Opción: ");
+
+
+
     }
+
+    //Opciones internas una vez dentro de la batalla
 
    public static  String opcionesBatalla(Entrenador entrenadorAtacante, Pokemon  pokemonAtacante, Pokemon pokemonDefensor)
    {

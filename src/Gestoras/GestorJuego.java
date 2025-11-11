@@ -36,7 +36,7 @@ public class GestorJuego {
 
             switch (opcion) {
                 case 1 -> {
-
+                    //caso 1 crear todos el sistema de entrenador y pokemon
                     try {
 
                         agregarPeleador(sc, pokedex, equipos);
@@ -52,6 +52,8 @@ public class GestorJuego {
 
                 }
                 case 2 -> {
+
+                    //caso 2 muestra los 2 equipos enteros o 1 solo creado
                     try {
                         System.out.println(equipos.listar());
                     } catch (capacidadInvalidaException | existException e) {
@@ -61,11 +63,13 @@ public class GestorJuego {
                     }
                 }
                 case 3->{
+
+                    //busca un equipo para importarlo
                     System.out.println("ingrese el nombre del archivo");
 
                     String nombreArchivo = sc.nextLine();
                     JSONTokener tokener = null;
-
+                    //Tokener a partir del nombre
                     try {
                         tokener = JsonUtiles.leerUnJson(nombreArchivo);
                     } catch (FileNotFoundException e) {
@@ -78,7 +82,7 @@ public class GestorJuego {
 
 
                     JSONArray jsonArray = null;
-
+                        //Metemos el tokener en el array
                     try {
                         jsonArray = new JSONArray(tokener);
                     } catch (JSONException e) {
@@ -88,22 +92,25 @@ public class GestorJuego {
                         break;
                     }
 
+                    //Asignar al equipo creado la deserealizacion del array
 
                     try {
                         equipos =  equipos.fromJSON(jsonArray);
-                        System.out.println("DEBUG → Datos cargados desde JSON:");
-                        for (Entrenador e : equipos.getEntrenadores()) {
-                            System.out.println("Entrenador: " + e.getNombre());
-                            Mochila m = equipos.getMochila(e.getNombre(), e.getApellido());
-                            for (Pokemon p : m.obtenerTodos()) {
-                                System.out.println(" - " + p.getNombre() + " vidaRestante=" + p.getVidaRestante());
-                            }
-                        }
+//                        System.out.println("DEBUG → Datos cargados desde JSON:");
+//                        for (Entrenador e : equipos.getEntrenadores()) {
+//                            System.out.println("Entrenador: " + e.getNombre());
+//                            Mochila m = equipos.getMochila(e.getNombre(), e.getApellido());
+//                            for (Pokemon p : m.obtenerTodos()) {
+//                                System.out.println(" - " + p.getNombre() + " vidaRestante=" + p.getVidaRestante());
+//                            }
+//                        }
                     } catch (JSONException e) {
                         System.out.println(e.getMessage());
                     }catch(Exception e){
                         System.out.println(e.getMessage());
                     }
+
+
 
 
                     try {
@@ -163,7 +170,7 @@ public class GestorJuego {
             switch (op) {
                 case 1 -> {
                     int tamanio= mochila.size();
-
+                //La mochila se agrega con pomenones random y se completa hasta que haya 3 pokemones dentro suyo
                     while (tamanio < 3) {
                         Pokemon p = pokedex.getRandom();
                         try {
@@ -183,6 +190,9 @@ public class GestorJuego {
 
                 }
                 case 2 -> {
+
+                    //Si se elige agregar a mano van saliendo pokemones random de la pokedex para que el usuario decida si le gusta el que le toco o no
+                    //Puede meter menos 1 2 o 3 pokemones
                     Pokemon random = pokedex.getRandom();
                     System.out.println("Te tocó: " + random);
                     System.out.print("¿Querés agregarlo? (s/n): ");
@@ -199,6 +209,7 @@ public class GestorJuego {
                     }
                 }
                 case 3 -> {
+                    //Lista la mochila con los pokemones que hay dentro
                     try {
                         System.out.println(mochila.listar());
                     } catch (capacidadInvalidaException e) {
@@ -208,6 +219,8 @@ public class GestorJuego {
                     }
                 }
                 case 4 -> {
+
+                    //Se elimina un pokemon de la mochila cuando el usuario escribe el nombre a mano
                     try {
                         System.out.println(mochila.listar());
                         System.out.print("Nombre del Pokémon a eliminar: ");
@@ -226,6 +239,8 @@ public class GestorJuego {
                     }
                 }
                 case 5 ->{
+
+                    //Sistema para guardar en las variables los entrenadores y pokemones para que esten listos para la batalla
                     boolean agregado = false;
 
                     while (!agregado) {
@@ -262,7 +277,7 @@ public class GestorJuego {
     public static void menuPokedex(Scanner sc, Pokedex pokedex) {
         System.out.println("\n===== POKÉDEX =====");
         System.out.println(pokedex.listar()); // muestra la lista con índices
-
+    //Ademas de listar los pokemones agregamos una interaccion para mostrar toda la info completa de un pokemon especifico que el usuario quiera mediante el indice
         System.out.print("Ingresá la posición del Pokémon para ver su info completa: ");
         int pos = sc.nextInt();
         sc.nextLine();
@@ -288,6 +303,8 @@ public class GestorJuego {
             int opcion = sc.nextInt();
             sc.nextLine();
 
+            //Case 1 entra en la batalla
+
             switch (opcion) {
                 case 1 -> {
                     try {
@@ -305,8 +322,8 @@ public class GestorJuego {
                     }
                 }
 
+                    // Case 2 Guardar datos de la batalla previa
                 case 2 -> {
-                    // Guardar datos de la batalla previa
                     try {
                         if (equipos.size() != 2) {
                             throw new capacidadInvalidaException("Los equipos estan  incompletos");
@@ -329,9 +346,12 @@ public class GestorJuego {
                             }//Si uno de los 2 equipos suma 0 vivos entonces ya puedo decir que uno de los 2 perdio
                         }
 
+                        //Si encuentra una mochila derrotada por completo entonces no puede iniciar la batalla
                         if (!algunEquipoDerrotado) {
                             throw new teamsStillAliveException("No se puede guardar la batalla hasta que uno de los equipos sea derrotado por completo.");
                         }
+
+                        //La batalla se guarda similar a como se importa un equipo desde fuera, solo que cuando se guardan la vida restante de algunos pokemones esta en 0
 
                         JsonUtiles.grabarUnJson(equipos.toJSON(), "BatallaReciente.json");
                         System.out.println("Batalla guardada correctamente en BatallaReciente.json");
@@ -362,8 +382,7 @@ public class GestorJuego {
         }
         for (Entrenador e : equipos.getEntrenadores()) {
             for (Pokemon p : equipos.getMochila(e.getNombre(), e.getApellido()).obtenerTodos()) {
-                System.out.println(p.getVidaRestante() + "Vida anterior");
-               p.setVidaRestante(p.getVidaCompleta());
+               p.setVidaRestante(p.getVidaCompleta()); //Sin importar la vida anterior con la que se inicia la batalla se le restaura a la original
             }
         }
         Scanner sc = new Scanner(System.in);
@@ -378,7 +397,8 @@ public class GestorJuego {
             System.out.println(e.getMessage());
         }
 
-
+        //Necesitamos obtener del hashmap dentro de equipos los 2 entrenadores sin importar su nombre para que uno sea el atacante y el otro el defensor de manera random
+        //Lo guardamos en un arraylist para usar los indices
         ArrayList<Entrenador> entrenadores = equipos.getEntrenadores();
 
 
@@ -413,6 +433,7 @@ public class GestorJuego {
             System.out.println(e.getMessage());
         }
 
+        //Bucle while  para cuando  el usuario no  ingresa bien el pokemon principal por consola
         boolean flag = false;
         System.out.print("Ingresá el numero para seleccionar un Pokémon como principal: ");
         while (!flag) {
@@ -452,6 +473,8 @@ public class GestorJuego {
         }
         System.out.print("Ingresá el nombre del Pokémon principal: ");
          flag = false;
+
+        //Bucle while   para el defensor
         while (!flag) {
             try {
                 int indice = sc.nextInt();
@@ -489,6 +512,8 @@ public class GestorJuego {
         Pokemon pokemonAtacante;
         Pokemon pokemonDefensor;
 
+
+        //Se intercambia atacante y defensor dependiendo si el turno es par o impar
         while (batallaActiva) {
             System.out.println("=== Turno " + turno + " ===");
 
@@ -505,21 +530,23 @@ public class GestorJuego {
                 pokemonDefensor = pokemon1;
             }
 
-
+            //Opcion 1 es atacar, la 2 es cambiar de pokemon
             System.out.println(Menu.opcionesBatalla(entrenadorAtacante,pokemonAtacante,pokemonDefensor));
 
             int opcion = sc.nextInt();
             sc.nextLine();
 
             if (opcion == 1) {
+                //Calculos de ataque
                 System.out.println(gestorDamage.atacar(pokemonAtacante, pokemonDefensor));
                 System.out.println(pokemonAtacante.getNombre() + " atacó a  " + pokemonDefensor.getNombre());
                 System.out.println("Vida de " + pokemonDefensor.getNombre() + ": " + pokemonDefensor.getVidaRestante());
 
+                //Comprobar su murio
                 if (pokemonDefensor.getVidaRestante() <= 0) {
                     System.out.println("\n" + pokemonDefensor.getNombre() + " ha sido derrotado.");
 
-
+                //Comprobar si murieron todos
                     boolean todosDebilitados = true;
                     for (Pokemon p : equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido()).obtenerTodos()) {
                         if (p.getVidaRestante() > 0) {
@@ -541,9 +568,10 @@ public class GestorJuego {
     """
                         );
 
-
+                        //Termina la batalla si murieron todos los pokemones de un solo entrenador
                         batallaActiva = false;
-                    } else {
+                    } else {//Si el pokemon defensor esta muerto y le quedan vivos se le pide cambiarlo
+
 
                         System.out.println("\n" + entrenadorDefensor.getNombre() + ", elegí otro Pokémon:");
                         try {
@@ -554,6 +582,7 @@ public class GestorJuego {
                             sb.append("    "+p.getNombre() + " `♡´ vida restante: " + p.getVidaRestante() + "\n");
 
                             }
+                            //Se maneja el error si se elige un pokemon deshabilitado
 
                             System.out.println(sb);
                         }catch (noIndexFoundException e) {
@@ -565,7 +594,7 @@ public class GestorJuego {
                         }
 
                         Pokemon cambioPokemon = seleccionarNuevoPokemon(sc, equipos, entrenadorDefensor, turno, true);
-
+                        //Se le asigna el pokemon al defensor
                         if (turno % 2 != 0)
                             pokemon2 = cambioPokemon;
                         else
@@ -575,7 +604,7 @@ public class GestorJuego {
                     }
 
                 }
-            } else if (opcion == 2) {
+            } else if (opcion == 2) {//Opcion 2 del menu para que el atacante cambie su pokemon principal por otro a gusto propio
                 System.out.println(entrenadorAtacante.getNombre() + ", elegí otro Pokémon:");
 
                 try {

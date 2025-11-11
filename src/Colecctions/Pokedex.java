@@ -19,10 +19,13 @@ import static Utiles.JsonUtiles.leerUnJson;
 public class Pokedex{
 
     private ArrayList<Pokemon> pokemones;
+    //En la pokedex se guardaran todos los pokemones existentes posibles para capturarlos desde aqui y para tener una lista completa de los que hay
     public Pokedex() {
         pokemones = new ArrayList<>();
     }
 
+
+    //Agrega  pokemones al ararylist sin repetidos
     public boolean agregar(Pokemon pokemon) throws existException {
         if (!pokemones.contains(pokemon)) {
             pokemones.add(pokemon);
@@ -32,13 +35,19 @@ public class Pokedex{
         }
     }
 
+    //retornar un pokemon al buscarlo por el indice de la arraylist
+
     public Pokemon buscar(int posicion) {
         return pokemones.get(posicion);
     }
 
-    public ArrayList<Pokemon> obtenerTodos() {
-        return pokemones;
-    }
+
+//    //retorna la arraylist para poder usarla
+//    public ArrayList<Pokemon> obtenerTodos() {
+//        return pokemones;
+//    }
+
+    //Muestra todos los pokemones junto al indice de la arraylist
     public String listar( )  {
         StringBuilder sb = new StringBuilder();
         int contador = 0;
@@ -51,14 +60,14 @@ public class Pokedex{
         return sb.toString();
 
     }
-    public int tamanioActual() {
-        return pokemones.size();
-    }
 
+    //Obtiene un pokemon random a partir de calcular un numero usando el tamanio total del arraylist, esto se aprovecha en la batalla
     public Pokemon getRandom() {
         return pokemones.get((int)(Math.random() * pokemones.size()));
     }
 
+
+    //Recibe un JsonArray y el nombre del archivo , el array se crea a mano a partir de meter los pokemoneeeeeeeeeee
 
     public  void grabar(JSONArray jsonArray, String archivo) throws archivoYaExisteException {
         File file = new File(archivo);

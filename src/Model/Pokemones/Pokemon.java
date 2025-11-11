@@ -20,9 +20,10 @@ public final class  Pokemon extends Entidad implements IConvertirJSON<JSONObject
     private int defensa;
 
 
-
+//Constructor para crearlo Usando Enum
 
     public Pokemon(ENombre pokemon) {
+        super();
         this.nombre = pokemon;
         this.tipo = pokemon.getTipo();
         this.vidaCompleta = pokemon.getVidaCompleta();
@@ -41,6 +42,8 @@ public final class  Pokemon extends Entidad implements IConvertirJSON<JSONObject
         this.defensa = 0;
     }
 
+    //Constructor para crearlo a partir del nombre  solo con String
+
     public Pokemon(String nombre)
     {
         ENombre pokemon = ENombre.valueOf(nombre.toUpperCase());
@@ -52,6 +55,7 @@ public final class  Pokemon extends Entidad implements IConvertirJSON<JSONObject
         this.defensa = pokemon.getDefensa();
     }
 
+    //Constructor que resulta  util al deserializar el JSON
     public Pokemon(String nombre,UUID uuid)
     {
         super(uuid);
@@ -112,11 +116,13 @@ public final class  Pokemon extends Entidad implements IConvertirJSON<JSONObject
     }
 
 
+    //En el equals comparamos por nombre(Enum) porque no queremos dos enums que tengan el mismo nombre ya que se trataria del mismo pokemon
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Pokemon pokemon)) return false;
         return nombre == pokemon.nombre;
     }
+
 
     @Override
     public int hashCode() {

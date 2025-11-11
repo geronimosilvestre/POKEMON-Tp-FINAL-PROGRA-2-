@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Objects;
 import java.util.UUID;
-
+//Para poder implementar una herencia creamos una entidad que es el padre de un Pokemon o un Entrenador, ambos comparten UUID
 public abstract class Entidad {
     private UUID uuid;
 

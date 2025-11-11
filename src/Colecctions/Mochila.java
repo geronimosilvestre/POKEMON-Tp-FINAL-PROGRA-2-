@@ -14,6 +14,8 @@ public class Mochila {
          this.pokemones = new LinkedHashSet<>();
      }
 
+     //La mochila solo acepta pokemones y puede contener hasta 3 de cada uno
+
      public boolean agregar(Pokemon pokemon) throws  capacidadInvalidaException, existException
      {
          if (pokemones.size() == 3) {
@@ -31,6 +33,8 @@ public class Mochila {
         return  false;
      }
 
+    //Eliminar de la mochila por el nombre del pokemon en String
+
     public boolean eliminar(String nombre) throws capacidadInvalidaException, existException {
         Pokemon aux = new Pokemon(nombre);
         if (pokemones.size() == 0) {
@@ -44,6 +48,8 @@ public class Mochila {
         return pokemones.remove(aux);
 
      }
+
+     //Muestra todos los pokemones de la mochila y  la posicion en la que aparecen para que el usuario vea el indice
 
      public String listar() throws capacidadInvalidaException
      {
@@ -61,6 +67,7 @@ public class Mochila {
          return sb.toString();
      }
 
+     //Obtener un pokemon mediante su nombre
     public Pokemon getPokemon(String nombre) throws existException,IllegalArgumentException
     {
         if (nombre == null || nombre.trim().isEmpty()) {
@@ -89,6 +96,7 @@ public class Mochila {
         }
         throw new existException("No existe ese pokemon en la mochila: " + nombre);
     }
+    //Obtener pokemon gracias al indice de listar
     public Pokemon getPokemonIndex(int indice) throws capacidadInvalidaException,noIndexFoundException {
         if(indice > 2|| indice < 0){
             throw new noIndexFoundException("No existe un pokemon con ese indice");
@@ -110,13 +118,13 @@ public class Mochila {
     {
         return pokemones.size();
     }
-
+//Obtener todos los pokemones al retornar la coleccion para poder usarlos
     public LinkedHashSet<Pokemon> obtenerTodos() {
         return pokemones;
     }
 
-    public boolean booleanoAleatorio() {
-        int numRandom = (int) (Math.random() * 1000);
-        return numRandom < 500;
-    }
+//    public boolean booleanoAleatorio() {
+//        int numRandom = (int) (Math.random() * 1000);
+//        return numRandom < 500;
+//    }
 }

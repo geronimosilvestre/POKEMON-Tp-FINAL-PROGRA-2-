@@ -55,6 +55,9 @@ public class GestorDamage {
     }
 
 
+
+    //Cuando muere o cambia el turno devuelve otro pokemon para usar este ultimo
+
     public static Pokemon seleccionarNuevoPokemon(Scanner sc, Equipos equipos, Entrenador entrenador, int turno, boolean porMuerte // true si el Pokémon murió, false si es cambio normal
     ) {
         Pokemon nuevoPokemon = null;
