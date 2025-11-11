@@ -471,7 +471,7 @@ public class GestorJuego {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.print("Ingresá el nombre del Pokémon principal: ");
+        System.out.print("Ingresá el numero para seleccionar un Pokémon como principal: ");
          flag = false;
 
         //Bucle while   para el defensor
