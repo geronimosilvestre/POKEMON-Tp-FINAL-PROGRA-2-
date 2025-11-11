@@ -180,8 +180,9 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
 
             for (int j = 0; j < arrayPokemones.length(); j++) {
                 JSONObject jsonPokemon = arrayPokemones.getJSONObject(j);
-                Pokemon pokemon = new Pokemon().fromJSON(jsonPokemon);
+
                 try {
+                    Pokemon pokemon = new Pokemon().fromJSON(jsonPokemon);
                     mochila.agregar(pokemon);
                 } catch (capacidadInvalidaException e) {
                     System.out.println(e.getMessage());

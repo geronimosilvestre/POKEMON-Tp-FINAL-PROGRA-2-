@@ -31,7 +31,12 @@ public class GestorJuego {
 
             Menu.menuEquipos();
 
-            int opcion = sc.nextInt();
+            int opcion = 9;
+            try {
+                opcion = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida");
+            }
             sc.nextLine();
 
             switch (opcion) {
@@ -72,7 +77,10 @@ public class GestorJuego {
                     //Tokener a partir del nombre
                     try {
                         tokener = JsonUtiles.leerUnJson(nombreArchivo);
-                    } catch (FileNotFoundException e) {
+                    }catch (IllegalArgumentException e) {
+                        System.out.println("Uno de sus pokemones no se encuentra en nuestra lista");
+                    }
+                    catch (FileNotFoundException e){
                         System.out.println(e.getMessage());
                         break;
                     }catch(Exception e){
@@ -96,14 +104,8 @@ public class GestorJuego {
 
                     try {
                         equipos =  equipos.fromJSON(jsonArray);
-//                        System.out.println("DEBUG → Datos cargados desde JSON:");
-//                        for (Entrenador e : equipos.getEntrenadores()) {
-//                            System.out.println("Entrenador: " + e.getNombre());
-//                            Mochila m = equipos.getMochila(e.getNombre(), e.getApellido());
-//                            for (Pokemon p : m.obtenerTodos()) {
-//                                System.out.println(" - " + p.getNombre() + " vidaRestante=" + p.getVidaRestante());
-//                            }
-//                        }
+                    }catch (IllegalArgumentException e) {
+                        System.out.println("Uno de sus pokemones no se encuentra en nuestra lista");
                     } catch (JSONException e) {
                         System.out.println(e.getMessage());
                     }catch(Exception e){
@@ -164,7 +166,13 @@ public class GestorJuego {
             //se muestra el menu para la mochila
             Menu.menuMochila();
 
-            int op = sc.nextInt();
+
+            int op = 9;
+            try {
+                op = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida");
+            }
             sc.nextLine();
 
             switch (op) {
@@ -300,7 +308,12 @@ public class GestorJuego {
 
         while (!volver) {
             Menu.menuBatalla();
-            int opcion = sc.nextInt();
+            int opcion = 9;
+            try {
+                opcion = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida");
+            }
             sc.nextLine();
 
             //Case 1 entra en la batalla
@@ -419,7 +432,7 @@ public class GestorJuego {
         Pokemon pokemon1 = null;
         Pokemon pokemon2 = null;
 
-        System.out.println("Nombre del primer entrenador: " + entrenador2.getNombre());
+        System.out.println("Nombre del segundo entrenador: " + entrenador2.getNombre());
 
         // === ELECCIÓN DE POKÉMON PRINCIPALES ===
         System.out.println("\nPokémon del equipo de " + entrenador1.getNombre() + ":");
@@ -530,13 +543,18 @@ public class GestorJuego {
                 pokemonDefensor = pokemon1;
             }
 
-            //Opcion 1 es atacar, la 2 es cambiar de pokemon
+            //Opcion 2 es atacar, la 3 es cambiar de pokemon
             System.out.println(Menu.opcionesBatalla(entrenadorAtacante,pokemonAtacante,pokemonDefensor));
 
-            int opcion = sc.nextInt();
+            int opcion = 9;
+            try {
+                opcion = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Opcion invalida");
+            }
             sc.nextLine();
 
-            if (opcion == 1) {
+            if (opcion == 4) {
                 //Calculos de ataque
                 System.out.println(gestorDamage.atacar(pokemonAtacante, pokemonDefensor));
                 System.out.println(pokemonAtacante.getNombre() + " atacó a  " + pokemonDefensor.getNombre());
@@ -562,7 +580,7 @@ public class GestorJuego {
                                 |                                           |
                                 |   """ + entrenadorAtacante.getNombre() + " " + entrenadorAtacante.getApellido() +
                                         " ha ganado la batalla!  " + """
-    |
+     |
     |                                           |
     +-------------------------------------------+
     """
@@ -604,7 +622,7 @@ public class GestorJuego {
                     }
 
                 }
-            } else if (opcion == 2) {//Opcion 2 del menu para que el atacante cambie su pokemon principal por otro a gusto propio
+            } else if (opcion == 5) {//Opcion 3 del menu para que el atacante cambie su pokemon principal por otro a gusto propio
                 System.out.println(entrenadorAtacante.getNombre() + ", elegí otro Pokémon:");
 
                 try {

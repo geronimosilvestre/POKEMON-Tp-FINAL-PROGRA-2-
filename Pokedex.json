@@ -1,0 +1,335 @@
+[
+    {
+        "tipo": "FUEGO",
+        "vidaRestante": 95,
+        "ataque": 52,
+        "vidaCompleta": 95,
+        "defensa": 35,
+        "uuid": "50bdd854-1b1a-4216-baac-0798511eee54",
+        "nombre": "Charmander"
+    },
+    {
+        "tipo": "FUEGO",
+        "vidaRestante": 100,
+        "ataque": 55,
+        "vidaCompleta": 100,
+        "defensa": 40,
+        "uuid": "b037bf3b-2c6f-4690-a98c-9f179f64e149",
+        "nombre": "Growlithe"
+    },
+    {
+        "tipo": "FUEGO",
+        "vidaRestante": 100,
+        "ataque": 85,
+        "vidaCompleta": 100,
+        "defensa": 55,
+        "uuid": "71cc6065-1e7a-4d91-a830-285b77395754",
+        "nombre": "Ponyta"
+    },
+    {
+        "tipo": "FUEGO",
+        "vidaRestante": 140,
+        "ataque": 90,
+        "vidaCompleta": 140,
+        "defensa": 80,
+        "uuid": "d46617ce-e135-4ef6-94c8-d7da8552843a",
+        "nombre": "Arcanine"
+    },
+    {
+        "tipo": "FUEGO",
+        "vidaRestante": 150,
+        "ataque": 84,
+        "vidaCompleta": 150,
+        "defensa": 78,
+        "uuid": "3206713d-c240-439d-a1b6-b0ba8e411627",
+        "nombre": "Charizard"
+    },
+    {
+        "tipo": "FUEGO",
+        "vidaRestante": 160,
+        "ataque": 100,
+        "vidaCompleta": 160,
+        "defensa": 90,
+        "uuid": "075d04dd-54d5-4b83-a0a0-189a141fee46",
+        "nombre": "Moltres"
+    },
+    {
+        "tipo": "PLANTA",
+        "vidaRestante": 105,
+        "ataque": 49,
+        "vidaCompleta": 105,
+        "defensa": 45,
+        "uuid": "e041bee0-5cb1-469f-9db3-525baeb2f943",
+        "nombre": "Bulbasaur"
+    },
+    {
+        "tipo": "PLANTA",
+        "vidaRestante": 120,
+        "ataque": 62,
+        "vidaCompleta": 120,
+        "defensa": 60,
+        "uuid": "f86f2d8f-00f9-484c-b96a-d4bdccc4ee5b",
+        "nombre": "Ivysaur"
+    },
+    {
+        "tipo": "PLANTA",
+        "vidaRestante": 160,
+        "ataque": 82,
+        "vidaCompleta": 160,
+        "defensa": 83,
+        "uuid": "bbed10de-7b26-4ed8-a670-eb7dba2217b6",
+        "nombre": "Venusaur"
+    },
+    {
+        "tipo": "PLANTA",
+        "vidaRestante": 90,
+        "ataque": 50,
+        "vidaCompleta": 90,
+        "defensa": 55,
+        "uuid": "ef8bf10e-d0c3-4ea7-802c-98aae7c4c96e",
+        "nombre": "Oddish"
+    },
+    {
+        "tipo": "PLANTA",
+        "vidaRestante": 110,
+        "ataque": 65,
+        "vidaCompleta": 110,
+        "defensa": 65,
+        "uuid": "1d8920a0-4ffd-4ef2-910d-90e09ec9ce4e",
+        "nombre": "Gloom"
+    },
+    {
+        "tipo": "PLANTA",
+        "vidaRestante": 125,
+        "ataque": 105,
+        "vidaCompleta": 125,
+        "defensa": 65,
+        "uuid": "96e5a604-b307-459b-8262-568bffe0c418",
+        "nombre": "Victreebel"
+    },
+    {
+        "tipo": "PLANTA",
+        "vidaRestante": 115,
+        "ataque": 55,
+        "vidaCompleta": 115,
+        "defensa": 115,
+        "uuid": "4f054164-bcc1-405f-af3d-ac18c6a78efa",
+        "nombre": "Tangela"
+    },
+    {
+        "tipo": "ROCA",
+        "vidaRestante": 120,
+        "ataque": 45,
+        "vidaCompleta": 120,
+        "defensa": 60,
+        "uuid": "870dad1e-5446-4155-9c59-64b20a3b23e2",
+        "nombre": "Geodude"
+    },
+    {
+        "tipo": "ROCA",
+        "vidaRestante": 110,
+        "ataque": 45,
+        "vidaCompleta": 110,
+        "defensa": 160,
+        "uuid": "0b9b8ce7-d85c-480c-93cb-ad41e570861a",
+        "nombre": "Onix"
+    },
+    {
+        "tipo": "ROCA",
+        "vidaRestante": 180,
+        "ataque": 100,
+        "vidaCompleta": 180,
+        "defensa": 120,
+        "uuid": "bf7a9b81-0117-447e-a73a-66be4484c3ac",
+        "nombre": "Rhydon"
+    },
+    {
+        "tipo": "ROCA",
+        "vidaRestante": 130,
+        "ataque": 115,
+        "vidaCompleta": 130,
+        "defensa": 105,
+        "uuid": "688cb358-f835-4876-93a9-7b920c097045",
+        "nombre": "Kabutops"
+    },
+    {
+        "tipo": "ROCA",
+        "vidaRestante": 150,
+        "ataque": 105,
+        "vidaCompleta": 150,
+        "defensa": 65,
+        "uuid": "012fcdb7-513d-4e28-8ed8-e878fbdb3b19",
+        "nombre": "Aerodactyl"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 110,
+        "ataque": 48,
+        "vidaCompleta": 110,
+        "defensa": 50,
+        "uuid": "5da3f7aa-9f7a-4146-81b3-09153db82f71",
+        "nombre": "Squirtle"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 125,
+        "ataque": 63,
+        "vidaCompleta": 125,
+        "defensa": 80,
+        "uuid": "c0453495-917d-4a55-b8e0-57bc8c81d698",
+        "nombre": "Wartortle"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 160,
+        "ataque": 83,
+        "vidaCompleta": 160,
+        "defensa": 100,
+        "uuid": "ca04c62a-2cf4-4395-9391-bd63836ae1e8",
+        "nombre": "Blastoise"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 100,
+        "ataque": 52,
+        "vidaCompleta": 100,
+        "defensa": 48,
+        "uuid": "562c2e89-59f8-4a40-a521-7c4e0e743173",
+        "nombre": "Psyduck"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 140,
+        "ataque": 82,
+        "vidaCompleta": 140,
+        "defensa": 78,
+        "uuid": "cf5e6dec-2faa-47be-821c-f0a9b9528dfe",
+        "nombre": "Golduck"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 135,
+        "ataque": 70,
+        "vidaCompleta": 135,
+        "defensa": 65,
+        "uuid": "63866121-c9bf-4f9d-9139-0d41c3c3e46b",
+        "nombre": "Tentacruel"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 150,
+        "ataque": 75,
+        "vidaCompleta": 150,
+        "defensa": 110,
+        "uuid": "f0e0173f-307a-45d9-ab13-a5ac8aa639f1",
+        "nombre": "Slowbro"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 130,
+        "ataque": 95,
+        "vidaCompleta": 130,
+        "defensa": 180,
+        "uuid": "20fcbaa3-d60f-4801-8fcf-672d7541e1b7",
+        "nombre": "Cloyster"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 160,
+        "ataque": 125,
+        "vidaCompleta": 160,
+        "defensa": 79,
+        "uuid": "5b2fb952-5752-484c-a9d2-7369702bdf2b",
+        "nombre": "Gyarados"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 70,
+        "ataque": 10,
+        "vidaCompleta": 70,
+        "defensa": 40,
+        "uuid": "b26dc62b-4e7f-4b9e-9b94-32918ba53534",
+        "nombre": "Magikarp"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 170,
+        "ataque": 85,
+        "vidaCompleta": 170,
+        "defensa": 80,
+        "uuid": "1d1e6d79-34c1-425c-8802-d8b66520aa0f",
+        "nombre": "Lapras"
+    },
+    {
+        "tipo": "AGUA",
+        "vidaRestante": 160,
+        "ataque": 65,
+        "vidaCompleta": 160,
+        "defensa": 60,
+        "uuid": "ebe8038e-5683-430b-bbb2-af4eef27d8d3",
+        "nombre": "Vaporeon"
+    },
+    {
+        "tipo": "ELECTRICO",
+        "vidaRestante": 100,
+        "ataque": 100,
+        "vidaCompleta": 100,
+        "defensa": 50,
+        "uuid": "4f665480-d60d-4abe-9e48-5870ab00544b",
+        "nombre": "Pikachu"
+    },
+    {
+        "tipo": "ELECTRICO",
+        "vidaRestante": 120,
+        "ataque": 90,
+        "vidaCompleta": 120,
+        "defensa": 55,
+        "uuid": "7bdcc8d9-39bb-4282-9af0-56abd5963b85",
+        "nombre": "Raichu"
+    },
+    {
+        "tipo": "ELECTRICO",
+        "vidaRestante": 100,
+        "ataque": 50,
+        "vidaCompleta": 100,
+        "defensa": 70,
+        "uuid": "39757f39-f258-402d-af11-b287c4972d01",
+        "nombre": "Electrode"
+    },
+    {
+        "tipo": "ELECTRICO",
+        "vidaRestante": 160,
+        "ataque": 90,
+        "vidaCompleta": 160,
+        "defensa": 85,
+        "uuid": "3ccf27e1-0234-4106-87fc-38c05714e5dd",
+        "nombre": "Zapdos"
+    },
+    {
+        "tipo": "HIELO",
+        "vidaRestante": 95,
+        "ataque": 45,
+        "vidaCompleta": 95,
+        "defensa": 30,
+        "uuid": "54ba078a-2210-41a0-bab4-fdacb08f30d2",
+        "nombre": "Snorunt"
+    },
+    {
+        "tipo": "HIELO",
+        "vidaRestante": 160,
+        "ataque": 85,
+        "vidaCompleta": 160,
+        "defensa": 100,
+        "uuid": "8f1320e5-a71b-404b-8beb-0bd580379e9b",
+        "nombre": "Articuno"
+    },
+    {
+        "tipo": "FUEGO",
+        "vidaRestante": 150,
+        "ataque": 85,
+        "vidaCompleta": 150,
+        "defensa": 70,
+        "uuid": "8537a9cb-01b7-4077-91b3-fba1a0dc793f",
+        "nombre": "Dragonite"
+    }
+]

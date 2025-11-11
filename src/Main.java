@@ -25,7 +25,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        StringBuilder sb = new StringBuilder();
         Pokedex pokedex = new Pokedex();
         JSONArray array = new JSONArray();
 
@@ -47,11 +46,11 @@ public class Main {
     Mochila mochila2 = new Mochila();
         try {
 
-            mochila1.agregar(new Pokemon("Dragonite"));
-            mochila1.agregar(new Pokemon("Pikachu"));
-            mochila1.agregar(new Pokemon("Charmander"));
-            mochila2.agregar(new Pokemon ("Squirtle"));
-            mochila2.agregar(new Pokemon ("Bulbasaur"));
+            mochila1.agregar(new Pokemon("geodude"));
+            mochila1.agregar(new Pokemon("Oddish"));
+            mochila1.agregar(new Pokemon("Bulbasaur"));
+            mochila2.agregar(new Pokemon ("Moltres"));
+            mochila2.agregar(new Pokemon ("Zapdos"));
             mochila2.agregar(new Pokemon ("Articuno"));
             equipos1.agregarEquipo(entrenador1,mochila1);
             equipos1.agregarEquipo(entrenador2,mochila2);
@@ -64,11 +63,11 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-//        try {
+       try {
             JsonUtiles.grabarUnJson(equipos1.toJSON(), "equipos.json");
-//        } catch (JSONException e) {
-//            System.out.println(e.getMessage());
-//        }
+       } catch (JSONException e) {
+           System.out.println(e.getMessage());
+       }
 
 
 
@@ -80,9 +79,11 @@ public class Main {
         } catch (archivoYaExisteException e) {
             System.out.println( e.getMessage());
         }
-//        catch (JSONException e) {
-//            System.out.println(e.getMessage());
-//        }
+        catch (JSONException e) {
+           System.out.println(e.getMessage());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
 
         ArrayList<Pokemon> lista = new ArrayList<>();
 
@@ -135,6 +136,7 @@ public class Main {
                 System.out.println(" opcion ingresada invalida");
                 sc.nextLine();
             }
+
         }
 
         System.out.println("Programa finalizado.");

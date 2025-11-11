@@ -1,0 +1,74 @@
+[
+    [
+        {
+            "apellido": "Pascuan",
+            "uuid": "c3b8430f-7a2f-461a-be78-f5bcceae654d",
+            "nombre": "Joel"
+        },
+        [
+            {
+                "tipo": "ROCA",
+                "vidaRestante": 0,
+                "ataque": 45,
+                "vidaCompleta": 120,
+                "defensa": 60,
+                "uuid": "b5e2c33c-f4f9-4851-9db3-3357252c78a8",
+                "nombre": "Geodude"
+            },
+            {
+                "tipo": "PLANTA",
+                "vidaRestante": 0,
+                "ataque": 50,
+                "vidaCompleta": 90,
+                "defensa": 55,
+                "uuid": "0489e22e-87d9-4338-9954-f423f9294c32",
+                "nombre": "Oddish"
+            },
+            {
+                "tipo": "PLANTA",
+                "vidaRestante": 0,
+                "ataque": 49,
+                "vidaCompleta": 105,
+                "defensa": 45,
+                "uuid": "1e240b24-8f0c-4b60-b785-4c6fd21c2d51",
+                "nombre": "Bulbasaur"
+            }
+        ]
+    ],
+    [
+        {
+            "apellido": "Jimenez",
+            "uuid": "0199cac3-8986-46f2-965e-3cde84b50ba1",
+            "nombre": "Valentina"
+        },
+        [
+            {
+                "tipo": "FUEGO",
+                "vidaRestante": 153,
+                "ataque": 100,
+                "vidaCompleta": 160,
+                "defensa": 90,
+                "uuid": "fd48e933-5017-46dc-86c0-d5d3c6f21925",
+                "nombre": "Moltres"
+            },
+            {
+                "tipo": "ELECTRICO",
+                "vidaRestante": 160,
+                "ataque": 90,
+                "vidaCompleta": 160,
+                "defensa": 85,
+                "uuid": "d62bdf4f-6b79-48fa-ae57-c253d11213df",
+                "nombre": "Zapdos"
+            },
+            {
+                "tipo": "HIELO",
+                "vidaRestante": 160,
+                "ataque": 85,
+                "vidaCompleta": 160,
+                "defensa": 100,
+                "uuid": "e81885d4-6e64-423a-b9d4-465aba571ae5",
+                "nombre": "Articuno"
+            }
+        ]
+    ]
+]

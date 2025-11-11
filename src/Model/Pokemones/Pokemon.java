@@ -1,6 +1,7 @@
 package Model.Pokemones;
 import Enums.ENombre;
 import Enums.ETipo;
+import Exceptions.notPokemonFoundException;
 import Interfaces.IBatalla;
 import Interfaces.IConvertirJSON;
 import Model.Entidad;
@@ -59,7 +60,14 @@ public final class  Pokemon extends Entidad implements IConvertirJSON<JSONObject
     public Pokemon(String nombre,UUID uuid)
     {
         super(uuid);
-        ENombre pokemon = ENombre.valueOf(nombre.toUpperCase());
+
+        ENombre pokemon = null;
+                try {
+                    pokemon = ENombre.valueOf(nombre.toUpperCase());
+                }catch (IllegalArgumentException e)
+                {
+                    e.printStackTrace();
+                }
         this.nombre = pokemon;
         this.tipo = pokemon.getTipo();
         this.vidaCompleta = pokemon.getVidaCompleta();
@@ -164,12 +172,34 @@ public final class  Pokemon extends Entidad implements IConvertirJSON<JSONObject
 
 
             UUID uuid = UUID.fromString(jsonObject.getString("uuid"));
-            ENombre nombre = ENombre.valueOf(jsonObject.getString("nombre").toUpperCase());
+            ENombre nombre = null;
 
-            Pokemon p = new Pokemon(nombre.getNombre(), uuid);
+
+
+
+
+
+
+            Pokemon p = null;
+                    try {
+
+                      nombre = ENombre.valueOf(jsonObject.getString("nombre").toUpperCase());
+                      p = new Pokemon(nombre.getNombre(), uuid);
+
+                    }catch (IllegalArgumentException e)
+                    {
+                        throw new IllegalArgumentException("No existe en la pokedex el pokemon: "+jsonObject.getString("nombre"));
+                    }
+
+
 
             p.setTipo(ETipo.valueOf(jsonObject.getString("tipo")));
+
+
             p.setVidaRestante(jsonObject.getInt("vidaRestante"));
+
+
+
             p.setAtaque(jsonObject.getInt("ataque"));
             p.setDefensa(jsonObject.getInt("defensa"));
 
