@@ -17,15 +17,15 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
         this.equipos = new HashMap<>();
     }
 
-    // Dentro del map puede haber solo 2 equipos, cada equipo es un conunto de clave entrenado y valor mochila(mochila tiene pokemones)
-    public boolean agregarEquipo(Entrenador entrenador, Mochila mochila) throws existException, capacidadInvalidaException {
+    // Dentro del map puede haber solo 2 equipos, cada equipo es un conjunto de clave entrenado y valor mochila(mochila tiene pokemones)
+    public boolean agregarEquipo(Entrenador entrenador, Mochila mochila) throws existException, capacidadInvalidaException, mochilaVaciaException {
 
         if(this.equipos.containsKey(entrenador)) {
             throw new existException("Entrenador ya existe");
         }
         if(mochila.size()== 0)
         {
-            throw new capacidadInvalidaException("Mochila vacia");
+            throw new mochilaVaciaException("Mochila vacia");
         }
 
         int cantidadDeEquipos = size();

@@ -135,7 +135,7 @@ public class GestorJuego {
         return equipos;
     }
 
-    public static void agregarPeleador(Scanner sc, Pokedex pokedex, Equipos equipos)  throws capacidadInvalidaException, IllegalArgumentException  {
+    public static void agregarPeleador(Scanner sc, Pokedex pokedex, Equipos equipos)  throws capacidadInvalidaException, IllegalArgumentException, mochilaVaciaException  {
 
 
         if (equipos.size() >= 2) {
@@ -268,6 +268,10 @@ public class GestorJuego {
                             System.out.println("Peleador agregado con éxito.");
 
 
+                        }catch (mochilaVaciaException e){
+                            System.out.println("mochila vacia"+ e.getMessage());
+                            volverMochila = false;
+                            agregado = false;
                         }catch (existException | capacidadInvalidaException e) {
                             System.out.println("Error al guardar el equipo: " + e.getMessage());
                             agregado = true;

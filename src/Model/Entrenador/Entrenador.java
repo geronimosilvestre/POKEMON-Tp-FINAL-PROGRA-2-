@@ -13,7 +13,7 @@ public final class Entrenador extends Entidad implements IConvertirJSON<JSONObje
     String apellido;
 
 //Constructor que valida que no se ingresen nombres vacios, evita errores mas adelante
-    public Entrenador(String nombre, String apellido) throws IllegalArgumentException {
+    public Entrenador(String nombre, String apellido) throws IllegalArgumentException{
         super();
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre no puede estar vacío.");

@@ -4,6 +4,7 @@ import Colecctions.Equipos;
 import Colecctions.Mochila;
 import Enums.ETipo;
 import Exceptions.existException;
+import Exceptions.pokemonDebilitadoException;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
 import Menu.Menu;
@@ -77,12 +78,12 @@ public class GestorDamage {
 
                 if (nuevoPokemon.getVidaRestante() <= 0) {
                     nuevoPokemon = null;
-                    throw new IllegalArgumentException("El Pokémon elegido está debilitado. Elegí otro.");
+                    throw new pokemonDebilitadoException("El Pokémon elegido está debilitadoj. Elegí otro.");
                 }
 
                 System.out.println(nuevoPokemon.getNombre() + " entra en combate!");
 
-            } catch (IllegalArgumentException | existException e) {
+            } catch (pokemonDebilitadoException|IllegalArgumentException | existException e) {
                 System.out.println(e.getMessage());
                 System.out.println("Intentá con otro nombre.\n");
             }
