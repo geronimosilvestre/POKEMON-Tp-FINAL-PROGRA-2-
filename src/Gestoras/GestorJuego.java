@@ -264,14 +264,14 @@ public class GestorJuego {
 
 
                             agregado = true;
-                            volverMochila = true;
+                            volverMochila = false;
                             System.out.println("Peleador agregado con éxito.");
 
 
                         }catch (mochilaVaciaException e){
-                            System.out.println("mochila vacia"+ e.getMessage());
+                            System.out.println("No se pudo guardar el equipo: "+ e.getMessage());
                             volverMochila = false;
-                            agregado = false;
+                            agregado = true;
                         }catch (existException | capacidadInvalidaException e) {
                             System.out.println("Error al guardar el equipo: " + e.getMessage());
                             agregado = true;

@@ -29,7 +29,7 @@ public class Equipos implements IConvertirJSON<JSONArray,Equipos> {
         }
 
         int cantidadDeEquipos = size();
-        if (cantidadDeEquipos >2) {
+        if (cantidadDeEquipos >=2) {
             throw new capacidadInvalidaException("No se puede agregar mas de 2 equipos");
         }
 
