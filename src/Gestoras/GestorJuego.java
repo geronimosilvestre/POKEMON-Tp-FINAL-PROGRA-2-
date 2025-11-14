@@ -575,16 +575,16 @@ public class GestorJuego {
 
                     if (todosDebilitados) {
                         System.out.println(
-                                """
-                                +-------------------------------------------+
-                                |                                           |
-                                |   """ + entrenadorAtacante.getNombre() + " " + entrenadorAtacante.getApellido() +
-                                        " ha ganado la batalla!  " + """
-     |
-    |                                           |
-    +-------------------------------------------+
-    """
-                        );
+                                String.format("""
+        +-------------------------------------------+
+        |                                           |
+        |   %s %s ha ganado la batalla!             |
+        |                                           |
+        +-------------------------------------------+
+        """,
+                                        entrenadorAtacante.getNombre(),
+                                        entrenadorAtacante.getApellido()
+                        ));
 
                         //Termina la batalla si murieron todos los pokemones de un solo entrenador
                         batallaActiva = false;

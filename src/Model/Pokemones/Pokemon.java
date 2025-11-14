@@ -1,7 +1,7 @@
 package Model.Pokemones;
 import Enums.ENombre;
 import Enums.ETipo;
-import Exceptions.notPokemonFoundException;
+//import Exceptions.notPokemonFoundException;
 import Interfaces.IBatalla;
 import Interfaces.IConvertirJSON;
 import Model.Entidad;
