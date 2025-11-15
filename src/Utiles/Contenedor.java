@@ -7,13 +7,16 @@ public class Contenedor<T> {
 
     protected ArrayList<T> lista = new ArrayList<>();
 
-    // NO LANZA EXCEPCIONES -> las lanza cada subclase según sus reglas
+    // agrega un objeto pasado por parametro, las exceptions las implementa cada clase
     public boolean agregarObjeto(T objeto) {
        return lista.add(objeto);
     }
 
     public boolean eliminarObjeto(T objeto) {
        return lista.remove(objeto);
+    }
+    public ArrayList<T> getLista() {
+        return lista;
     }
 
     public LinkedHashSet<T> obtenerTodosObjetos() {

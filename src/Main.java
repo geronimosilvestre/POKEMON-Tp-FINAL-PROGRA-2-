@@ -100,7 +100,7 @@ public class Main {
         //SE CREAN LOS OBJETOS DE LOS DISTINTOS POKEMON
         try {
             for (Pokemon p : lista) {
-                pokedex.agregar(p);
+             pokedex.agregar(p);
             }
         } catch (existException e) {
             System.out.println(e.getMessage());

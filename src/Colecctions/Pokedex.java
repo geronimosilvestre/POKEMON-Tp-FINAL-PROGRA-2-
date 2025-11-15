@@ -19,17 +19,11 @@ import static Utiles.JsonUtiles.leerUnJson;
 
 public class Pokedex extends Contenedor<Pokemon> {
 
-    private ArrayList<Pokemon> pokemones;
-    //En la pokedex se guardaran todos los pokemones existentes posibles para capturarlos desde aqui y para tener una lista completa de los que hay
-    public Pokedex() {
-        pokemones = new ArrayList<>();
-    }
 
 
-    //Agrega  pokemones al ararylist sin repetidos
     public boolean agregar(Pokemon pokemon) throws existException {
-        if (!pokemones.contains(pokemon)) {
-            agregarObjeto(pokemon);
+        if (!lista.contains(pokemon)) {
+            super.agregarObjeto(pokemon);
             return true;
         } else {
             throw new existException("El Pokemon no se puede repetir, intente con otro");
@@ -43,7 +37,7 @@ public class Pokedex extends Contenedor<Pokemon> {
     //retornar un pokemon al buscarlo por el indice de la arraylist
 
     public Pokemon buscar(int posicion) {
-        return pokemones.get(posicion);
+        return lista.get(posicion);
     }
 
 
@@ -56,7 +50,7 @@ public class Pokedex extends Contenedor<Pokemon> {
     public String listar( )  {
         StringBuilder sb = new StringBuilder();
         int contador = 0;
-        for(Pokemon pokemon : pokemones){
+        for(Pokemon pokemon : lista){
             sb.append("["+ contador  + "]");
            sb.append(pokemon.getNombre());
            sb.append("\n");
@@ -68,7 +62,7 @@ public class Pokedex extends Contenedor<Pokemon> {
 
     //Obtiene un pokemon random a partir de calcular un numero usando el tamanio total del arraylist, esto se aprovecha en la batalla
     public Pokemon getRandom() {
-        return pokemones.get((int)(Math.random() * pokemones.size()));
+        return lista.get((int)(Math.random() * lista.size()));
     }
 
 
