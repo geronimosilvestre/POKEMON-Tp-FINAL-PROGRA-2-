@@ -15,12 +15,14 @@ public class Contenedor<T> {
     public boolean eliminarObjeto(T objeto) {
        return lista.remove(objeto);
     }
-    public ArrayList<T> getLista() {
-        return lista;
-    }
 
-    public LinkedHashSet<T> obtenerTodosObjetos() {
-        return new LinkedHashSet<>(lista);
+    public T getObjRandom(){
+
+        if (lista.isEmpty()) {
+
+            throw new IllegalStateException("Contenedor vacío, no se puede obtener un objeto aleatorio.");
+        }
+        return lista.get((int)(Math.random()*lista.size()));
     }
 }
 

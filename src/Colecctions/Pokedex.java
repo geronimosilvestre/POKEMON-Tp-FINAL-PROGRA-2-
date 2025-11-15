@@ -62,7 +62,7 @@ public class Pokedex extends Contenedor<Pokemon> {
 
     //Obtiene un pokemon random a partir de calcular un numero usando el tamanio total del arraylist, esto se aprovecha en la batalla
     public Pokemon getRandom() {
-        return lista.get((int)(Math.random() * lista.size()));
+        return super.getObjRandom();
     }
 
 
