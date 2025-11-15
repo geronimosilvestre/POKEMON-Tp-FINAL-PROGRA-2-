@@ -3,8 +3,10 @@ package Colecctions;
 import Enums.ENombre;
 import Exceptions.*;
 import Model.Pokemones.Pokemon;
+import Utiles.Contenedor;
 
 import java.util.LinkedHashSet;
+import java.util.Objects;
 
 public class Mochila {
     private LinkedHashSet<Pokemon> pokemones;
@@ -16,22 +18,20 @@ public class Mochila {
 
      //La mochila solo acepta pokemones y puede contener hasta 3 de cada uno
 
-     public boolean agregar(Pokemon pokemon) throws  capacidadInvalidaException, existException
-     {
-         if (pokemones.size() == 3) {
-             throw new capacidadInvalidaException("La mochila no puede tener mas de 3 pokemones");
-         }
-         if (pokemones.size() < 3) {
 
+    public boolean agregar(Pokemon pokemon) throws capacidadInvalidaException, existException{
 
-             if (pokemones.contains(pokemon)) {
-                 throw new existException("Pokemon ya existe");
-             }
-                 return pokemones.add(pokemon);
+        if (pokemones.size() >= 3) {
+            throw new capacidadInvalidaException("La mochila no puede tener más de 3 pokemones");
+        }
 
-         }
-        return  false;
-     }
+        if (pokemones.contains(pokemon)) {
+            throw new existException("Ese pokemon ya está en la mochila");
+        };
+
+        return pokemones.add(pokemon);
+    }
+
 
     //Eliminar de la mochila por el nombre del pokemon en String
 
@@ -46,7 +46,6 @@ public class Mochila {
         }
 
         return pokemones.remove(aux);
-
      }
 
      //Muestra todos los pokemones de la mochila y  la posicion en la que aparecen para que el usuario vea el indice

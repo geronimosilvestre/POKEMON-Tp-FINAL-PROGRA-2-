@@ -208,7 +208,9 @@ public class GestorJuego {
                     if (resp.equalsIgnoreCase("s")) {
                         try {
                             mochila.agregar(random);
+                            System.out.println("aca1");
                             System.out.println("Agregado con éxito.");
+                            System.out.println("Aca2");
                         } catch (Exception e) {
                             System.out.println("Error al agregar: " + e.getMessage());
                         }

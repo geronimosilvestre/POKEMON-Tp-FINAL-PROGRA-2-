@@ -25,6 +25,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+
+
         Pokedex pokedex = new Pokedex();
         JSONArray array = new JSONArray();
 

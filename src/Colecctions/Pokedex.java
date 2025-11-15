@@ -4,6 +4,7 @@ import Exceptions.archivoYaExisteException;
 
 import Exceptions.existException;
 import Model.Pokemones.Pokemon;
+import Utiles.Contenedor;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +17,7 @@ import java.util.List;
 import static Utiles.JsonUtiles.grabarUnJson;
 import static Utiles.JsonUtiles.leerUnJson;
 
-public class Pokedex{
+public class Pokedex extends Contenedor<Pokemon> {
 
     private ArrayList<Pokemon> pokemones;
     //En la pokedex se guardaran todos los pokemones existentes posibles para capturarlos desde aqui y para tener una lista completa de los que hay
@@ -28,13 +29,17 @@ public class Pokedex{
     //Agrega  pokemones al ararylist sin repetidos
     public boolean agregar(Pokemon pokemon) throws existException {
         if (!pokemones.contains(pokemon)) {
-            pokemones.add(pokemon);
+            agregarObjeto(pokemon);
             return true;
         } else {
             throw new existException("El Pokemon no se puede repetir, intente con otro");
         }
     }
 
+    @Override
+    public boolean eliminarObjeto(Pokemon objeto) {
+        return super.eliminarObjeto(objeto);
+    }
     //retornar un pokemon al buscarlo por el indice de la arraylist
 
     public Pokemon buscar(int posicion) {
