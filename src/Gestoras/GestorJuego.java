@@ -135,7 +135,7 @@ public class GestorJuego {
         return equipos;
     }
 
-    public static void agregarPeleador(Scanner sc, Pokedex pokedex, Equipos equipos)  throws capacidadInvalidaException, IllegalArgumentException, mochilaVaciaException  {
+    public static void agregarPeleador(Scanner sc, Pokedex pokedex, Equipos equipos) throws capacidadInvalidaException, IllegalArgumentException, mochilaVaciaException, notPokemonFoundException {
 
 
         if (equipos.size() >= 2) {
@@ -201,21 +201,24 @@ public class GestorJuego {
 
                     //Si se elige agregar a mano van saliendo pokemones random de la pokedex para que el usuario decida si le gusta el que le toco o no
                     //Puede meter menos 1 2 o 3 pokemones
-                    Pokemon random = pokedex.getRandom();
-                    System.out.println("Te tocó: " + random);
-                    System.out.print("¿Querés agregarlo? (s/n): ");
-                    String resp = sc.nextLine();
-                    if (resp.equalsIgnoreCase("s")) {
+                   Capturar capttura1=new Capturar();
+
+                    Pokemon salvaje =capttura1.encontrarPokemon(pokedex);
+
+                    System.out.println("Te tocó: " + salvaje );
+
+                    System.out.print(" Probando tu habilidad para capturar!!! ᕦ(ò_óˇ)ᕤ : ");
+                    if (capttura1.capturar(salvaje)){
                         try {
-                            mochila.agregar(random);
-                            System.out.println("aca1");
-                            System.out.println("Agregado con éxito.");
-                            System.out.println("Aca2");
+                            mochila.agregar(salvaje);
+                            System.out.println("capturado con éxito.");
+
                         } catch (Exception e) {
                             System.out.println("Error al agregar: " + e.getMessage());
+                            System.out.println("null: " + e.getMessage());
                         }
                     } else {
-                        System.out.println("Descartado.");
+                        System.out.println("Se ha escapado!!! (ノಥ,_｣ಥ)ノ彡┻━┻ \n");
                     }
                 }
                 case 3 -> {
@@ -266,7 +269,7 @@ public class GestorJuego {
 
 
                             agregado = true;
-                            volverMochila = false;
+                            volverMochila=true;
                             System.out.println("Peleador agregado con éxito.");
 
 
@@ -658,6 +661,8 @@ public class GestorJuego {
                     pokemon2 = reemplazo;
 
 
+            }else if(opcion==6){
+                batallaActiva=false;
             }
 
             if (batallaActiva) turno++;

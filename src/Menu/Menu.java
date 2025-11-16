@@ -41,7 +41,7 @@ public class Menu {
     public static void menuMochila(){
         System.out.println("\n--- Menú Mochila ---");
         System.out.println("1. Rellenar / completar automáticamente");
-        System.out.println("2. Rellenar manualmente");
+        System.out.println("2. Capturar pokemon!!");
         System.out.println("3. Ver mochila");
         System.out.println("4. Eliminar Pokémon");
         System.out.println("5. Guardar peleador y volver");
@@ -72,8 +72,9 @@ public class Menu {
                .append(pokemonAtacante.getNombre()).append(") (૭ ｡•̀ ᵕ •́｡ )૭\n")
                .append("Vida de tu Pokémon: ").append(pokemonAtacante.getVidaRestante()).append("\n")
                .append("Vida del oponente: ").append(pokemonDefensor.getVidaRestante()).append("\n \n")
-               .append("4. Atacar\n")
-               .append("5. Cambiar Pokémon (Pierde el turno)\n")
+               .append("4. Atacar (ง ͠° ͟ʖ ͡°)งo \n")
+               .append("5. Cambiar Pokémon (Pierde el turno) ⚠ ⚠ ⚠\n")
+               .append("6. Rendirse (╥﹏╥)\n")
                .append("Elegí una opción: ");
 
        return sb.toString();
