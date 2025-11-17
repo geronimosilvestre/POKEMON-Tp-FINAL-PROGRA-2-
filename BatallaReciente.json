@@ -1,73 +1,73 @@
 [
     [
         {
-            "apellido": "s",
-            "uuid": "a2694592-f5cb-4dc1-88e0-5b438d62118c",
-            "nombre": "j"
+            "apellido": "Pascuan",
+            "uuid": "254bb819-48eb-41d9-9390-475677c5143a",
+            "nombre": "Joel"
         },
         [
             {
+                "tipo": "ROCA",
+                "vidaRestante": 120,
+                "ataque": 45,
+                "vidaCompleta": 120,
+                "defensa": 60,
+                "uuid": "29890fbd-a6ce-420c-b502-68e1d80f12c6",
+                "nombre": "Geodude"
+            },
+            {
                 "tipo": "PLANTA",
-                "vidaRestante": 0,
-                "ataque": 55,
-                "vidaCompleta": 115,
-                "defensa": 115,
-                "uuid": "4f054164-bcc1-405f-af3d-ac18c6a78efa",
-                "nombre": "Tangela"
+                "vidaRestante": 90,
+                "ataque": 50,
+                "vidaCompleta": 90,
+                "defensa": 55,
+                "uuid": "d8bbf1c4-ff4b-487e-8733-305e22903897",
+                "nombre": "Oddish"
             },
             {
-                "tipo": "AGUA",
+                "tipo": "ELECTRICO",
                 "vidaRestante": 0,
-                "ataque": 70,
-                "vidaCompleta": 135,
-                "defensa": 65,
-                "uuid": "63866121-c9bf-4f9d-9139-0d41c3c3e46b",
-                "nombre": "Tentacruel"
-            },
-            {
-                "tipo": "AGUA",
-                "vidaRestante": 0,
-                "ataque": 10,
-                "vidaCompleta": 70,
-                "defensa": 40,
-                "uuid": "b26dc62b-4e7f-4b9e-9b94-32918ba53534",
-                "nombre": "Magikarp"
+                "ataque": 90,
+                "vidaCompleta": 160,
+                "defensa": 85,
+                "uuid": "9fb22a92-e1d7-4499-b859-58307a1bfa13",
+                "nombre": "Zapdos"
             }
         ]
     ],
     [
         {
-            "apellido": "e",
-            "uuid": "b510e65f-9027-41d9-918e-9640352d8435",
-            "nombre": "w"
+            "apellido": "Jimenez",
+            "uuid": "3f04a514-40fc-445d-864c-85685c9a8229",
+            "nombre": "Valentina"
         },
         [
             {
                 "tipo": "FUEGO",
-                "vidaRestante": 100,
-                "ataque": 85,
-                "vidaCompleta": 100,
-                "defensa": 55,
-                "uuid": "71cc6065-1e7a-4d91-a830-285b77395754",
-                "nombre": "Ponyta"
-            },
-            {
-                "tipo": "AGUA",
-                "vidaRestante": 110,
-                "ataque": 48,
-                "vidaCompleta": 110,
-                "defensa": 50,
-                "uuid": "5da3f7aa-9f7a-4146-81b3-09153db82f71",
-                "nombre": "Squirtle"
-            },
-            {
-                "tipo": "ROCA",
-                "vidaRestante": 178,
+                "vidaRestante": 0,
                 "ataque": 100,
-                "vidaCompleta": 180,
-                "defensa": 120,
-                "uuid": "bf7a9b81-0117-447e-a73a-66be4484c3ac",
-                "nombre": "Rhydon"
+                "vidaCompleta": 160,
+                "defensa": 90,
+                "uuid": "ef95b54b-ac05-4912-95f6-5c136cf05412",
+                "nombre": "Moltres"
+            },
+            {
+                "tipo": "ELECTRICO",
+                "vidaRestante": 0,
+                "ataque": 90,
+                "vidaCompleta": 160,
+                "defensa": 85,
+                "uuid": "9fb22a92-e1d7-4499-b859-58307a1bfa13",
+                "nombre": "Zapdos"
+            },
+            {
+                "tipo": "HIELO",
+                "vidaRestante": 0,
+                "ataque": 85,
+                "vidaCompleta": 160,
+                "defensa": 100,
+                "uuid": "76532460-1741-4a5c-a919-618d2cbb6d32",
+                "nombre": "Articuno"
             }
         ]
     ]

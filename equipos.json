@@ -2,7 +2,7 @@
     [
         {
             "apellido": "Pascuan",
-            "uuid": "0cadae15-84de-4da8-8678-0d9afe1aa102",
+            "uuid": "b464ac54-92eb-46a2-a916-9a8484f244b5",
             "nombre": "Joel"
         },
         [
@@ -12,7 +12,7 @@
                 "ataque": 45,
                 "vidaCompleta": 120,
                 "defensa": 60,
-                "uuid": "adba2a42-3c09-4802-81f8-08f9e70899a6",
+                "uuid": "dad24542-e4d7-4dc1-af47-13899d2b2a58",
                 "nombre": "Geodude"
             },
             {
@@ -21,7 +21,7 @@
                 "ataque": 50,
                 "vidaCompleta": 90,
                 "defensa": 55,
-                "uuid": "0cf0a02f-f062-4f14-8d62-429c8524a67c",
+                "uuid": "f5e1ef08-40dc-427c-bebf-0ec0a2d20527",
                 "nombre": "Oddish"
             },
             {
@@ -30,7 +30,7 @@
                 "ataque": 49,
                 "vidaCompleta": 105,
                 "defensa": 45,
-                "uuid": "0cc938e4-be1c-4e69-93ab-7b81e0dae618",
+                "uuid": "1b3e6191-14d9-407f-a79e-447a68a5a0b3",
                 "nombre": "Bulbasaur"
             }
         ]
@@ -38,7 +38,7 @@
     [
         {
             "apellido": "Jimenez",
-            "uuid": "f73e1d2c-b08c-4e2d-a478-9b49c017422b",
+            "uuid": "a3c270e0-8c81-4fc4-bb44-b167fa5f231f",
             "nombre": "Valentina"
         },
         [
@@ -48,7 +48,7 @@
                 "ataque": 100,
                 "vidaCompleta": 160,
                 "defensa": 90,
-                "uuid": "8831fa99-9257-4eaa-854c-7b8d3215b759",
+                "uuid": "9244e33f-e9b8-4794-8da9-70efbcea04ba",
                 "nombre": "Moltres"
             },
             {
@@ -57,7 +57,7 @@
                 "ataque": 90,
                 "vidaCompleta": 160,
                 "defensa": 85,
-                "uuid": "9f2c4d33-42f0-4592-a16e-5c3a3645e88d",
+                "uuid": "dd30a21d-120d-405d-813e-1458311c467b",
                 "nombre": "Zapdos"
             },
             {
@@ -66,7 +66,7 @@
                 "ataque": 85,
                 "vidaCompleta": 160,
                 "defensa": 100,
-                "uuid": "8b3bce46-fe5d-4f20-8195-44ea504a9a47",
+                "uuid": "6fe3d7fd-d077-4929-9641-1419183d8bd8",
                 "nombre": "Articuno"
             }
         ]

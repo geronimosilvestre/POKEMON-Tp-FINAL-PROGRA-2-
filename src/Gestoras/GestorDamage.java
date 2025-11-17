@@ -3,7 +3,9 @@ package Gestoras;
 import Colecctions.Equipos;
 import Colecctions.Mochila;
 import Enums.ETipo;
+import Exceptions.capacidadInvalidaException;
 import Exceptions.existException;
+import Exceptions.noIndexFoundException;
 import Exceptions.pokemonDebilitadoException;
 import Model.Entrenador.Entrenador;
 import Model.Pokemones.Pokemon;
@@ -78,26 +80,31 @@ public class GestorDamage {
         while (nuevoPokemon == null) {
             try {
                 if (porMuerte) {
-                    System.out.print("Su Pokémon ha muerto (ಥ_ಥ)  Escribí el nombre de otro Pokémon de la mochila: ");
+                    System.out.print("Su Pokémon ha muerto (ಥ_ಥ)  Escribí el numero de otro Pokémon de la mochila: ");
                 } else {
-                    System.out.print("Para reemplazar el Pokémon activo, escribí el nombre de otro: ");
+                    System.out.print("Para reemplazar el Pokémon activo, escribí el numero de otro: ");
                 }
 
-                String nombreNuevo = sc.nextLine();
+                int indice=sc.nextInt();
+                sc.nextLine();
 
                 Mochila mochila = equipos.getMochila(entrenador.getNombre(), entrenador.getApellido());
-                nuevoPokemon = mochila.getPokemon(nombreNuevo);
+                nuevoPokemon = mochila.getPokemonIndex(indice);
 
                 if (nuevoPokemon.getVidaRestante() <= 0) {
                     nuevoPokemon = null;
-                    throw new pokemonDebilitadoException("El Pokémon elegido está debilitadoj. Elegí otro.");
+                    throw new pokemonDebilitadoException("El Pokémon elegido está debilitado. Elegí otro.");
                 }
 
                 System.out.println(nuevoPokemon.getNombre() + " entra en combate!");
 
-            } catch (pokemonDebilitadoException|IllegalArgumentException | existException e) {
+            } catch (pokemonDebilitadoException|IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println("Intentá con otro nombre.\n");
+            } catch (capacidadInvalidaException e) {
+                System.out.println("error: "+ e.getMessage());
+            } catch (noIndexFoundException e) {
+                System.out.println(e.getMessage());
             }
         }
 

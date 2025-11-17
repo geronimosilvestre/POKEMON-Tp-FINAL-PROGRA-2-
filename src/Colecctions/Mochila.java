@@ -59,6 +59,7 @@ public class Mochila extends Contenedor{
          int contador = 0;
 
          for (Pokemon p : pokemones) {
+
              sb.append("[").append(contador).append("] ")
                      .append(p.getNombre()).append("\n");
              contador++;

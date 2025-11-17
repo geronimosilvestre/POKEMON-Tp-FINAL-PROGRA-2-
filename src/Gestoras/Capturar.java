@@ -60,7 +60,7 @@ public class Capturar {
 
         double porcFinal=Math.random();
 
-        return  porcFinal <=chance;
+        return  porcFinal <= chance;
     }
     
 
