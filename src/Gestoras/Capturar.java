@@ -44,7 +44,7 @@ public class Capturar {
         if (pokemon==null){
             throw new notPokemonFoundException("No se encontró al pokemon");
         }
-        if (pokemon.getVidaRestante() <= 0) {
+        if (pokemon.getVidaRestante() < 0) {
             throw new IllegalStateException("El Pokémon está debilitado, no se puede capturar.");
         }
 

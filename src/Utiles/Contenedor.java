@@ -24,5 +24,6 @@ public class Contenedor<T> {
         }
         return lista.get((int)(Math.random()*lista.size()));
     }
+
 }
 

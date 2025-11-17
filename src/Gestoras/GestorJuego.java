@@ -16,6 +16,7 @@ import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import static Gestoras.GestorDamage.seleccionarNuevoPokemon;
@@ -399,7 +400,7 @@ public class GestorJuego {
         }
     }
 
-    public static void iniciarBatalla(Equipos equipos, GestorDamage gestorDamage) throws emptyTeamsException {
+    public static void iniciarBatalla(Equipos equipos, GestorDamage gestorDamage) throws emptyTeamsException, mochilaVaciaException {
         if (equipos.size() != 2){
             throw new emptyTeamsException("complete los equipos antes de iniciar la batalla");
         }
@@ -693,7 +694,7 @@ public class GestorJuego {
 
                 System.out.println(" " +entrenadorAtacante.getNombre()+" se ha rendido! Perdio la batalla.");
                 boolean todosDebilitados=false;
-
+                Mochila mochilaDefensor=equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido());
                 Mochila mochilaAtacante=equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido());
                 mochilaAtacante.debilitarTodos();
                 todosDebilitados = true;
@@ -740,37 +741,74 @@ public class GestorJuego {
 
                     //Termina la batalla si se rinde y la vida de sus pokemon es 0
 
-                    Mochila mochilaPerdedora = equipos.getMochila(
-                            entrenadorAtacante.getNombre(),
-                            entrenadorAtacante.getApellido()
-                    );
+//                    Mochila mochilaPerdedora = equipos.getMochila(
+//                            entrenadorAtacante.getNombre(),
+//                            entrenadorAtacante.getApellido()
+//                    );
 
-                    System.out.println("\nIntentando capturar los pokémon del entrenador perdedor "
+                    System.out.println("\nQuieres capturar los pokémon del entrenador perdedor? s/n"
                             + entrenadorAtacante.getNombre() + "...\n");
 
-                    Capturar capturador = new Capturar();
+                        String op=sc.nextLine();
 
-                    ArrayList<Pokemon> pokemonsPerdedores = new ArrayList<>(mochilaPerdedora.obtenerTodos());
+                        if(op.equals("s")){
 
+                            Capturar capturador = new Capturar();
 
+                            try{
 
-                    batallaActiva = false;
-                    flagRendirse=true;
+                                Pokemon perdedor=mochilaAtacante.getRandomdeMochila();
 
+                                if (perdedor!=null) {
+
+                                    boolean secapturo=false;
+
+                                    secapturo= capturador.capturarBatalla(perdedor);
+
+                                    if (secapturo) {
+                                        System.out.println(" "+entrenadorDefensor.getNombre()+" puedes reemplazar tu pokemon: \n ");
+                                        ArrayList<Pokemon> lista = new ArrayList<>(mochilaDefensor.obtenerTodos());
+
+                                        for (int i = 0; i < lista.size(); i++) {
+                                            System.out.println(i + ") " + lista.get(i).getNombre());
+                                        }
+
+                                        System.out.print("Ingresa el número del Pokémon a reemplazar: ");
+
+                                        int indice = sc.nextInt();
+                                        Pokemon elegido=mochilaDefensor.getPokemonIndex(indice);
+
+                                        if(equipos.reemplazarPokemon(entrenadorDefensor.getNombre(),entrenadorDefensor.getApellido(),perdedor,elegido.getNombre())){
+                                            System.out.println("se ha reemplazado!!");
+                                            System.out.println(mochilaDefensor.obtenerTodos());
+                                        }
+
+                                    }
+                                }
+                            }catch (mochilaVaciaException e){
+                                System.out.println(e.getMessage());
+                            } catch (notPokemonFoundException e) {
+                                System.out.println(e.getMessage());
+                            } catch (capacidadInvalidaException e) {
+                                throw new RuntimeException(e);
+                            } catch (existException e) {
+                                System.out.println(e.getMessage());
+                            } catch (noIndexFoundException e) {
+                                System.out.println(e.getMessage());
+                            }
+
+                            batallaActiva = false;
+                            flagRendirse=true;
+
+                        }else {
+                            batallaActiva = false;
+                        }
 
                 }
 
 
-            }  Menu.menuCapturar();
-
-            if(opcion=='s'){
-                System.out.println("entro");
-                Capturar capturar=new Capturar();
-
             }
-            if(flagRendirse){
-             //aqui quiero empezar
-            }
+
 
             if (batallaActiva) turno++;
         }

@@ -9,8 +9,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 public final class Entrenador extends Entidad implements IConvertirJSON<JSONObject,Entrenador> {
-    String nombre;
-    String apellido;
+    private String nombre;
+    private String apellido;
 
 //Constructor que valida que no se ingresen nombres vacios, evita errores mas adelante
     public Entrenador(String nombre, String apellido) throws IllegalArgumentException{

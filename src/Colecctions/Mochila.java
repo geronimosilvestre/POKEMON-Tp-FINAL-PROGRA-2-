@@ -128,6 +128,23 @@ public class Mochila extends Contenedor{
         return pokemones;
     }
 
+    public Pokemon getRandomdeMochila() throws mochilaVaciaException
+    {
+        if (pokemones.isEmpty()) {
+            throw new mochilaVaciaException("Mochila vacia...");
+        }
+        int indiceRand= (int) (Math.random() * pokemones.size());
+        int cont=0;
+        for  (Pokemon p : pokemones) {
+            if(cont==indiceRand) {
+                return p;
+            }
+            cont++;
+        }
+        return null;
+
+
+    }
 //    public boolean booleanoAleatorio() {
 //        int numRandom = (int) (Math.random() * 1000);
 //        return numRandom < 500;
