@@ -5,6 +5,7 @@ import Exceptions.notPokemonFoundException;
 import Model.Pokemones.Pokemon;
 
 public class Capturar {
+
     public Capturar() {
     }
 
@@ -37,18 +38,19 @@ public class Capturar {
 
         return  porcFinal <=chance;
 
-    }  public boolean capturarBatalla (Pokemon pokemon) throws notPokemonFoundException
+    }
+    public boolean capturarBatalla (Pokemon pokemon) throws notPokemonFoundException
     {
         if (pokemon==null){
-            throw new notPokemonFoundException("No se encontro al pokemon");
+            throw new notPokemonFoundException("No se encontró al pokemon");
         }
         if (pokemon.getVidaRestante() <= 0) {
             throw new IllegalStateException("El Pokémon está debilitado, no se puede capturar.");
         }
 
-        double vida= 1 - (pokemon.getVidaRestante() / pokemon.getVidaCompleta()); //0.43
+        double vida= 1 - (pokemon.getVidaRestante() / pokemon.getVidaCompleta());
 
-        double tipo=pokemon.getTipo().getPoderBase()/100.0;//0.5
+        double tipo=pokemon.getTipo().getPoderBase()/100.0;
 
         double chance= (tipo)*(vida);
 
@@ -60,5 +62,6 @@ public class Capturar {
 
         return  porcFinal <=chance;
     }
+    
 
 }

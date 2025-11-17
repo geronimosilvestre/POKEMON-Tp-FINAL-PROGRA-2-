@@ -313,6 +313,7 @@ public class GestorJuego {
 
     public static void menuBatalla(Scanner sc, Equipos equipos) {
         boolean volver = false;
+
         GestorDamage gestorDamage = new GestorDamage(equipos);
 
         while (!volver) {
@@ -409,7 +410,7 @@ public class GestorJuego {
         }
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("=== COMIENZA LA BATALLA ===");
+        System.out.println("=== COMIENZA LA BATALLA   ===");
         System.out.println("Listado de equipos:");
         try {
             System.out.println(equipos.listar());
@@ -528,6 +529,7 @@ public class GestorJuego {
         // === BUCLE DE BATALLA ===
         boolean batallaActiva = true;
         int turno = 1;
+        boolean flagRendirse=false;
 
         Entrenador entrenadorAtacante;
         Entrenador entrenadorDefensor;
@@ -594,6 +596,31 @@ public class GestorJuego {
                                         entrenadorAtacante.getNombre(),
                                         entrenadorAtacante.getApellido()
                         ));
+                        System.out.println("⢿⣷⣶⣤⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀\n" +
+                                "⠈⢿⣿⣿⡇⠈⠑⠢⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡴⢶⣿⣿⣿⡿⠁⠀⠀⠀⠀\n" +
+                                "⠀⠈⢻⣿⣇⠀⠀⠀⠀⠑⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡴⠟⠉⠀⠀⣸⣿⣿⡟⠁⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠹⣿⡄⠀⠀⠀⠀⠀⠙⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠋⠀⠀⠀⠀⢀⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠈⠳⣄⠀⠀⠀⠀⠀⠀⠱⡄⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⡠⠊⠁⠀⠀⠀⠀⠀⠀⣼⠟⠁⠀⠀⠀⠀⢀⣀⠤⢤\n" +
+                                "⠀⠀⠀⠀⠀⠀⠈⠓⢄⡀⠀⠀⠀⠀⠘⠦⠔⠊⠉⠀⠀⠀⠀⠀⠀⠀⠉⠁⠂⠊⠀⠀⠀⠀⠀⠀⢀⠴⠊⠀⢀⣀⠤⠔⠚⠉⠁⠀⠀⢸\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠢⢄⠀⡠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⠴⠊⢁⡠⠔⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⡆\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⡤⠒⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⢀⣶⡿⠛⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠛⢻⣶⡄⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡌⠀⠈⣿⣿⣶⡿⠀⠀⠀⠀⢀⠀⠀⠀⠀⢿⣶⣿⣿⠇⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠤⠄⠚⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡧⠤⢄⡈⠉⠉⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠉⠉⠁⠀⣀⣀⡇⠀⠀⢠⠤⠒⠒⠉⠁⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠂⠀⠀⠙⡄⠀⠀⠀⠢⠤⠴⠊⠒⠤⠠⠖⠀⠀⠀⡴⠋⠀⠀⢹⠀⠀⠀⠱⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⢀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡀⠀⠀⢠⡎⠀⠀⠀⠀⠈⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⢖⡉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠒⣲⠋⠈⢒⡤⠀⠀⠀⠀⠈⢦⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠀⠉⠲⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠴⠊⠈⡤⠒⠉⠀⠀⣀⠤⠒⠉⠁⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠐⠂⠉⠀⠀⠀⠀⢣⢀⡦⣶⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⢄⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠀⠀⠈⢏⢀⣀⠵⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⢀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠈⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⢰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⡸⠀⠀⠀⠀⠀⠀⠀⠀⡆⠀⠈⢇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⢠⡖⣏⠒⢼⠀⠀⠘⡄⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠰⠀⠀⠀⢸⢀⠤⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⢻⣮⠢⠀⠑⠂⠀⠱⡀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⡇⠀⠀⠀⠀⠀⠀⢠⠃⠀⢀⡤⠊⢡⣮⡺⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠙⢄⠀⠀⠀⠀⠀⠱⡀⠀⠀⠀⠀⠀⠀⡇⠀⠀⡇⠀⠀⠀⠀⠀⡠⠃⠀⠀⠈⠀⠀⣠⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠈⠱⣄⠀⠀⠀⡄⠙⢄⠀⠀⠀⠀⠀⡃⠤⠄⡰⠀⠀⠀⠀⡰⠁⢀⠀⠀⠀⣀⠜⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠠⠴⠓⠒⠂⠧⢤⡴⡖⠊⠀⠀⠀⠙⠀⣤⣤⡎⠒⠀⢇⣀⡤⠊⠁⠀⠀");
 
                         //Termina la batalla si murieron todos los pokemones de un solo entrenador
                         batallaActiva = false;
@@ -662,10 +689,91 @@ public class GestorJuego {
 
 
             }else if(opcion==6){
-                batallaActiva=false;
+
+
+                System.out.println(" " +entrenadorAtacante.getNombre()+" se ha rendido! Perdio la batalla.");
+                boolean todosDebilitados=false;
+
+                Mochila mochilaAtacante=equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido());
+                mochilaAtacante.debilitarTodos();
+                todosDebilitados = true;
+                for (Pokemon p : mochilaAtacante.obtenerTodos()) {
+                    System.out.println(p.getNombre() + " derrotado. Vida restante: " + p.getVidaRestante());
+                }
+
+                if (todosDebilitados) {
+                    System.out.println(
+                            String.format("""
+                                            +-------------------------------------------+
+                                            |                                           |
+                                            |   %s %s ha ganado la batalla!             |
+                                            |                                           |
+                                            +-------------------------------------------+
+                                            """,
+                                    entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido()
+                            ));
+                    System.out.println("⢿⣷⣶⣤⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀\n" +
+                            "⠈⢿⣿⣿⡇⠈⠑⠢⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡴⢶⣿⣿⣿⡿⠁⠀⠀⠀⠀\n" +
+                            "⠀⠈⢻⣿⣇⠀⠀⠀⠀⠑⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡴⠟⠉⠀⠀⣸⣿⣿⡟⠁⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠹⣿⡄⠀⠀⠀⠀⠀⠙⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠋⠀⠀⠀⠀⢀⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠈⠳⣄⠀⠀⠀⠀⠀⠀⠱⡄⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⡠⠊⠁⠀⠀⠀⠀⠀⠀⣼⠟⠁⠀⠀⠀⠀⢀⣀⠤⢤\n" +
+                            "⠀⠀⠀⠀⠀⠀⠈⠓⢄⡀⠀⠀⠀⠀⠘⠦⠔⠊⠉⠀⠀⠀⠀⠀⠀⠀⠉⠁⠂⠊⠀⠀⠀⠀⠀⠀⢀⠴⠊⠀⢀⣀⠤⠔⠚⠉⠁⠀⠀⢸\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠢⢄⠀⡠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⠴⠊⢁⡠⠔⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⡆\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⡤⠒⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⢀⣶⡿⠛⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠛⢻⣶⡄⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡌⠀⠈⣿⣿⣶⡿⠀⠀⠀⠀⢀⠀⠀⠀⠀⢿⣶⣿⣿⠇⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠤⠄⠚⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡧⠤⢄⡈⠉⠉⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠉⠉⠁⠀⣀⣀⡇⠀⠀⢠⠤⠒⠒⠉⠁⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠂⠀⠀⠙⡄⠀⠀⠀⠢⠤⠴⠊⠒⠤⠠⠖⠀⠀⠀⡴⠋⠀⠀⢹⠀⠀⠀⠱⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⢀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡀⠀⠀⢠⡎⠀⠀⠀⠀⠈⢣⡀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⢖⡉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠒⣲⠋⠈⢒⡤⠀⠀⠀⠀⠈⢦⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠀⠉⠲⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠴⠊⠈⡤⠒⠉⠀⠀⣀⠤⠒⠉⠁⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠐⠂⠉⠀⠀⠀⠀⢣⢀⡦⣶⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⢄⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠀⠀⠈⢏⢀⣀⠵⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⢀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠈⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⢰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⡸⠀⠀⠀⠀⠀⠀⠀⠀⡆⠀⠈⢇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⢠⡖⣏⠒⢼⠀⠀⠘⡄⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠰⠀⠀⠀⢸⢀⠤⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⢻⣮⠢⠀⠑⠂⠀⠱⡀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⡇⠀⠀⠀⠀⠀⠀⢠⠃⠀⢀⡤⠊⢡⣮⡺⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠙⢄⠀⠀⠀⠀⠀⠱⡀⠀⠀⠀⠀⠀⠀⡇⠀⠀⡇⠀⠀⠀⠀⠀⡠⠃⠀⠀⠈⠀⠀⣠⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠈⠱⣄⠀⠀⠀⡄⠙⢄⠀⠀⠀⠀⠀⡃⠤⠄⡰⠀⠀⠀⠀⡰⠁⢀⠀⠀⠀⣀⠜⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠠⠴⠓⠒⠂⠧⢤⡴⡖⠊⠀⠀⠀⠙⠀⣤⣤⡎⠒⠀⢇⣀⡤⠊⠁⠀⠀");
+
+                    //Termina la batalla si se rinde y la vida de sus pokemon es 0
+
+                    Mochila mochilaPerdedora = equipos.getMochila(
+                            entrenadorAtacante.getNombre(),
+                            entrenadorAtacante.getApellido()
+                    );
+
+                    System.out.println("\nIntentando capturar los pokémon del entrenador perdedor "
+                            + entrenadorAtacante.getNombre() + "...\n");
+
+                    Capturar capturador = new Capturar();
+
+                    ArrayList<Pokemon> pokemonsPerdedores = new ArrayList<>(mochilaPerdedora.obtenerTodos());
+
+
+
+                    batallaActiva = false;
+                    flagRendirse=true;
+
+
+                }
+
+
+            }  Menu.menuCapturar();
+
+            if(opcion=='s'){
+                System.out.println("entro");
+                Capturar capturar=new Capturar();
+
+            }
+            if(flagRendirse){
+             //aqui quiero empezar
             }
 
             if (batallaActiva) turno++;
         }
+
     }
 }

@@ -57,7 +57,10 @@ public class Menu {
         System.out.println("0. Volver");
         System.out.print("Opción: ");
 
-
+    }   public static void menuCapturar() {
+        System.out.println("Puedes capturar un pokemon del entrendor que perdio... (s/n)");
+        System.out.println("0. Volver");
+        System.out.print("Opción: ");
 
     }
 

@@ -8,7 +8,7 @@ import Utiles.Contenedor;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 
-public class Mochila {
+public class Mochila extends Contenedor{
     private LinkedHashSet<Pokemon> pokemones;
 
      public  Mochila()
@@ -116,6 +116,12 @@ public class Mochila {
     public int size()
     {
         return pokemones.size();
+    }
+//debilita los pokemones de la mochila, sirve para rendirse
+    public void debilitarTodos() {
+        for (Pokemon p : pokemones) {
+            p.setVidaRestante(0);
+        }
     }
 //Obtener todos los pokemones al retornar la coleccion para poder usarlos
     public LinkedHashSet<Pokemon> obtenerTodos() {

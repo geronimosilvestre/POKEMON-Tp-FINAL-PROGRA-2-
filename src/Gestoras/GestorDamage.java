@@ -48,6 +48,18 @@ public class GestorDamage {
         }
         return total;
     }
+    public Entrenador devolverGanador(Entrenador a, Entrenador b){
+
+        Mochila mochilaA = equipos.getMochila(a.getNombre(),a.getApellido());
+        Mochila mochilaB = equipos.getMochila(b.getNombre(),b.getApellido());
+
+        int vidaA=calcularVidaTotal(mochilaA);
+        int vidaB=calcularVidaTotal(mochilaB);
+        //retorna el entrenador que ttiene mas vida resttante en su mochila
+        if(vidaA>vidaB){return a;}
+
+        return b;
+    }
 
     // Muestra la vida total del equipo de un entrenador
     public void mostrarVidaEquipo(Entrenador entrenador, Mochila mochila) {
