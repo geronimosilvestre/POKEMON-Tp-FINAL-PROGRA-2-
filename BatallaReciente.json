@@ -2,7 +2,7 @@
     [
         {
             "apellido": "Pascuan",
-            "uuid": "254bb819-48eb-41d9-9390-475677c5143a",
+            "uuid": "7ea1a02c-cac7-4b9d-a00e-666f9f36993d",
             "nombre": "Joel"
         },
         [
@@ -12,33 +12,33 @@
                 "ataque": 45,
                 "vidaCompleta": 120,
                 "defensa": 60,
-                "uuid": "29890fbd-a6ce-420c-b502-68e1d80f12c6",
+                "uuid": "b215ca02-31dd-4e62-af6e-9c81c5b53dc0",
                 "nombre": "Geodude"
             },
             {
                 "tipo": "PLANTA",
-                "vidaRestante": 90,
-                "ataque": 50,
-                "vidaCompleta": 90,
-                "defensa": 55,
-                "uuid": "d8bbf1c4-ff4b-487e-8733-305e22903897",
-                "nombre": "Oddish"
+                "vidaRestante": 105,
+                "ataque": 49,
+                "vidaCompleta": 105,
+                "defensa": 45,
+                "uuid": "60152786-33b3-4924-9c8e-b221fd52cfab",
+                "nombre": "Bulbasaur"
             },
             {
-                "tipo": "ELECTRICO",
+                "tipo": "HIELO",
                 "vidaRestante": 0,
-                "ataque": 90,
+                "ataque": 85,
                 "vidaCompleta": 160,
-                "defensa": 85,
-                "uuid": "9fb22a92-e1d7-4499-b859-58307a1bfa13",
-                "nombre": "Zapdos"
+                "defensa": 100,
+                "uuid": "53a2580d-fd5b-47a8-96fd-469d8f06138c",
+                "nombre": "Articuno"
             }
         ]
     ],
     [
         {
             "apellido": "Jimenez",
-            "uuid": "3f04a514-40fc-445d-864c-85685c9a8229",
+            "uuid": "c450dceb-c804-4212-a3f0-6417370a81eb",
             "nombre": "Valentina"
         },
         [
@@ -48,7 +48,7 @@
                 "ataque": 100,
                 "vidaCompleta": 160,
                 "defensa": 90,
-                "uuid": "ef95b54b-ac05-4912-95f6-5c136cf05412",
+                "uuid": "afe3642a-2b3c-48ad-a7c4-c09589b258a1",
                 "nombre": "Moltres"
             },
             {
@@ -57,7 +57,7 @@
                 "ataque": 90,
                 "vidaCompleta": 160,
                 "defensa": 85,
-                "uuid": "9fb22a92-e1d7-4499-b859-58307a1bfa13",
+                "uuid": "99777fc3-c451-4245-9c27-8560d4783d40",
                 "nombre": "Zapdos"
             },
             {
@@ -66,7 +66,7 @@
                 "ataque": 85,
                 "vidaCompleta": 160,
                 "defensa": 100,
-                "uuid": "76532460-1741-4a5c-a919-618d2cbb6d32",
+                "uuid": "53a2580d-fd5b-47a8-96fd-469d8f06138c",
                 "nombre": "Articuno"
             }
         ]

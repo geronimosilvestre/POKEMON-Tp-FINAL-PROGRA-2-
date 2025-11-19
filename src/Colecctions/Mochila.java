@@ -118,7 +118,7 @@ public class Mochila extends Contenedor{
     {
         return pokemones.size();
     }
-//debilita los pokemones de la mochila, sirve para rendirse
+//debilita los pokemones de la mochila, sirve para rendirse. Deja los pokemones con 0 vida
     public void debilitarTodos() {
         for (Pokemon p : pokemones) {
             p.setVidaRestante(0);
@@ -128,6 +128,7 @@ public class Mochila extends Contenedor{
     public LinkedHashSet<Pokemon> obtenerTodos() {
         return pokemones;
     }
+    //retorna un pokemon random de la mochila
 
     public Pokemon getRandomdeMochila() throws mochilaVaciaException
     {

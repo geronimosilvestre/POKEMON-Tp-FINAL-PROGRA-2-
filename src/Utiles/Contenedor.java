@@ -11,11 +11,12 @@ public class Contenedor<T> {
     public boolean agregarObjeto(T objeto) {
        return lista.add(objeto);
     }
+    //elimina un objeto de l alista
 
     public boolean eliminarObjeto(T objeto) {
        return lista.remove(objeto);
     }
-
+    //retorna un obj random de la lista
     public T getObjRandom(){
 
         if (lista.isEmpty()) {

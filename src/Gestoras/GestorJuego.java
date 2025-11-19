@@ -694,8 +694,11 @@ public class GestorJuego {
 
                 System.out.println(" " +entrenadorAtacante.getNombre()+" se ha rendido! Perdio la batalla.");
                 boolean todosDebilitados=false;
+                //se rinde entrenador
                 Mochila mochilaDefensor=equipos.getMochila(entrenadorDefensor.getNombre(), entrenadorDefensor.getApellido());
                 Mochila mochilaAtacante=equipos.getMochila(entrenadorAtacante.getNombre(), entrenadorAtacante.getApellido());
+                //obtiene mochilas de defensro(ganador), y atacante(perdedor)
+                //se debilitan los pokemones del atacante(el que se rindio)
                 mochilaAtacante.debilitarTodos();
                 todosDebilitados = true;
                 for (Pokemon p : mochilaAtacante.obtenerTodos()) {
@@ -703,6 +706,7 @@ public class GestorJuego {
                 }
 
                 if (todosDebilitados) {
+                    //se muestra ganador
                     System.out.println(
                             String.format("""
                                             +-------------------------------------------+
@@ -741,12 +745,7 @@ public class GestorJuego {
 
                     //Termina la batalla si se rinde y la vida de sus pokemon es 0
 
-//                    Mochila mochilaPerdedora = equipos.getMochila(
-//                            entrenadorAtacante.getNombre(),
-//                            entrenadorAtacante.getApellido()
-//                    );
-
-                    System.out.println("\nQuieres capturar un pokémon aleatorio del entrenador perdedor?"+ entrenadorAtacante.getNombre()+" s/n \n");
+                   Menu.menuCapturar();
 
                         String op=sc.nextLine();
 
@@ -757,7 +756,7 @@ public class GestorJuego {
                             try{
 
                                 Pokemon perdedor=mochilaAtacante.getRandomdeMochila();
-                                System.out.println("Ha tocado "+perdedor.getNombre());
+                                System.out.println("Ha tocado "+perdedor.getNombre()+"para capturar");
 
                                 if (perdedor!=null) {
 
@@ -766,13 +765,9 @@ public class GestorJuego {
                                     boolean secapturo= capturador.capturarBatalla(perdedor);
 
 
+                                        System.out.println("Lo has capturado!!!" + "  "+entrenadorDefensor.getNombre()+" puedes reemplazar tu pokemon: \n ");
 
-
-                                        System.out.println(" "+entrenadorDefensor.getNombre()+" puedes reemplazar tu pokemon: \n ");
-
-                                       // ArrayList<Pokemon> lista = new ArrayList<>(mochilaDefensor.obtenerTodos());
-
-                                    System.out.println(mochilaDefensor.listar());
+                                        System.out.println(mochilaDefensor.listar());
 
 
                                         System.out.print("Ingresa el número del Pokémon a reemplazar: ");

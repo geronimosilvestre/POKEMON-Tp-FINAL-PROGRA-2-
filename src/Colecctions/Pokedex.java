@@ -23,6 +23,7 @@ public class Pokedex extends Contenedor<Pokemon> {
 
     public boolean agregar(Pokemon pokemon) throws existException {
         if (!lista.contains(pokemon)) {
+            //utiliza funcion agregar de contenedor
             super.agregarObjeto(pokemon);
             return true;
         } else {
@@ -31,6 +32,7 @@ public class Pokedex extends Contenedor<Pokemon> {
     }
 
     @Override
+    //sobreescribe metodos de contenedor para eliminar obj de lista
     public boolean eliminarObjeto(Pokemon objeto) {
         return super.eliminarObjeto(objeto);
     }
